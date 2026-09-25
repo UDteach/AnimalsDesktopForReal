@@ -121,7 +121,7 @@ function menu() {
   const t = copy[language];
   return Menu.buildFromTemplate([
     { label: t.show, enabled: available.length > 0, click: () => playNext(true) },
-    { label: paused ? t.resume : t.pause, click: () => { paused = !paused; stop(); if (!paused) schedule(); refreshMenu(); } },
+    { label: paused ? t.resume : t.pause, click: () => { paused = !paused; reconcileRuntime(); refreshMenu(); } },
     { type: 'separator' },
     { label: t.animals, submenu: [
       { label: t.all, type: 'checkbox', checked: settings.all, click: () => { settings.all = true; saveSettings(); refreshMenu(); } },
@@ -265,6 +265,7 @@ function openIntervalWindow() {
   intervalWindow.loadFile(path.join(__dirname, 'interval.html'));
   intervalWindow.once('ready-to-show', () => intervalWindow.show());
   intervalWindow.on('closed', () => { intervalWindow = undefined; reconcileRuntime(); });
+  reconcileRuntime();
 }
 function openModesWindow() {
   if (modesWindow && !modesWindow.isDestroyed()) { modesWindow.focus(); return; }
