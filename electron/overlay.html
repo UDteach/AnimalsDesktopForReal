@@ -8,8 +8,8 @@
     #animal, #motion-video { position: absolute; left: 0; bottom: 0; opacity: 0; pointer-events: none; will-change: transform, opacity; }
     #animal { max-height: 72vh; object-fit: contain; object-position: bottom; }
     [hidden] { display: none !important; }
-    #animal:is(.chinchilla-hop, .chinchilla-perch, .chinchilla-peek, .hamster-peek, .djungarian-pause, .djungarian-peek, .macaroni-emerge, .macaroni-settle, .sugar-glider-perch, .sugar-glider-peek, .guinea-pig-peek, .guinea-pig-forage, .guinea-pig-popcorn),
-    #motion-video:is(.chinchilla-hop, .chinchilla-perch, .chinchilla-peek, .hamster-peek, .djungarian-pause, .djungarian-peek, .macaroni-emerge, .macaroni-settle, .sugar-glider-perch, .sugar-glider-peek, .guinea-pig-forage, .guinea-pig-popcorn) {
+    #animal:is(.chinchilla-hop, .chinchilla-perch, .chinchilla-peek, .hamster-peek, .djungarian-pause, .djungarian-peek, .macaroni-emerge, .macaroni-settle, .sugar-glider-perch, .sugar-glider-peek, .guinea-pig-peek, .guinea-pig-forage, .guinea-pig-popcorn, .rabbit-hop, .rabbit-sniff, .rabbit-periscope, .rabbit-peek),
+    #motion-video:is(.chinchilla-hop, .chinchilla-perch, .chinchilla-peek, .hamster-peek, .djungarian-pause, .djungarian-peek, .macaroni-emerge, .macaroni-settle, .sugar-glider-perch, .sugar-glider-peek, .guinea-pig-forage, .guinea-pig-popcorn, .rabbit-hop, .rabbit-sniff, .rabbit-periscope) {
       animation: edge-pop 4s linear both;
     }
     #animal:is(.hamster-forage, .hamster-explore, .macaroni-shuffle, .guinea-pig-trot),
@@ -18,7 +18,7 @@
     }
     #animal.djungarian-dash, #motion-video.djungarian-dash { animation: edge-dash 4s linear both; }
     #motion-video.sugar-glider-glide { left: -45vw; bottom: 22vh; animation: sky-glide 4s linear both; }
-    #motion-video:is(.chinchilla-bottom-pop, .hamster-bottom-pop, .djungarian-bottom-pop, .macaroni-bottom-pop, .guinea-pig-bottom-pop, .sugar-glider-bottom-pop) {
+    #motion-video:is(.chinchilla-bottom-pop, .hamster-bottom-pop, .djungarian-bottom-pop, .macaroni-bottom-pop, .guinea-pig-bottom-pop, .sugar-glider-bottom-pop, .rabbit-bottom-pop) {
       bottom: 0; opacity: 1; transform: translateX(-50%); animation: none;
     }
     @keyframes edge-pop {

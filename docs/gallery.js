@@ -5,6 +5,7 @@ const motionGroups = {
   'macaroni-mouse': ['emerge', 'shuffle', 'settle', 'bottom-pop'],
   'sugar-glider': ['glide', 'perch', 'peek', 'bottom-pop'],
   'guinea-pig': ['trot', 'forage', 'popcorn', 'bottom-pop'],
+  rabbit: ['hop', 'sniff', 'periscope', 'bottom-pop'],
 };
 
 const motionCopy = {
@@ -13,6 +14,7 @@ const motionCopy = {
     forage: '小走り', explore: '探索', dash: '走る', pause: 'ひと休み',
     emerge: '顔を出す', shuffle: 'ちょこちょこ', settle: 'ぺたり', glide: '滑空', 'bottom-pop': '下からぴょこ',
     trot: 'てこてこ歩く', popcorn: '小さく跳ねる', 'guinea-pig-forage': '鼻で探す',
+    'rabbit-hop': 'ぴょんぴょん', sniff: '鼻で探る', periscope: '立って見回す',
     controls: '動きを選ぶ', error: 'この動画は再生できませんでした。',
   },
   en: {
@@ -20,6 +22,7 @@ const motionCopy = {
     forage: 'Forage', explore: 'Explore', dash: 'Dash', pause: 'Pause',
     emerge: 'Emerge', shuffle: 'Shuffle', settle: 'Settle', glide: 'Glide', 'bottom-pop': 'Pop up',
     trot: 'Trot', popcorn: 'Popcorn hop', 'guinea-pig-forage': 'Sniff & forage',
+    'rabbit-hop': 'Hop along', sniff: 'Sniff around', periscope: 'Stand & look',
     controls: 'Choose a motion', error: 'This clip could not be played.',
   },
 };
@@ -48,6 +51,9 @@ const heroMotionByVariant = {
   'guinea-pig-tricolor': 'bottom-pop',
   'guinea-pig-self-cream': 'popcorn',
   'guinea-pig-golden-agouti': 'trot',
+  'rabbit-netherland-chestnut': 'bottom-pop',
+  'rabbit-netherland-fawn': 'hop',
+  'rabbit-netherland-black-himalayan': 'periscope',
 };
 
 function entranceFor(motion) {

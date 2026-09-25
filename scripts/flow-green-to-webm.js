@@ -24,7 +24,7 @@ Options:
   --key HEX               Chroma key RGB, e.g. 0x16e91b (default 0x16e91b)
   --similarity NUMBER      FFmpeg chromakey similarity, >0..1 (default 0.12)
   --blend NUMBER           FFmpeg chromakey edge blend, 0..1 (default 0.05)
-  --despill-mix NUMBER     Green-spill suppression, 0..1 (default 0.8)
+  --despill-mix NUMBER     Green-spill suppression, 0..1; 0 skips despill (default 0.8)
   --despill-expand NUMBER  Despill expansion, 0..1 (default 0.2)
   --flip                   Mirror horizontally after keying
   --crf NUMBER             VP9 quality, 0..63; lower is larger (default 32)
@@ -93,10 +93,12 @@ const probe = JSON.parse(run('ffprobe', [
 const stream = probe.streams?.[0];
 const duration = Number(probe.format?.duration);
 if (!stream || !Number.isFinite(duration) || duration <= 0) fail('Input has no usable video stream');
-const filters = [
-  `chromakey=${options.key}:${options.similarity}:${options.blend}`,
-  `despill=type=green:mix=${options.despillMix}:expand=${options.despillExpand}`,
-];
+const filters = [`chromakey=${options.key}:${options.similarity}:${options.blend}`];
+// FFmpeg's despill mix=0 still replaces green with magenta. Skip the filter
+// entirely for white coats, which otherwise become visibly pink.
+if (options.despillMix > 0) {
+  filters.push(`despill=type=green:mix=${options.despillMix}:expand=${options.despillExpand}`);
+}
 if (options.flip) filters.push('hflip');
 const matteFilter = filters.join(',');
 

@@ -5,6 +5,7 @@ const species = [
   { id: 'macaroni-mouse', name: { ja: 'マカロニマウス', en: 'Macaroni mouse' } },
   { id: 'sugar-glider', name: { ja: 'フクロモモンガ', en: 'Sugar glider' } },
   { id: 'guinea-pig', name: { ja: 'モルモット', en: 'Guinea pig' } },
+  { id: 'rabbit', name: { ja: 'ネザーランドドワーフ', en: 'Netherland Dwarf' } },
 ];
 
 // Only approved, present assets are displayed. Coat labels and sources live in

@@ -12,6 +12,7 @@ const motionsBySpecies = {
   'macaroni-mouse': ['macaroni-emerge', 'macaroni-shuffle', 'macaroni-settle', 'macaroni-bottom-pop'],
   'sugar-glider': ['sugar-glider-glide', 'sugar-glider-perch', 'sugar-glider-peek', 'sugar-glider-bottom-pop'],
   'guinea-pig': ['guinea-pig-trot', 'guinea-pig-forage', 'guinea-pig-popcorn', 'guinea-pig-bottom-pop'],
+  rabbit: ['rabbit-hop', 'rabbit-sniff', 'rabbit-periscope', 'rabbit-bottom-pop'],
 };
 const frequencies = [
   { label: { ja: '1〜30秒ごと', en: 'Every 1–30 seconds' }, min: 1, max: 30 },

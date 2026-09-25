@@ -11,5 +11,8 @@
   { "id": "sugar-glider-gray-mosaic", "species": "sugar-glider", "name": { "ja": "グレーモザイク", "en": "Gray mosaic" } },
   { "id": "guinea-pig-tricolor", "species": "guinea-pig", "name": { "ja": "三毛", "en": "Tricolor" } },
   { "id": "guinea-pig-self-cream", "species": "guinea-pig", "name": { "ja": "クリーム", "en": "Self cream" } },
-  { "id": "guinea-pig-golden-agouti", "species": "guinea-pig", "name": { "ja": "ゴールデンアグーチ", "en": "Golden agouti" } }
+  { "id": "guinea-pig-golden-agouti", "species": "guinea-pig", "name": { "ja": "ゴールデンアグーチ", "en": "Golden agouti" } },
+  { "id": "rabbit-netherland-chestnut", "species": "rabbit", "name": { "ja": "チェスナット", "en": "Chestnut" } },
+  { "id": "rabbit-netherland-fawn", "species": "rabbit", "name": { "ja": "フォーン（小麦色）", "en": "Fawn" } },
+  { "id": "rabbit-netherland-black-himalayan", "species": "rabbit", "name": { "ja": "ブラック・ヒマラヤン", "en": "Black Himalayan" } }
 ]
