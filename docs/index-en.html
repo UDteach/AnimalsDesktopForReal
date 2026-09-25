@@ -9,6 +9,7 @@
   <link rel="icon" href="assets/icon.png">
   <link rel="alternate" hreflang="ja" href="index.html">
   <link rel="stylesheet" href="style.css">
+  <script src="gallery.js" defer></script>
 </head>
 <body>
   <header class="topbar">
@@ -24,11 +25,16 @@
         <div class="actions"><a class="button primary" href="download-en.html">Download the app ↗</a><a class="button secondary" href="#how">See how it works ↓</a></div>
         <p class="release-note">Five species, ten coat variations, and three motions for each: 30 clips in all.</p>
       </div>
-      <div class="desktop" aria-label="An animal appearing over a desktop">
-        <div class="desktop-bar"><span>● ● ●</span><span>9:41</span></div>
-        <div class="desktop-window"><div class="window-dots">● ● ●</div><div class="window-lines"><i></i><i></i><i></i><i></i></div></div>
-        <img class="hero-animal" src="assets/animals/chinchilla-standard-gray.png" alt="Standard gray chinchilla">
-        <div class="desktop-label">A gentle overlay on your wallpaper</div>
+      <div class="demo-stage">
+        <div class="desktop" aria-label="Preview of an animal appearing over a desktop">
+          <div class="desktop-bar"><span>● ● ●</span><span>9:41</span></div>
+          <div class="desktop-window"><div class="window-dots">● ● ●</div><div class="window-lines"><i></i><i></i><i></i><i></i></div></div>
+          <img class="hero-animal" id="hero-animal" src="assets/animals/chinchilla-standard-gray.png" alt="Standard gray chinchilla">
+          <video class="hero-video" id="hero-video" muted playsinline preload="none" aria-hidden="true"></video>
+          <div class="desktop-label">A gentle overlay on your wallpaper</div>
+        </div>
+        <div class="hero-dots" id="hero-dots" role="group" aria-label="Choose an animal"></div>
+        <p class="hero-caption" id="hero-caption"></p>
       </div>
     </section>
     <section class="section alt" id="how">
@@ -41,18 +47,18 @@
       <div class="mode-panel"><div><h3>Pomodoro brings them back for breaks.</h3><p>Automatic visits pause while you focus and resume when a break starts. Defaults are 25 minutes of focus, 5 minutes of break, and a 15-minute break every fourth round. You can change the times and show a small countdown.</p></div><div class="timer-preview">Break 1/4 <strong>05:00</strong></div></div>
     </section>
     <section class="section" id="animals">
-      <div class="section-heading"><span class="eyebrow">THE ANIMALS</span><h2>Each one has its own character.</h2><p>Ten coat and pattern variations. The macaroni mouse has one natural coat here; we have not invented extra color varieties.</p></div>
+      <div class="section-heading"><span class="eyebrow">THE ANIMALS</span><h2>Each one has its own character.</h2><p>Ten coats and patterns, with three motions to watch on each card. The macaroni mouse appears in its natural coat.</p></div>
       <div class="animal-grid">
-        <figure><img src="assets/animals/chinchilla-standard-gray.png" alt=""><figcaption>Chinchilla<small>Standard gray</small></figcaption></figure>
-        <figure><img src="assets/animals/chinchilla-beige.png" alt=""><figcaption>Chinchilla<small>Beige</small></figcaption></figure>
-        <figure><img src="assets/animals/chinchilla-white-mosaic.png" alt=""><figcaption>Chinchilla<small>White mosaic</small></figcaption></figure>
-        <figure><img src="assets/animals/hamster-golden.png" alt=""><figcaption>Syrian hamster<small>Golden</small></figcaption></figure>
-        <figure><img src="assets/animals/hamster-cream.png" alt=""><figcaption>Syrian hamster<small>Black-eyed cream</small></figcaption></figure>
-        <figure><img src="assets/animals/djungarian-normal.png" alt=""><figcaption>Djungarian hamster<small>Normal</small></figcaption></figure>
-        <figure><img src="assets/animals/macaroni-mouse-natural.png" alt=""><figcaption>Macaroni mouse<small>Natural coat</small></figcaption></figure>
-        <figure><img src="assets/animals/sugar-glider-standard-gray.png" alt=""><figcaption>Sugar glider<small>Standard gray</small></figcaption></figure>
-        <figure><img src="assets/animals/sugar-glider-leucistic.png" alt=""><figcaption>Sugar glider<small>Leucistic</small></figcaption></figure>
-        <figure><img src="assets/animals/sugar-glider-gray-mosaic.png" alt=""><figcaption>Sugar glider<small>Gray mosaic</small></figcaption></figure>
+        <figure data-variant="chinchilla-standard-gray"><img src="assets/animals/chinchilla-standard-gray.png" alt=""><figcaption>Chinchilla<small>Standard gray</small></figcaption></figure>
+        <figure data-variant="chinchilla-beige"><img src="assets/animals/chinchilla-beige.png" alt=""><figcaption>Chinchilla<small>Beige</small></figcaption></figure>
+        <figure data-variant="chinchilla-white-mosaic"><img src="assets/animals/chinchilla-white-mosaic.png" alt=""><figcaption>Chinchilla<small>White mosaic</small></figcaption></figure>
+        <figure data-variant="hamster-golden"><img src="assets/animals/hamster-golden.png" alt=""><figcaption>Syrian hamster<small>Golden</small></figcaption></figure>
+        <figure data-variant="hamster-cream"><img src="assets/animals/hamster-cream.png" alt=""><figcaption>Syrian hamster<small>Black-eyed cream</small></figcaption></figure>
+        <figure data-variant="djungarian-normal"><img src="assets/animals/djungarian-normal.png" alt=""><figcaption>Djungarian hamster<small>Normal</small></figcaption></figure>
+        <figure data-variant="macaroni-mouse-natural"><img src="assets/animals/macaroni-mouse-natural.png" alt=""><figcaption>Macaroni mouse<small>Natural coat</small></figcaption></figure>
+        <figure data-variant="sugar-glider-standard-gray"><img src="assets/animals/sugar-glider-standard-gray.png" alt=""><figcaption>Sugar glider<small>Standard gray</small></figcaption></figure>
+        <figure data-variant="sugar-glider-leucistic"><img src="assets/animals/sugar-glider-leucistic.png" alt=""><figcaption>Sugar glider<small>Leucistic</small></figcaption></figure>
+        <figure data-variant="sugar-glider-gray-mosaic"><img src="assets/animals/sugar-glider-gray-mosaic.png" alt=""><figcaption>Sugar glider<small>Gray mosaic</small></figcaption></figure>
       </div>
     </section>
     <section class="download-banner"><div><span class="eyebrow">DOWNLOAD</span><h2>Bring them to your screen.</h2><p>For macOS 12 or later (Apple Silicon and Intel) and Windows 10/11.</p></div><a class="button primary" href="download-en.html">Download ↗</a></section>

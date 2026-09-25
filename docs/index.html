@@ -9,6 +9,7 @@
   <link rel="icon" href="assets/icon.png">
   <link rel="alternate" hreflang="en" href="index-en.html">
   <link rel="stylesheet" href="style.css">
+  <script src="gallery.js" defer></script>
 </head>
 <body>
   <header class="topbar">
@@ -24,11 +25,16 @@
         <div class="actions"><a class="button primary" href="download.html">アプリをダウンロード ↗</a><a class="button secondary" href="#how">どんなアプリ？ ↓</a></div>
         <p class="release-note">5種・10種類の毛色と模様。各3つ、合計30本の動きを収録。</p>
       </div>
-      <div class="desktop" aria-label="デスクトップに現れる動物のイメージ">
-        <div class="desktop-bar"><span>● ● ●</span><span>9:41</span></div>
-        <div class="desktop-window"><div class="window-dots">● ● ●</div><div class="window-lines"><i></i><i></i><i></i><i></i></div></div>
-        <img class="hero-animal" src="assets/animals/chinchilla-standard-gray.png" alt="スタンダードグレーのチンチラ">
-        <div class="desktop-label">壁紙の上に、そっと重ねて表示</div>
+      <div class="demo-stage">
+        <div class="desktop" aria-label="デスクトップに現れる動物のプレビュー">
+          <div class="desktop-bar"><span>● ● ●</span><span>9:41</span></div>
+          <div class="desktop-window"><div class="window-dots">● ● ●</div><div class="window-lines"><i></i><i></i><i></i><i></i></div></div>
+          <img class="hero-animal" id="hero-animal" src="assets/animals/chinchilla-standard-gray.png" alt="スタンダードグレーのチンチラ">
+          <video class="hero-video" id="hero-video" muted playsinline preload="none" aria-hidden="true"></video>
+          <div class="desktop-label">壁紙の上に、そっと重ねて表示</div>
+        </div>
+        <div class="hero-dots" id="hero-dots" role="group" aria-label="動物を選ぶ"></div>
+        <p class="hero-caption" id="hero-caption"></p>
       </div>
     </section>
     <section class="section alt" id="how">
@@ -41,18 +47,18 @@
       <div class="mode-panel"><div><h3>ポモドーロで、休憩に会いに来る。</h3><p>集中中は動物の自動表示を休止。休憩が始まると登場します。標準設定は集中25分・休憩5分・4回目は15分。時間は変更でき、画面右上に残り時間も表示できます。</p></div><div class="timer-preview">休憩 1/4 <strong>05:00</strong></div></div>
     </section>
     <section class="section" id="animals">
-      <div class="section-heading"><span class="eyebrow">いきものたち</span><h2>姿も、動きも、それぞれ。</h2><p>10種類の毛色・模様を収録。マカロニマウスは架空の色違いを増やさず、自然色を1種類にしました。</p></div>
+      <div class="section-heading"><span class="eyebrow">いきものたち</span><h2>姿も、動きも、それぞれ。</h2><p>10種類の毛色・模様を収録。各カードで3つの動きを見られます。マカロニマウスは自然色の1種類です。</p></div>
       <div class="animal-grid">
-        <figure><img src="assets/animals/chinchilla-standard-gray.png" alt=""><figcaption>チンチラ<small>スタンダードグレー</small></figcaption></figure>
-        <figure><img src="assets/animals/chinchilla-beige.png" alt=""><figcaption>チンチラ<small>ベージュ</small></figcaption></figure>
-        <figure><img src="assets/animals/chinchilla-white-mosaic.png" alt=""><figcaption>チンチラ<small>ホワイトモザイク</small></figcaption></figure>
-        <figure><img src="assets/animals/hamster-golden.png" alt=""><figcaption>ゴールデンハムスター<small>ノーマル</small></figcaption></figure>
-        <figure><img src="assets/animals/hamster-cream.png" alt=""><figcaption>ゴールデンハムスター<small>キンクマ</small></figcaption></figure>
-        <figure><img src="assets/animals/djungarian-normal.png" alt=""><figcaption>ジャンガリアンハムスター<small>ノーマル</small></figcaption></figure>
-        <figure><img src="assets/animals/macaroni-mouse-natural.png" alt=""><figcaption>マカロニマウス<small>自然色</small></figcaption></figure>
-        <figure><img src="assets/animals/sugar-glider-standard-gray.png" alt=""><figcaption>フクロモモンガ<small>スタンダードグレー</small></figcaption></figure>
-        <figure><img src="assets/animals/sugar-glider-leucistic.png" alt=""><figcaption>フクロモモンガ<small>リューシスティック</small></figcaption></figure>
-        <figure><img src="assets/animals/sugar-glider-gray-mosaic.png" alt=""><figcaption>フクロモモンガ<small>グレーモザイク</small></figcaption></figure>
+        <figure data-variant="chinchilla-standard-gray"><img src="assets/animals/chinchilla-standard-gray.png" alt=""><figcaption>チンチラ<small>スタンダードグレー</small></figcaption></figure>
+        <figure data-variant="chinchilla-beige"><img src="assets/animals/chinchilla-beige.png" alt=""><figcaption>チンチラ<small>ベージュ</small></figcaption></figure>
+        <figure data-variant="chinchilla-white-mosaic"><img src="assets/animals/chinchilla-white-mosaic.png" alt=""><figcaption>チンチラ<small>ホワイトモザイク</small></figcaption></figure>
+        <figure data-variant="hamster-golden"><img src="assets/animals/hamster-golden.png" alt=""><figcaption>ゴールデンハムスター<small>ノーマル</small></figcaption></figure>
+        <figure data-variant="hamster-cream"><img src="assets/animals/hamster-cream.png" alt=""><figcaption>ゴールデンハムスター<small>キンクマ</small></figcaption></figure>
+        <figure data-variant="djungarian-normal"><img src="assets/animals/djungarian-normal.png" alt=""><figcaption>ジャンガリアンハムスター<small>ノーマル</small></figcaption></figure>
+        <figure data-variant="macaroni-mouse-natural"><img src="assets/animals/macaroni-mouse-natural.png" alt=""><figcaption>マカロニマウス<small>自然色</small></figcaption></figure>
+        <figure data-variant="sugar-glider-standard-gray"><img src="assets/animals/sugar-glider-standard-gray.png" alt=""><figcaption>フクロモモンガ<small>スタンダードグレー</small></figcaption></figure>
+        <figure data-variant="sugar-glider-leucistic"><img src="assets/animals/sugar-glider-leucistic.png" alt=""><figcaption>フクロモモンガ<small>リューシスティック</small></figcaption></figure>
+        <figure data-variant="sugar-glider-gray-mosaic"><img src="assets/animals/sugar-glider-gray-mosaic.png" alt=""><figcaption>フクロモモンガ<small>グレーモザイク</small></figcaption></figure>
       </div>
     </section>
     <section class="download-banner"><div><span class="eyebrow">ダウンロード</span><h2>あなたの画面にも。</h2><p>macOS 12以降（Apple Silicon・Intel）と Windows 10・11 に対応。</p></div><a class="button primary" href="download.html">ダウンロード ↗</a></section>

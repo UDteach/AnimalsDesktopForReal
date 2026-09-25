@@ -8,7 +8,7 @@
 
 ポモドーロを有効にすると集中中の自動表示を休み、休憩開始時に動物が現れます。標準設定は集中25分・短い休憩5分・4回目の長い休憩15分です。「時間の設定…」で各時間を変えられ、クリック操作を妨げない画面右上の残り時間表示も選べます。「今すぐ表示」は集中中にも使えます。
 
-公式サイト: [Animals Desktop - for Real](https://udteach.github.io/AnimalsDesktopForReal/) ／ [ダウンロード](https://udteach.github.io/AnimalsDesktopForReal/download.html)
+公式サイト: [Animals Desktop - for Real](https://udteach.github.io/AnimalsDesktopForReal/) ／ [ダウンロード](https://udteach.github.io/AnimalsDesktopForReal/download.html)。サイトでは10種類の毛色・模様をトップの丸いボタンで切り替えられ、各カードで3つの動作動画を再生できます。
 
 ## 起動
 

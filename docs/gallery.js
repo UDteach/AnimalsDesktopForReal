@@ -1,0 +1,253 @@
+const motionGroups = {
+  chinchilla: ['hop', 'perch', 'peek'],
+  hamster: ['forage', 'explore', 'peek'],
+  djungarian: ['dash', 'pause', 'peek'],
+  'macaroni-mouse': ['emerge', 'shuffle', 'settle'],
+  'sugar-glider': ['glide', 'perch', 'peek'],
+};
+
+const motionCopy = {
+  ja: {
+    hop: '跳ぶ', perch: '立ち止まる', peek: 'のぞく',
+    forage: '小走り', explore: '探索', dash: '走る', pause: 'ひと休み',
+    emerge: '顔を出す', shuffle: 'ちょこちょこ', settle: 'ぺたり', glide: '滑空',
+    controls: '動きを選ぶ', error: 'この動画は再生できませんでした。',
+  },
+  en: {
+    hop: 'Hop', perch: 'Perch', peek: 'Peek',
+    forage: 'Forage', explore: 'Explore', dash: 'Dash', pause: 'Pause',
+    emerge: 'Emerge', shuffle: 'Shuffle', settle: 'Settle', glide: 'Glide',
+    controls: 'Choose a motion', error: 'This clip could not be played.',
+  },
+};
+
+const language = document.documentElement.lang === 'en' ? 'en' : 'ja';
+const copy = motionCopy[language];
+const userAgent = navigator.userAgent;
+// Safari plays VP9 WebM but does not preserve its alpha channel.
+const preferMp4 = /iPhone|iPad|iPod/.test(userAgent) ||
+  (/Safari/.test(userAgent) && !/Chrome|Chromium|Edg|OPR|Firefox/.test(userAgent));
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const saveData = navigator.connection?.saveData === true;
+const cards = [...document.querySelectorAll('.animal-grid figure[data-variant]')];
+
+function videoPath(card, format) {
+  return `assets/motions/${card.dataset.variant}-${card.dataset.motion}.${format}`;
+}
+
+function pauseCard(card) {
+  const video = card.querySelector('video');
+  if (!video) return;
+  card.classList.remove('video-ready');
+  card.dataset.format = '';
+  video.pause();
+  video.removeAttribute('src');
+  video.load();
+}
+
+function loadVideo(card, format) {
+  const video = card.querySelector('video');
+  const version = Number(card.dataset.version || 0) + 1;
+  card.dataset.version = String(version);
+  card.dataset.format = format;
+  card.classList.remove('video-ready');
+  card.querySelector('.motion-error').hidden = true;
+  video.pause();
+  video.src = videoPath(card, format);
+  video.load();
+  video.play().catch(() => {
+    if (card.dataset.version === String(version)) handleVideoError(card);
+  });
+}
+
+function handleVideoError(card) {
+  if (!card.dataset.format) return;
+  if (card.dataset.format === 'webm') {
+    loadVideo(card, 'mp4');
+    return;
+  }
+  pauseCard(card);
+  card.querySelector('.motion-error').hidden = false;
+}
+
+function selectMotion(card, motion) {
+  card.dataset.motion = motion;
+  for (const button of card.querySelectorAll('.motion-controls button')) {
+    button.setAttribute('aria-pressed', String(button.dataset.motion === motion));
+  }
+  loadVideo(card, preferMp4 ? 'mp4' : 'webm');
+}
+
+for (const card of cards) {
+  const variant = card.dataset.variant;
+  const group = Object.keys(motionGroups).find((prefix) => variant.startsWith(`${prefix}-`));
+  if (!group) continue;
+  const image = card.querySelector('img');
+  const caption = card.querySelector('figcaption');
+  const animalName = `${caption.firstChild.textContent} ${caption.querySelector('small').textContent}`;
+  const stage = document.createElement('div');
+  stage.className = 'animal-preview';
+  image.replaceWith(stage);
+  stage.append(image);
+  const video = document.createElement('video');
+  video.muted = true;
+  video.loop = true;
+  video.playsInline = true;
+  video.preload = 'none';
+  video.setAttribute('aria-hidden', 'true');
+  video.addEventListener('playing', () => card.classList.add('video-ready'));
+  video.addEventListener('error', () => handleVideoError(card));
+  stage.append(video);
+  const controls = document.createElement('div');
+  controls.className = 'motion-controls';
+  controls.setAttribute('role', 'group');
+  controls.setAttribute('aria-label', `${animalName}: ${copy.controls}`);
+  for (const motion of motionGroups[group]) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = copy[motion];
+    button.dataset.motion = motion;
+    button.setAttribute('aria-pressed', 'false');
+    button.setAttribute('aria-label', `${animalName}: ${copy[motion]}`);
+    button.addEventListener('click', () => selectMotion(card, motion));
+    controls.append(button);
+  }
+  card.append(controls);
+  const error = document.createElement('p');
+  error.className = 'motion-error';
+  error.textContent = copy.error;
+  error.setAttribute('role', 'status');
+  error.hidden = true;
+  card.append(error);
+  card.dataset.motion = motionGroups[group][0];
+}
+
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      const card = entry.target;
+      const visible = entry.intersectionRatio >= 0.35;
+      card.dataset.visible = String(visible);
+      if (visible && !reducedMotion && !saveData && !document.hidden) {
+        if (!card.dataset.format) selectMotion(card, card.dataset.motion);
+      } else if (!visible) {
+        pauseCard(card);
+      }
+    }
+  }, { threshold: 0.35 });
+  for (const card of cards) observer.observe(card);
+}
+
+document.addEventListener('visibilitychange', () => {
+  for (const card of cards) {
+    if (document.hidden) pauseCard(card);
+    else if (card.dataset.visible === 'true' && !reducedMotion && !saveData) {
+      selectMotion(card, card.dataset.motion);
+    }
+  }
+});
+
+const heroStage = document.querySelector('.demo-stage');
+if (heroStage && cards.length) {
+  const desktop = heroStage.querySelector('.desktop');
+  const image = document.getElementById('hero-animal');
+  const video = document.getElementById('hero-video');
+  const dots = document.getElementById('hero-dots');
+  const caption = document.getElementById('hero-caption');
+  const slides = cards.map((card) => ({
+    variant: card.dataset.variant,
+    motion: card.dataset.motion,
+    name: `${card.querySelector('figcaption').firstChild.textContent} ${card.querySelector('small').textContent}`,
+  }));
+  let index = 0;
+  let format = '';
+  let version = 0;
+  let fallbackTimer;
+  let heroVisible = true;
+
+  function nextSlide() {
+    if (!reducedMotion && !saveData && !document.hidden && heroVisible) showSlide((index + 1) % slides.length);
+  }
+
+  function videoFailed() {
+    if (!format) return;
+    if (format === 'webm') {
+      desktop.classList.add('mp4-preview');
+      loadHero('mp4');
+      return;
+    }
+    format = '';
+    desktop.classList.remove('demo-playing');
+    video.pause();
+    fallbackTimer = setTimeout(nextSlide, 4000);
+  }
+
+  function loadHero(extension) {
+    const slide = slides[index];
+    const thisVersion = ++version;
+    format = extension;
+    video.pause();
+    video.src = `assets/motions/${slide.variant}-${slide.motion}.${extension}`;
+    video.load();
+    video.play().catch(() => {
+      if (version === thisVersion) videoFailed();
+    });
+  }
+
+  function showSlide(nextIndex, manual = false) {
+    clearTimeout(fallbackTimer);
+    index = nextIndex;
+    const slide = slides[index];
+    desktop.classList.remove('demo-playing');
+    desktop.classList.toggle('mp4-preview', preferMp4);
+    image.src = `assets/animals/${slide.variant}.png`;
+    image.alt = slide.name;
+    caption.textContent = slide.name;
+    for (const [dotIndex, dot] of [...dots.children].entries()) {
+      dot.setAttribute('aria-current', String(dotIndex === index));
+    }
+    version += 1;
+    format = '';
+    video.pause();
+    video.removeAttribute('src');
+    video.load();
+    if ((!reducedMotion && !saveData && !document.hidden && heroVisible) || manual) {
+      loadHero(preferMp4 ? 'mp4' : 'webm');
+    }
+  }
+
+  for (const [dotIndex, slide] of slides.entries()) {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.setAttribute('aria-label', language === 'ja' ? `${slide.name}を見る` : `Show ${slide.name}`);
+    dot.title = slide.name;
+    dot.addEventListener('click', () => showSlide(dotIndex, true));
+    dots.append(dot);
+  }
+  video.addEventListener('playing', () => desktop.classList.add('demo-playing'));
+  video.addEventListener('ended', nextSlide);
+  video.addEventListener('error', videoFailed);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      clearTimeout(fallbackTimer);
+      video.pause();
+    } else if (!reducedMotion && !saveData && heroVisible) {
+      if (format) video.play().catch(videoFailed);
+      else showSlide(index);
+    }
+  });
+  showSlide(0);
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(([entry]) => {
+      heroVisible = entry.intersectionRatio >= 0.1;
+      if (!heroVisible) {
+        clearTimeout(fallbackTimer);
+        video.pause();
+      } else if (!document.hidden && !reducedMotion && !saveData) {
+        if (format) video.play().catch(videoFailed);
+        else showSlide(index);
+      }
+    }, { threshold: 0.1 });
+    observer.observe(heroStage);
+  }
+}
