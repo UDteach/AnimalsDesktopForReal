@@ -30,6 +30,25 @@ const preferMp4 = /iPhone|iPad|iPod/.test(userAgent) ||
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const saveData = navigator.connection?.saveData === true;
 const cards = [...document.querySelectorAll('.animal-grid figure[data-variant]')];
+const bottomMotions = new Set(['hop', 'perch', 'explore', 'pause', 'emerge', 'settle']);
+const heroMotionByVariant = {
+  'chinchilla-standard-gray': 'peek',
+  'chinchilla-beige': 'perch',
+  'chinchilla-white-mosaic': 'peek',
+  'hamster-golden': 'peek',
+  'hamster-cream': 'explore',
+  'djungarian-normal': 'dash',
+  'macaroni-mouse-natural': 'emerge',
+  'sugar-glider-standard-gray': 'glide',
+  'sugar-glider-leucistic': 'perch',
+  'sugar-glider-gray-mosaic': 'glide',
+};
+
+function entranceFor(motion) {
+  if (motion === 'glide') return 'glide';
+  if (motion === 'peek') return 'peek';
+  return bottomMotions.has(motion) ? 'bottom' : 'side';
+}
 
 function videoPath(card, format) {
   return `assets/motions/${card.dataset.variant}-${card.dataset.motion}.${format}`;
@@ -72,6 +91,7 @@ function handleVideoError(card) {
 
 function selectMotion(card, motion) {
   card.dataset.motion = motion;
+  card.dataset.entrance = entranceFor(motion);
   for (const button of card.querySelectorAll('.motion-controls button')) {
     button.setAttribute('aria-pressed', String(button.dataset.motion === motion));
   }
@@ -82,22 +102,23 @@ for (const card of cards) {
   const variant = card.dataset.variant;
   const group = Object.keys(motionGroups).find((prefix) => variant.startsWith(`${prefix}-`));
   if (!group) continue;
-  const image = card.querySelector('img');
   const caption = card.querySelector('figcaption');
   const animalName = `${caption.firstChild.textContent} ${caption.querySelector('small').textContent}`;
-  const stage = document.createElement('div');
-  stage.className = 'animal-preview';
-  image.replaceWith(stage);
-  stage.append(image);
-  const video = document.createElement('video');
+  const video = card.querySelector('.animal-preview video');
   video.muted = true;
-  video.loop = true;
+  video.loop = false;
   video.playsInline = true;
-  video.preload = 'none';
-  video.setAttribute('aria-hidden', 'true');
   video.addEventListener('playing', () => card.classList.add('video-ready'));
+  video.addEventListener('ended', () => {
+    card.classList.remove('video-ready');
+    if (card.dataset.visible === 'true' && !reducedMotion && !saveData && !document.hidden) {
+      // Restart the entrance together with the next video pass.
+      void video.offsetWidth;
+      video.currentTime = 0;
+      video.play().catch(() => handleVideoError(card));
+    }
+  });
   video.addEventListener('error', () => handleVideoError(card));
-  stage.append(video);
   const controls = document.createElement('div');
   controls.className = 'motion-controls';
   controls.setAttribute('role', 'group');
@@ -120,6 +141,7 @@ for (const card of cards) {
   error.hidden = true;
   card.append(error);
   card.dataset.motion = motionGroups[group][0];
+  card.dataset.entrance = entranceFor(card.dataset.motion);
 }
 
 if ('IntersectionObserver' in window) {
@@ -150,13 +172,12 @@ document.addEventListener('visibilitychange', () => {
 const heroStage = document.querySelector('.demo-stage');
 if (heroStage && cards.length) {
   const desktop = heroStage.querySelector('.desktop');
-  const image = document.getElementById('hero-animal');
   const video = document.getElementById('hero-video');
   const dots = document.getElementById('hero-dots');
   const caption = document.getElementById('hero-caption');
   const slides = cards.map((card) => ({
     variant: card.dataset.variant,
-    motion: card.dataset.motion,
+    motion: heroMotionByVariant[card.dataset.variant] || card.dataset.motion,
     name: `${card.querySelector('figcaption').firstChild.textContent} ${card.querySelector('small').textContent}`,
   }));
   let index = 0;
@@ -200,8 +221,7 @@ if (heroStage && cards.length) {
     const slide = slides[index];
     desktop.classList.remove('demo-playing');
     desktop.classList.toggle('mp4-preview', preferMp4);
-    image.src = `assets/animals/${slide.variant}.png`;
-    image.alt = slide.name;
+    desktop.dataset.entrance = entranceFor(slide.motion);
     caption.textContent = slide.name;
     for (const [dotIndex, dot] of [...dots.children].entries()) {
       dot.setAttribute('aria-current', String(dotIndex === index));
@@ -231,9 +251,9 @@ if (heroStage && cards.length) {
     if (document.hidden) {
       clearTimeout(fallbackTimer);
       video.pause();
+      desktop.classList.remove('demo-playing');
     } else if (!reducedMotion && !saveData && heroVisible) {
-      if (format) video.play().catch(videoFailed);
-      else showSlide(index);
+      showSlide(index);
     }
   });
   showSlide(0);
@@ -243,9 +263,9 @@ if (heroStage && cards.length) {
       if (!heroVisible) {
         clearTimeout(fallbackTimer);
         video.pause();
+        desktop.classList.remove('demo-playing');
       } else if (!document.hidden && !reducedMotion && !saveData) {
-        if (format) video.play().catch(videoFailed);
-        else showSlide(index);
+        showSlide(index);
       }
     }, { threshold: 0.1 });
     observer.observe(heroStage);
