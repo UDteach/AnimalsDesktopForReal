@@ -1,0 +1,46 @@
+{
+  "name": "animals-desktop-for-real",
+  "version": "0.1.0",
+  "private": true,
+  "author": "UDteach",
+  "description": "Realistic small animals occasionally visit your desktop",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist:mac": "npm run dist:mac:arm64 && npm run dist:mac:x64",
+    "dist:mac:arm64": "electron-builder --mac dmg zip --arm64",
+    "dist:mac:x64": "electron-builder --mac dmg zip --x64",
+    "dist:win": "electron-builder --win zip --x64",
+    "dist:win:installer": "electron-builder --win nsis --x64",
+    "check": "node --check electron/main.js && node --check electron/overlay.js && node --check electron/interval.js && node --check electron/modes.js && node --check electron/modes-ui.js && node --check electron/timer.js && node --test test/modes.test.js && node scripts/check-assets.js"
+  },
+  "devDependencies": {
+    "electron": "43.7.5",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "com.kdevelopk.animalsdesktopforreal",
+    "productName": "Animals Desktop - for Real",
+    "artifactName": "AnimalsDesktopForReal-${os}-${arch}.${ext}",
+    "directories": { "output": "release-build" },
+    "files": ["electron/**/*", "research/variants.json", "assets/icons/tray.png", "package.json"],
+    "extraResources": [
+      { "from": "assets/animals", "to": "animals", "filter": ["**/*.png"] },
+      { "from": "assets/motions", "to": "motions", "filter": ["**/*.webm"] }
+    ],
+    "mac": {
+      "category": "public.app-category.entertainment",
+      "icon": "assets/icons/app.icns",
+      "identity": null,
+      "minimumSystemVersion": "12.0",
+      "target": [{ "target": "dmg", "arch": ["arm64", "x64"] }, { "target": "zip", "arch": ["arm64", "x64"] }]
+    },
+    "win": {
+      "icon": "assets/icons/app.ico",
+      "target": [{ "target": "nsis", "arch": ["x64"] }, { "target": "zip", "arch": ["x64"] }]
+    },
+    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true },
+    "publish": null
+  }
+}

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Animals Desktop - for Real</title>
+  <style>
+    :root { font-family: -apple-system, BlinkMacSystemFont, sans-serif; color: #26382b; background: #f7f7f1; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; }
+    h1 { margin: 0 0 18px; font-size: 23px; }
+    form { display: flex; flex-direction: column; gap: 0; }
+    section { padding: 15px 0 17px; border-top: 1px solid #d8dfd5; }
+    .mode-toggle { display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 700; }
+    input[type=checkbox] { width: 18px; height: 18px; accent-color: #344a39; }
+    .help { margin: 8px 0 13px 26px; color: #5e6b5d; font-size: 12px; line-height: 1.5; }
+    .fields { display: grid; grid-template-columns: repeat(3, 1fr); gap: 11px; margin-left: 26px; }
+    .minor-toggle { display: flex; align-items: center; gap: 8px; margin: 15px 0 0 26px; font-size: 13px; font-weight: 700; }
+    .minor-toggle + .help { margin-top: 5px; }
+    .field label { display: block; margin-bottom: 5px; color: #415743; font-size: 12px; font-weight: 700; }
+    input[type=number] { width: 100%; min-height: 38px; border: 1px solid #bcc9b8; border-radius: 8px; padding: 7px 9px; background: white; color: #26382b; font: inherit; }
+    #error { min-height: 17px; margin: 0; color: #a02e2e; font-size: 12px; }
+    .actions { display: flex; justify-content: flex-end; gap: 9px; margin-top: 9px; }
+    button { border: 1px solid #cbd5c8; border-radius: 8px; padding: 9px 16px; background: white; color: #26382b; font: 700 13px -apple-system, BlinkMacSystemFont, sans-serif; cursor: pointer; }
+    button[type=submit] { color: white; border-color: #344a39; background: #344a39; }
+    :focus-visible { outline: 3px solid #315c9e; outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <h1 id="title"></h1>
+  <form id="form">
+    <section>
+      <label class="mode-toggle"><input type="checkbox" id="pomodoro"><span id="pomodoro-label"></span></label>
+      <p class="help" id="pomodoro-help"></p>
+      <div class="fields">
+        <div class="field"><label id="focus-label" for="focus"></label><input id="focus" type="number" min="1" max="180" step="1" required></div>
+        <div class="field"><label id="short-break-label" for="short-break"></label><input id="short-break" type="number" min="1" max="60" step="1" required></div>
+        <div class="field"><label id="long-break-label" for="long-break"></label><input id="long-break" type="number" min="1" max="120" step="1" required></div>
+      </div>
+      <label class="minor-toggle"><input type="checkbox" id="show-timer"><span id="show-timer-label"></span></label>
+      <p class="help" id="show-timer-help"></p>
+    </section>
+    <p id="error" role="alert"></p>
+    <div class="actions"><button type="button" id="cancel"></button><button type="submit" id="save"></button></div>
+  </form>
+  <script src="modes-ui.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+  <style>
+    html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: transparent; }
+    #timer { box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      width: 100%; height: 100%; padding: 9px 13px; border: 1px solid #c7d2c3; border-radius: 15px;
+      color: #26382b; background: #f7f7f1ef; box-shadow: 0 4px 15px #26382b22;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+    #timer.break { border-color: #d9c7a8; background: #fbf4e8f0; }
+    #label { font-size: 12px; font-weight: 700; white-space: nowrap; }
+    #time { font-size: 21px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+  </style>
+</head>
+<body>
+  <div id="timer" role="timer"><span id="label"></span><span id="time"></span></div>
+  <script src="timer.js"></script>
+</body>
+</html>

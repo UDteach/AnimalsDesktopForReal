@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Animals Desktop - for Real</title>
+  <style>
+    :root { font-family: -apple-system, BlinkMacSystemFont, sans-serif; color: #26382b; background: #f7f7f1; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; }
+    h1 { margin: 0 0 9px; font-size: 22px; }
+    p { margin: 0 0 18px; color: #5e6b5d; font-size: 13px; line-height: 1.5; }
+    fieldset { display: flex; gap: 15px; border: 0; padding: 0; margin: 0 0 18px; }
+    legend { margin-bottom: 9px; font-size: 13px; font-weight: 700; }
+    fieldset label { display: inline-flex; align-items: center; gap: 5px; font-size: 14px; }
+    .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .field label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 700; }
+    input[type=number], select { width: 100%; min-height: 38px; padding: 7px 10px; border: 1px solid #bcc9b8; border-radius: 8px; background: white; font: inherit; }
+    .unit { margin-top: 14px; }
+    .unit label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 700; }
+    #error { min-height: 17px; margin: 9px 0 0; color: #a02e2e; }
+    .actions { display: flex; justify-content: flex-end; gap: 9px; margin-top: 4px; }
+    button { border: 1px solid #cbd5c8; border-radius: 8px; padding: 9px 16px; background: white; color: #26382b; font: 700 13px -apple-system, BlinkMacSystemFont, sans-serif; cursor: pointer; }
+    button[type=submit] { color: white; border-color: #344a39; background: #344a39; }
+    :focus-visible { outline: 3px solid #315c9e; outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <h1 id="title"></h1>
+  <p id="help"></p>
+  <form id="form">
+    <fieldset>
+      <legend id="mode-label"></legend>
+      <label><input type="radio" name="mode" value="fixed" id="fixed"><span id="fixed-label"></span></label>
+      <label><input type="radio" name="mode" value="range" id="range"><span id="range-label"></span></label>
+    </fieldset>
+    <div class="fields">
+      <div class="field"><label id="first-label" for="first"></label><input id="first" type="number" min="1" max="86400" step="1" required></div>
+      <div class="field" id="last-field"><label id="last-label" for="last"></label><input id="last" type="number" min="1" max="86400" step="1" required></div>
+    </div>
+    <div class="unit"><label id="unit-label" for="unit"></label><select id="unit"><option value="1" id="seconds"></option><option value="60" id="minutes"></option></select></div>
+    <p id="error" role="alert"></p>
+    <div class="actions"><button type="button" id="cancel"></button><button type="submit" id="save"></button></div>
+  </form>
+  <script src="interval.js"></script>
+</body>
+</html>

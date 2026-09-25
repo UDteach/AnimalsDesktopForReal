@@ -1,0 +1,12 @@
+[
+  { "id": "chinchilla-standard-gray", "species": "chinchilla", "name": { "ja": "スタンダードグレー", "en": "Standard gray" } },
+  { "id": "chinchilla-beige", "species": "chinchilla", "name": { "ja": "ベージュ", "en": "Beige" } },
+  { "id": "chinchilla-white-mosaic", "species": "chinchilla", "name": { "ja": "ホワイトモザイク", "en": "White mosaic" } },
+  { "id": "hamster-golden", "species": "hamster", "name": { "ja": "ノーマル（ゴールデン）", "en": "Golden" } },
+  { "id": "hamster-cream", "species": "hamster", "name": { "ja": "キンクマ（黒目クリーム）", "en": "Black-eyed cream" } },
+  { "id": "djungarian-normal", "species": "djungarian", "name": { "ja": "ノーマル", "en": "Normal" } },
+  { "id": "macaroni-mouse-natural", "species": "macaroni-mouse", "name": { "ja": "自然色", "en": "Natural coat" } },
+  { "id": "sugar-glider-standard-gray", "species": "sugar-glider", "name": { "ja": "スタンダードグレー", "en": "Standard gray" } },
+  { "id": "sugar-glider-leucistic", "species": "sugar-glider", "name": { "ja": "リューシスティック", "en": "Leucistic" } },
+  { "id": "sugar-glider-gray-mosaic", "species": "sugar-glider", "name": { "ja": "グレーモザイク", "en": "Gray mosaic" } }
+]

@@ -1,0 +1,15 @@
+# マカロニマウス v3 生成記録
+
+2026-09-24、内蔵 ImageGen。X の[実写調査](x-macaroni-mouse.md)を造形根拠とした。`raw/macaroni-mouse-natural-v3a-imagegen.png` が初回候補、`raw/macaroni-mouse-natural-v3-imagegen.png` が編集後の採用原本。旧 v2 は `replaced/macaroni-mouse-natural-v2.png` に保存。アプリ採用コピーは `assets/animals/macaroni-mouse-natural.png`。明暗両背景での比較は `qa-macaroni-v3.jpg`。
+
+## 新規生成の指示
+
+> Use case: photorealistic-natural. Asset type: transparent full-body desktop overlay animal cutout for Animals Desktop - for Real. Create ONE realistic fat-tailed gerbil (Pachyuromys duprasi), also called マカロニマウス / オブトアレチネズミ, from scratch. A healthy adult with a compact, low, softly squashed mochi-like oval body close to the ground: short head-to-rump distance, broad rounded cheeks and belly, tiny legs tucked under, paws just visible. Facing screen right in a clear 3/4 side view so one large glossy black OVAL eye is prominent; the far eye may be subtly visible. Eyes should look lively and naturally proportioned, not cartoon oversized. Short rounded pink nose and delicate whiskers. Small round pink ears positioned low and slightly back on the head, not tall pointed ears. Natural grizzled sand-tan/gray-beige coat on top with creamy white cheeks, belly and paws, photographic fine fur texture. Distinctive short fat-storage tail extending toward screen left: naturally thick, gently club-shaped/tapered with subtle texture, clearly slimmer than the rump and NOT a giant spherical bulb, not a long mouse tail. Entire animal including whiskers, paws and tail inside the canvas with generous margin. Isolated on genuinely transparent alpha background, no floor, cast shadow, gradient, cage, hand, prop, text, extra animal or border. Anatomically credible gerbil, not hamster, dormouse or generic mouse. Aim for the low round posture and dark eyes seen in real keeper photos.
+
+## 編集の指示
+
+> Edit the provided image as the target. Preserve exactly one realistic fat-tailed gerbil (Pachyuromys duprasi), its right-facing 3/4 side view, sand-tan grizzled fur, creamy-white underside, one prominent naturally glossy black oval eye, pink nose, soft low round ears, full intact tail, complete paws, transparent alpha background, and photographic detail. Change only the posture and silhouette: make the animal noticeably more low and softly flattened like a resting mochi/loaf on the ground. Lower the top of the back about 20 percent, shorten the torso from rump to shoulders about 15 percent, broaden the cheeks and belly, bring head slightly lower, and tuck all four legs under so only the little paws peek out. Tail should be a short, naturally thick, gently tapering club; reduce its length and avoid a large round balloon tip. The resulting silhouette should be compact, plump, low, and convincing as a fat-tailed gerbil rather than a long generic rodent. Keep the cutout truly transparent with no floor, cast shadow, gradient, cage, hand, props, text, or other animals. Do not change the eye into cartoon eyes, do not make ears pointed.
+
+## 採用確認
+
+1 匹のみ。耳、目、鼻、ヒゲ、尾、足の欠けなし。1536×1024 px RGBA、透明アルファ。新旧を明色・暗色で比較し、低い胴、短い脚、自然な尾を確認した。細いヒゲの透明縁は実際のデスクトップ背景で再確認する。
