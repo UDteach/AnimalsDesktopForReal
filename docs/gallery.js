@@ -30,7 +30,7 @@ const preferMp4 = /iPhone|iPad|iPod/.test(userAgent) ||
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const saveData = navigator.connection?.saveData === true;
 const cards = [...document.querySelectorAll('.animal-grid figure[data-variant]')];
-const bottomMotions = new Set(['hop', 'perch', 'explore', 'pause', 'emerge', 'settle']);
+const walkingMotions = new Set(['forage', 'explore', 'shuffle']);
 const heroMotionByVariant = {
   'chinchilla-standard-gray': 'peek',
   'chinchilla-beige': 'perch',
@@ -46,8 +46,8 @@ const heroMotionByVariant = {
 
 function entranceFor(motion) {
   if (motion === 'glide') return 'glide';
-  if (motion === 'peek') return 'peek';
-  return bottomMotions.has(motion) ? 'bottom' : 'side';
+  if (motion === 'dash') return 'dash';
+  return walkingMotions.has(motion) ? 'walk' : 'pop';
 }
 
 function videoPath(card, format) {

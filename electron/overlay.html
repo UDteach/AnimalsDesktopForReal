@@ -5,113 +5,41 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src file:; media-src file:; script-src 'self'; style-src 'self' 'unsafe-inline'">
   <style>
     html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: transparent; }
-    #animal { position: absolute; bottom: 0; max-height: 72vh; object-fit: contain; object-position: bottom; opacity: 0; will-change: transform, opacity; }
-    #motion-video { position: absolute; bottom: 0; opacity: 0; pointer-events: none; will-change: transform, opacity; }
+    #animal, #motion-video { position: absolute; left: 0; bottom: 0; opacity: 0; pointer-events: none; will-change: transform, opacity; }
+    #animal { max-height: 72vh; object-fit: contain; object-position: bottom; }
     [hidden] { display: none !important; }
-    #animal.chinchilla-hop, #motion-video.chinchilla-hop { left: 50%; animation: chinchilla-hop 4.6s ease-in-out both; }
-    #animal.chinchilla-perch, #motion-video.chinchilla-perch { left: 50%; animation: chinchilla-perch 4.8s ease-in-out both; }
-    #animal.chinchilla-peek, #motion-video.chinchilla-peek { left: 0; animation: chinchilla-peek 4.7s ease-in-out both; }
-    #animal.hamster-forage, #motion-video.hamster-forage { left: 0; animation: hamster-forage 5s ease-in-out both; }
-    #animal.hamster-explore, #motion-video.hamster-explore { left: 50%; animation: hamster-explore 5s ease-in-out both; }
-    #animal.hamster-peek, #motion-video.hamster-peek { left: 0; animation: hamster-peek 4.8s ease-in-out both; }
-    #animal.djungarian-dash, #motion-video.djungarian-dash { left: 0; animation: djungarian-dash 4.2s ease-in-out both; }
-    #animal.djungarian-pause, #motion-video.djungarian-pause { left: 50%; animation: djungarian-pause 4.5s ease-in-out both; }
-    #animal.djungarian-peek, #motion-video.djungarian-peek { left: 0; animation: djungarian-peek 4.3s ease-in-out both; }
-    #animal.macaroni-emerge, #motion-video.macaroni-emerge { left: 50%; animation: macaroni-emerge 5.4s ease-in-out both; }
-    #animal.macaroni-shuffle, #motion-video.macaroni-shuffle { left: 0; animation: macaroni-shuffle 5.6s ease-in-out both; }
-    #animal.macaroni-settle, #motion-video.macaroni-settle { left: 50%; animation: macaroni-settle 5.8s ease-in-out both; }
-    #animal.sugar-glider-hop { left: 50%; animation: sugar-glider-hop 4.9s ease-in-out both; }
-    #animal.sugar-glider-perch, #motion-video.sugar-glider-perch { left: 50%; animation: sugar-glider-perch 5.3s ease-in-out both; }
-    #animal.sugar-glider-peek, #motion-video.sugar-glider-peek { left: 0; animation: sugar-glider-peek 5.1s ease-in-out both; }
-    #motion-video.sugar-glider-glide { left: -25vw; bottom: 22vh; animation: sugar-glider-glide 4s linear both; }
-    #motion-video:not(.sugar-glider-glide) { animation-duration: 4s; }
-    @keyframes chinchilla-hop {
-      0%, 100% { opacity: 0; transform: translate(-50%, 105%); }
-      18% { opacity: 1; transform: translate(-50%, 10%); }
-      28% { opacity: 1; transform: translate(-47%, -15%); }
-      36%, 72% { opacity: 1; transform: translate(-43%, 9%); }
-      83% { opacity: 1; transform: translate(-43%, 5%); }
+    #animal:is(.chinchilla-hop, .chinchilla-perch, .chinchilla-peek, .hamster-peek, .djungarian-pause, .djungarian-peek, .macaroni-emerge, .macaroni-settle, .sugar-glider-perch, .sugar-glider-peek),
+    #motion-video:is(.chinchilla-hop, .chinchilla-perch, .chinchilla-peek, .hamster-peek, .djungarian-pause, .djungarian-peek, .macaroni-emerge, .macaroni-settle, .sugar-glider-perch, .sugar-glider-peek) {
+      animation: edge-pop 4s linear both;
     }
-    @keyframes chinchilla-perch {
-      0%, 100% { opacity: 0; transform: translate(-50%, 105%); }
-      21% { opacity: 1; transform: translate(-50%, 12%); }
-      31%, 70% { opacity: 1; transform: translate(-50%, -5%); }
-      78% { opacity: 1; transform: translate(-50%, 9%); }
+    #animal:is(.hamster-forage, .hamster-explore, .macaroni-shuffle),
+    #motion-video:is(.hamster-forage, .hamster-explore, .macaroni-shuffle) {
+      animation: edge-walk 4s linear both;
     }
-    @keyframes chinchilla-peek {
-      0%, 100% { opacity: 0; transform: translate(-110%, 9%); }
-      23%, 70% { opacity: 1; transform: translate(-14%, 9%); }
-      48% { opacity: 1; transform: translate(-10%, 5%) rotate(-1deg); }
+    #animal.djungarian-dash, #motion-video.djungarian-dash { animation: edge-dash 4s linear both; }
+    #motion-video.sugar-glider-glide { left: -45vw; bottom: 22vh; animation: sky-glide 4s linear both; }
+    @keyframes edge-pop {
+      0%, 7%, 100% { opacity: 1; transform: translateX(-115%); }
+      19% { opacity: 1; transform: translateX(-26%); }
+      26%, 72% { opacity: 1; transform: translateX(-18%); }
+      81% { opacity: 1; transform: translateX(-24%); }
+      93% { opacity: 1; transform: translateX(-115%); }
     }
-    @keyframes hamster-forage {
-      0%, 100% { opacity: 0; transform: translate(-110%, 10%); }
-      24% { opacity: 1; transform: translate(-12%, 10%); }
-      27%, 48% { opacity: 1; transform: translate(-12%, 10%); }
-      70%, 82% { opacity: 1; transform: translate(18%, 10%); }
+    @keyframes edge-walk {
+      0%, 5% { opacity: 0; transform: translateX(-80%); }
+      25% { opacity: 1; transform: translateX(-18%); }
+      70% { opacity: 1; transform: translateX(3%); }
+      100% { opacity: 0; transform: translateX(60%); }
     }
-    @keyframes hamster-explore {
-      0%, 100% { opacity: 0; transform: translate(-50%, 105%); }
-      23%, 42% { opacity: 1; transform: translate(-50%, 10%); }
-      55%, 76% { opacity: 1; transform: translate(-44%, 9%) rotate(-1deg); }
+    @keyframes edge-dash {
+      0%, 5% { opacity: 1; transform: translateX(-115%); }
+      20% { opacity: 1; transform: translateX(-12%); }
+      74% { opacity: 1; transform: translateX(210%); }
+      100% { opacity: 1; transform: translateX(285%); }
     }
-    @keyframes hamster-peek {
-      0%, 100% { opacity: 0; transform: translate(-110%, 10%); }
-      24%, 70% { opacity: 1; transform: translate(-22%, 10%); }
-      48% { opacity: 1; transform: translate(-18%, 8%); }
-    }
-    @keyframes djungarian-dash {
-      0% { opacity: 0; transform: translate(-110%, 10%); }
-      18%, 32% { opacity: 1; transform: translate(-16%, 10%); }
-      47%, 67% { opacity: 1; transform: translate(48%, 10%); }
-      85% { opacity: 1; transform: translate(90%, 10%); }
-      100% { opacity: 0; transform: translate(225%, 10%); }
-    }
-    @keyframes djungarian-pause {
-      0%, 100% { opacity: 0; transform: translate(-50%, 105%); }
-      18%, 35% { opacity: 1; transform: translate(-50%, 10%); }
-      45%, 70% { opacity: 1; transform: translate(-28%, 10%); }
-    }
-    @keyframes djungarian-peek {
-      0%, 100% { opacity: 0; transform: translate(-110%, 10%); }
-      16%, 35% { opacity: 1; transform: translate(-35%, 10%); }
-      47%, 72% { opacity: 1; transform: translate(-10%, 10%); }
-    }
-    @keyframes macaroni-emerge {
-      0%, 100% { opacity: 0; transform: translate(-50%, 105%); }
-      29%, 75% { opacity: 1; transform: translate(-50%, 10%); }
-      50% { opacity: 1; transform: translate(-48%, 8%); }
-    }
-    @keyframes macaroni-shuffle {
-      0%, 100% { opacity: 0; transform: translate(-110%, 10%); }
-      31%, 52% { opacity: 1; transform: translate(-22%, 10%); }
-      68%, 82% { opacity: 1; transform: translate(-4%, 10%); }
-    }
-    @keyframes macaroni-settle {
-      0%, 100% { opacity: 0; transform: translate(-50%, 105%); }
-      29%, 50% { opacity: 1; transform: translate(-50%, 7%); }
-      63%, 81% { opacity: 1; transform: translate(-50%, 10%); }
-    }
-    @keyframes sugar-glider-hop {
-      0%, 100% { opacity: 0; transform: translate(-54%, 105%); }
-      20%, 32% { opacity: 1; transform: translate(-54%, 10%); }
-      43% { opacity: 1; transform: translate(-45%, -13%); }
-      53%, 78% { opacity: 1; transform: translate(-39%, 8%); }
-    }
-    @keyframes sugar-glider-perch {
-      0%, 100% { opacity: 0; transform: translate(-50%, 105%); }
-      23%, 40% { opacity: 1; transform: translate(-50%, 9%); }
-      52%, 78% { opacity: 1; transform: translate(-49%, 5%) rotate(-1deg); }
-    }
-    @keyframes sugar-glider-peek {
-      0%, 100% { opacity: 0; transform: translate(-110%, 9%); }
-      26%, 45% { opacity: 1; transform: translate(-30%, 9%); }
-      60%, 78% { opacity: 1; transform: translate(-13%, 8%); }
-    }
-    @keyframes sugar-glider-glide {
-      0% { opacity: 0; transform: translate(0, -2vh); }
-      15% { opacity: 1; }
-      85% { opacity: 1; }
-      100% { opacity: 0; transform: translate(125vw, 8vh); }
+    @keyframes sky-glide {
+      0% { opacity: 1; transform: translate(0, -2vh); }
+      100% { opacity: 1; transform: translate(145vw, 8vh); }
     }
   </style>
 </head>

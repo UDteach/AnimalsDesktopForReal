@@ -23,13 +23,13 @@
 .demo-stage{min-width:0}
 .hero-video{position:absolute;left:0;bottom:0;width:100%;height:calc(100% - 34px);object-fit:contain;opacity:0;pointer-events:none}
 .demo-playing .hero-video{opacity:1}
-.video-ready[data-entrance=side] .animal-preview video,.demo-playing[data-entrance=side] .hero-video{animation:animal-enter-side 4s linear both}
-.video-ready[data-entrance=peek] .animal-preview video,.demo-playing[data-entrance=peek] .hero-video{animation:animal-enter-peek 4s linear both}
-.video-ready[data-entrance=bottom] .animal-preview video,.demo-playing[data-entrance=bottom] .hero-video{animation:animal-enter-bottom 4s linear both}
+.video-ready[data-entrance=pop] .animal-preview video,.demo-playing[data-entrance=pop] .hero-video{animation:animal-enter-pop 4s linear both}
+.video-ready[data-entrance=walk] .animal-preview video,.demo-playing[data-entrance=walk] .hero-video{animation:animal-enter-walk 4s linear both}
+.video-ready[data-entrance=dash] .animal-preview video,.demo-playing[data-entrance=dash] .hero-video{animation:animal-enter-dash 4s linear both}
 .video-ready[data-entrance=glide] .animal-preview video,.demo-playing[data-entrance=glide] .hero-video{animation:animal-enter-glide 4s linear both}
-@keyframes animal-enter-side{0%{transform:translateX(-105%);opacity:1}28%{transform:translateX(-2%);opacity:1}70%{transform:translateX(2%);opacity:1}100%{transform:translateX(105%);opacity:1}}
-@keyframes animal-enter-peek{0%{transform:translateX(-105%);opacity:1}30%{transform:translateX(-8%);opacity:1}68%{transform:translateX(-2%);opacity:1}100%{transform:translateX(-105%);opacity:1}}
-@keyframes animal-enter-bottom{0%{transform:translateY(105%);opacity:1}28%{transform:translateY(0);opacity:1}73%{transform:translateY(-2%);opacity:1}100%{transform:translateY(105%);opacity:1}}
+@keyframes animal-enter-pop{0%,7%,100%{transform:translateX(-105%);opacity:1}19%{transform:translateX(-31%);opacity:1}26%,72%{transform:translateX(-25%);opacity:1}81%{transform:translateX(-30%);opacity:1}93%{transform:translateX(-105%);opacity:1}}
+@keyframes animal-enter-walk{0%,5%{transform:translateX(-65%);opacity:0}25%{transform:translateX(-12%);opacity:1}70%{transform:translateX(3%);opacity:1}100%{transform:translateX(45%);opacity:0}}
+@keyframes animal-enter-dash{0%,5%{transform:translateX(-105%);opacity:1}20%{transform:translateX(-10%);opacity:1}75%{transform:translateX(105%);opacity:1}100%{transform:translateX(150%);opacity:1}}
 @keyframes animal-enter-glide{0%{transform:translate(-105%,35%);opacity:1}45%{transform:translate(0,-5%);opacity:1}100%{transform:translate(105%,30%);opacity:1}}
 @media(prefers-reduced-motion:reduce){.video-ready .animal-preview video,.demo-playing .hero-video{animation:none!important}}
 .mp4-preview.desktop{background:#f2eee6}
