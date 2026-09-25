@@ -29,13 +29,13 @@ const actionsBySpecies = {
   hamster: ['forage', 'explore', 'peek', 'bottom-pop'],
   djungarian: ['dash', 'pause', 'peek', 'bottom-pop'],
   'macaroni-mouse': ['emerge', 'shuffle', 'settle', 'bottom-pop'],
-  'sugar-glider': ['glide', 'perch', 'peek'],
+  'sugar-glider': ['glide', 'perch', 'peek', 'bottom-pop'],
   'guinea-pig': ['trot', 'forage', 'popcorn', 'bottom-pop'],
 };
 const allowedMotions = new Set(variants.flatMap((variant) =>
   actionsBySpecies[variant.species].map((action) => `${variant.id}-${action}.webm`)));
 const presentMotions = fs.readdirSync(motionRoot).filter((name) => name.endsWith('.webm')).sort();
-if (allowedMotions.size !== 49) throw new Error(`Expected 49 motion variants; found ${allowedMotions.size}`);
+if (allowedMotions.size !== 52) throw new Error(`Expected 52 motion variants; found ${allowedMotions.size}`);
 if (JSON.stringify(presentMotions) !== JSON.stringify([...allowedMotions].sort())) {
   throw new Error('Packaged motion set differs from catalog');
 }

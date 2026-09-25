@@ -10,7 +10,7 @@ const motionsBySpecies = {
   hamster: ['hamster-forage', 'hamster-explore', 'hamster-peek', 'hamster-bottom-pop'],
   djungarian: ['djungarian-dash', 'djungarian-pause', 'djungarian-peek', 'djungarian-bottom-pop'],
   'macaroni-mouse': ['macaroni-emerge', 'macaroni-shuffle', 'macaroni-settle', 'macaroni-bottom-pop'],
-  'sugar-glider': ['sugar-glider-glide', 'sugar-glider-perch', 'sugar-glider-peek'],
+  'sugar-glider': ['sugar-glider-glide', 'sugar-glider-perch', 'sugar-glider-peek', 'sugar-glider-bottom-pop'],
   'guinea-pig': ['guinea-pig-trot', 'guinea-pig-forage', 'guinea-pig-popcorn', 'guinea-pig-bottom-pop'],
 };
 const frequencies = [

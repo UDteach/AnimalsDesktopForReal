@@ -3,7 +3,7 @@ const motionGroups = {
   hamster: ['forage', 'explore', 'peek', 'bottom-pop'],
   djungarian: ['dash', 'pause', 'peek', 'bottom-pop'],
   'macaroni-mouse': ['emerge', 'shuffle', 'settle', 'bottom-pop'],
-  'sugar-glider': ['glide', 'perch', 'peek'],
+  'sugar-glider': ['glide', 'perch', 'peek', 'bottom-pop'],
   'guinea-pig': ['trot', 'forage', 'popcorn', 'bottom-pop'],
 };
 
@@ -42,7 +42,7 @@ const heroMotionByVariant = {
   'hamster-cream': 'explore',
   'djungarian-normal': 'dash',
   'macaroni-mouse-natural': 'bottom-pop',
-  'sugar-glider-standard-gray': 'glide',
+  'sugar-glider-standard-gray': 'bottom-pop',
   'sugar-glider-leucistic': 'perch',
   'sugar-glider-gray-mosaic': 'glide',
   'guinea-pig-tricolor': 'bottom-pop',

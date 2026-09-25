@@ -37,6 +37,6 @@
 
 ## 素材の状態
 
-`raw/` は各 ImageGen 出力の保存コピーです。`assets/animals/` の同名 PNG がアプリで使う透明素材です。置き換え前の画像は `replaced/` に残しています。各素材は約 1500 px の RGBA 画像です。初期素材は `qa-light.jpg` と `qa-dark.jpg`、作り直したマカロニマウスは `qa-macaroni-v3.jpg`、フクロモモンガは `qa-sugar-glider.jpg` で明色・暗色背景を目視確認しました。耳・尾・足の欠け、複数個体、背景の混入は見つかっていません。細いヒゲの縁にはわずかな生成由来の色が残る可能性があります。
+`raw/` は各 ImageGen 出力の保存コピーです。`assets/animals/` の同名 PNG がアプリで使う透明素材です。置き換え前の画像は `replaced/` に残しています。各素材は約 1500 px の RGBA 画像です。初期素材は `qa-light.jpg` と `qa-dark.jpg`、作り直したマカロニマウスは `qa-macaroni-v3.jpg`、フクロモモンガは `qa-sugar-glider.jpg` で明色・暗色背景を目視確認しました。耳・尾・足の欠け、複数個体、背景の混入は見つかっていません。細いヒゲの縁にはわずかな生成由来の色が残る可能性があります。[フクロモモンガの下からのぞく動作](flow/sugar-glider-bottom-pop.md)は2026-09-25に追加した。
 
 フクロモモンガの滑空は [Flow の制作記録](flow/README.md)に記した専用の動画を使用します。飛膜を開いた基準画像から3毛色の動画を作り、緑背景を透過した WebM を `assets/motions/` に採用しました。[Electron での描画確認](qa-flow-sugar-glider.jpg)には3種類を明暗背景に載せています。滑空以外の [Flow 動作動画27本](flow/remaining-motions.md)も毛色ごとに完成し、[明暗背景の一覧](qa-flow-all-motions.jpg)で確認しました。
