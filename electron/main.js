@@ -6,10 +6,10 @@ const { species, variants } = require('./catalog');
 const { defaultModes, validModes, pomodoroPhase } = require('./modes');
 
 const motionsBySpecies = {
-  chinchilla: ['chinchilla-hop', 'chinchilla-perch', 'chinchilla-peek'],
-  hamster: ['hamster-forage', 'hamster-explore', 'hamster-peek'],
-  djungarian: ['djungarian-dash', 'djungarian-pause', 'djungarian-peek'],
-  'macaroni-mouse': ['macaroni-emerge', 'macaroni-shuffle', 'macaroni-settle'],
+  chinchilla: ['chinchilla-hop', 'chinchilla-perch', 'chinchilla-peek', 'chinchilla-bottom-pop'],
+  hamster: ['hamster-forage', 'hamster-explore', 'hamster-peek', 'hamster-bottom-pop'],
+  djungarian: ['djungarian-dash', 'djungarian-pause', 'djungarian-peek', 'djungarian-bottom-pop'],
+  'macaroni-mouse': ['macaroni-emerge', 'macaroni-shuffle', 'macaroni-settle', 'macaroni-bottom-pop'],
   'sugar-glider': ['sugar-glider-glide', 'sugar-glider-perch', 'sugar-glider-peek'],
 };
 const frequencies = [
@@ -232,12 +232,15 @@ function playNext(manual = false) {
   stop();
   const variantPool = choices.length > 1 ? choices.filter((v) => v.id !== lastVariant) : choices;
   const variant = variantPool[Math.floor(Math.random() * variantPool.length)];
-  const motions = motionsBySpecies[variant.species].filter((item) =>
-    item !== 'sugar-glider-glide' || fs.existsSync(path.join(motionDir(), `${variant.id}-glide.webm`)));
+  const motions = motionsBySpecies[variant.species].filter((item) => {
+    if (item === 'sugar-glider-glide') return fs.existsSync(path.join(motionDir(), `${variant.id}-glide.webm`));
+    if (item.endsWith('-bottom-pop')) return fs.existsSync(path.join(motionDir(), `${variant.id}-bottom-pop.webm`));
+    return true;
+  });
   const motionPool = motions.filter((m) => m !== lastMotion);
   const motion = motionPool[Math.floor(Math.random() * motionPool.length)];
   lastVariant = variant.id; lastMotion = motion;
-  const action = motion.slice(motion.lastIndexOf('-') + 1);
+  const action = motion.endsWith('-bottom-pop') ? 'bottom-pop' : motion.slice(motion.lastIndexOf('-') + 1);
   const videoFile = path.join(motionDir(), `${variant.id}-${action}.webm`);
   const imageFile = path.join(animalDir(), `${variant.id}.png`);
   const isVideo = fs.existsSync(videoFile);

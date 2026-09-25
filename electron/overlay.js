@@ -12,7 +12,9 @@ function showImage({ url, fallbackUrl, motion, scale }) {
   animal.src = fallbackUrl || url;
   void animal.offsetWidth;
   animal.style.animation = '';
-  animal.className = motion;
+  animal.className = motion.endsWith('-bottom-pop')
+    ? (motion === 'macaroni-bottom-pop' ? 'macaroni-emerge' : motion.replace('-bottom-pop', '-peek'))
+    : motion;
 }
 
 function groundVideo() {
@@ -45,12 +47,15 @@ function groundVideo() {
 animal.addEventListener('animationend', () => { if (!animal.hidden) window.animals.ended(); });
 animal.addEventListener('error', () => { if (!animal.hidden) window.animals.ended(); });
 motionVideo.addEventListener('animationend', () => { if (!motionVideo.hidden) window.animals.ended(); });
+motionVideo.addEventListener('ended', () => {
+  if (!motionVideo.hidden && currentPlay?.motion.endsWith('-bottom-pop')) window.animals.ended();
+});
 motionVideo.addEventListener('error', () => {
   if (!motionVideo.hidden && currentPlay) showImage(currentPlay);
 });
 motionVideo.addEventListener('loadeddata', () => {
   if (motionVideo.hidden || !currentPlay || !motionVideo.videoWidth) return;
-  if (currentPlay.motion !== 'sugar-glider-glide') groundVideo();
+  if (currentPlay.motion !== 'sugar-glider-glide' && !currentPlay.motion.endsWith('-bottom-pop')) groundVideo();
   void motionVideo.offsetWidth;
   motionVideo.style.animation = '';
   motionVideo.play().catch(() => {
@@ -66,12 +71,14 @@ window.animals.onPlay((play) => {
   motionVideo.className = '';
   motionVideo.style.animation = 'none';
   motionVideo.style.bottom = '';
+  motionVideo.style.left = '';
   motionVideo.pause();
   if (kind === 'video') {
     animal.hidden = true;
     motionVideo.hidden = false;
     motionVideo.style.width = `${scale * 90}%`;
     motionVideo.className = motion;
+    if (motion.endsWith('-bottom-pop')) motionVideo.style.left = `${24 + Math.random() * 52}%`;
     motionVideo.src = url;
     motionVideo.load();
   } else {

@@ -1,6 +1,6 @@
 {
   "name": "animals-desktop-for-real",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "author": "UDteach",
   "description": "Realistic small animals occasionally visit your desktop",
@@ -23,24 +23,74 @@
     "appId": "com.kdevelopk.animalsdesktopforreal",
     "productName": "Animals Desktop - for Real",
     "artifactName": "AnimalsDesktopForReal-${os}-${arch}.${ext}",
-    "directories": { "output": "release-build" },
-    "files": ["electron/**/*", "research/variants.json", "assets/icons/tray.png", "package.json"],
+    "directories": {
+      "output": "release-build"
+    },
+    "files": [
+      "electron/**/*",
+      "research/variants.json",
+      "assets/icons/tray.png",
+      "package.json"
+    ],
     "extraResources": [
-      { "from": "assets/animals", "to": "animals", "filter": ["**/*.png"] },
-      { "from": "assets/motions", "to": "motions", "filter": ["**/*.webm"] }
+      {
+        "from": "assets/animals",
+        "to": "animals",
+        "filter": [
+          "**/*.png"
+        ]
+      },
+      {
+        "from": "assets/motions",
+        "to": "motions",
+        "filter": [
+          "**/*.webm"
+        ]
+      }
     ],
     "mac": {
       "category": "public.app-category.entertainment",
       "icon": "assets/icons/app.icns",
       "identity": null,
       "minimumSystemVersion": "12.0",
-      "target": [{ "target": "dmg", "arch": ["arm64", "x64"] }, { "target": "zip", "arch": ["arm64", "x64"] }]
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ]
     },
     "win": {
       "icon": "assets/icons/app.ico",
-      "target": [{ "target": "nsis", "arch": ["x64"] }, { "target": "zip", "arch": ["x64"] }]
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
     },
-    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
     "publish": null
   }
 }

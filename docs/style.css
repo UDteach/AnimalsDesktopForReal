@@ -11,6 +11,7 @@
 .video-ready .animal-preview video{opacity:1}
 .animal-grid figcaption{min-height:69px;padding:13px 18px 8px}
 .motion-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:0 12px 14px}
+.motion-controls:has(button:nth-child(4)){grid-template-columns:repeat(2,minmax(0,1fr))}
 .motion-controls button{min-width:0;min-height:42px;border:1px solid #dacfc0;border-radius:9px;background:#fffcf7;color:#5d4b41;font:700 12px 'DM Sans','Noto Sans JP',sans-serif;cursor:pointer}
 .motion-controls button[aria-pressed=true]{border-color:#604638;background:#604638;color:#fff}
 .motion-controls button:hover{border-color:#9a7460}
@@ -23,6 +24,7 @@
 .demo-stage{min-width:0}
 .hero-video{position:absolute;left:0;bottom:0;width:100%;height:calc(100% - 34px);object-fit:contain;opacity:0;pointer-events:none}
 .demo-playing .hero-video{opacity:1}
+.demo-playing[data-entrance=native-bottom] .hero-video{object-position:center bottom}
 .video-ready[data-entrance=pop] .animal-preview video,.demo-playing[data-entrance=pop] .hero-video{animation:animal-enter-pop 4s linear both}
 .video-ready[data-entrance=walk] .animal-preview video,.demo-playing[data-entrance=walk] .hero-video{animation:animal-enter-walk 4s linear both}
 .video-ready[data-entrance=dash] .animal-preview video,.demo-playing[data-entrance=dash] .hero-video{animation:animal-enter-dash 4s linear both}

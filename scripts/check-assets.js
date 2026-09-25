@@ -25,27 +25,28 @@ if (JSON.stringify(present) !== JSON.stringify(expected)) {
 
 const motionRoot = path.join(__dirname, '..', 'assets', 'motions');
 const actionsBySpecies = {
-  chinchilla: ['hop', 'perch', 'peek'],
-  hamster: ['forage', 'explore', 'peek'],
-  djungarian: ['dash', 'pause', 'peek'],
-  'macaroni-mouse': ['emerge', 'shuffle', 'settle'],
+  chinchilla: ['hop', 'perch', 'peek', 'bottom-pop'],
+  hamster: ['forage', 'explore', 'peek', 'bottom-pop'],
+  djungarian: ['dash', 'pause', 'peek', 'bottom-pop'],
+  'macaroni-mouse': ['emerge', 'shuffle', 'settle', 'bottom-pop'],
   'sugar-glider': ['glide', 'perch', 'peek'],
 };
 const allowedMotions = new Set(variants.flatMap((variant) =>
   actionsBySpecies[variant.species].map((action) => `${variant.id}-${action}.webm`)));
-const glideFiles = variants.filter((variant) => variant.species === 'sugar-glider')
-  .map((variant) => `${variant.id}-glide.webm`).sort();
-if (glideFiles.length !== 3) throw new Error(`Expected 3 sugar glider glide videos; found ${glideFiles.length}`);
 const presentMotions = fs.readdirSync(motionRoot).filter((name) => name.endsWith('.webm')).sort();
-for (const name of glideFiles) {
-  if (!presentMotions.includes(name)) throw new Error(`Missing sugar glider glide: ${name}`);
+if (allowedMotions.size !== 37) throw new Error(`Expected 37 motion variants; found ${allowedMotions.size}`);
+if (JSON.stringify(presentMotions) !== JSON.stringify([...allowedMotions].sort())) {
+  throw new Error('Packaged motion set differs from catalog');
 }
+const websiteMotionRoot = path.join(__dirname, '..', 'docs', 'assets', 'motions');
 for (const name of presentMotions) {
-  if (!allowedMotions.has(name)) throw new Error(`Unknown variant or action in motion asset: ${name}`);
   const file = path.join(motionRoot, name);
   const bytes = fs.readFileSync(file);
   if (bytes.length < 100_000 || bytes.subarray(0, 4).toString('hex') !== '1a45dfa3') {
     throw new Error(`Expected an EBML WebM video: ${file}`);
+  }
+  for (const preview of [name, name.replace(/\.webm$/, '.mp4')]) {
+    if (!fs.existsSync(path.join(websiteMotionRoot, preview))) throw new Error(`Missing website preview: ${preview}`);
   }
   console.log(`${name}: ${(bytes.length / 1024).toFixed(0)} KiB WebM`);
 }

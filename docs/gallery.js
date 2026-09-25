@@ -1,8 +1,8 @@
 const motionGroups = {
-  chinchilla: ['hop', 'perch', 'peek'],
-  hamster: ['forage', 'explore', 'peek'],
-  djungarian: ['dash', 'pause', 'peek'],
-  'macaroni-mouse': ['emerge', 'shuffle', 'settle'],
+  chinchilla: ['hop', 'perch', 'peek', 'bottom-pop'],
+  hamster: ['forage', 'explore', 'peek', 'bottom-pop'],
+  djungarian: ['dash', 'pause', 'peek', 'bottom-pop'],
+  'macaroni-mouse': ['emerge', 'shuffle', 'settle', 'bottom-pop'],
   'sugar-glider': ['glide', 'perch', 'peek'],
 };
 
@@ -10,13 +10,13 @@ const motionCopy = {
   ja: {
     hop: '跳ぶ', perch: '立ち止まる', peek: 'のぞく',
     forage: '小走り', explore: '探索', dash: '走る', pause: 'ひと休み',
-    emerge: '顔を出す', shuffle: 'ちょこちょこ', settle: 'ぺたり', glide: '滑空',
+    emerge: '顔を出す', shuffle: 'ちょこちょこ', settle: 'ぺたり', glide: '滑空', 'bottom-pop': '下からぴょこ',
     controls: '動きを選ぶ', error: 'この動画は再生できませんでした。',
   },
   en: {
     hop: 'Hop', perch: 'Perch', peek: 'Peek',
     forage: 'Forage', explore: 'Explore', dash: 'Dash', pause: 'Pause',
-    emerge: 'Emerge', shuffle: 'Shuffle', settle: 'Settle', glide: 'Glide',
+    emerge: 'Emerge', shuffle: 'Shuffle', settle: 'Settle', glide: 'Glide', 'bottom-pop': 'Pop up',
     controls: 'Choose a motion', error: 'This clip could not be played.',
   },
 };
@@ -32,19 +32,20 @@ const saveData = navigator.connection?.saveData === true;
 const cards = [...document.querySelectorAll('.animal-grid figure[data-variant]')];
 const walkingMotions = new Set(['forage', 'explore', 'shuffle']);
 const heroMotionByVariant = {
-  'chinchilla-standard-gray': 'peek',
+  'chinchilla-standard-gray': 'bottom-pop',
   'chinchilla-beige': 'perch',
   'chinchilla-white-mosaic': 'peek',
-  'hamster-golden': 'peek',
+  'hamster-golden': 'bottom-pop',
   'hamster-cream': 'explore',
   'djungarian-normal': 'dash',
-  'macaroni-mouse-natural': 'emerge',
+  'macaroni-mouse-natural': 'bottom-pop',
   'sugar-glider-standard-gray': 'glide',
   'sugar-glider-leucistic': 'perch',
   'sugar-glider-gray-mosaic': 'glide',
 };
 
 function entranceFor(motion) {
+  if (motion === 'bottom-pop') return 'native-bottom';
   if (motion === 'glide') return 'glide';
   if (motion === 'dash') return 'dash';
   return walkingMotions.has(motion) ? 'walk' : 'pop';
@@ -110,7 +111,7 @@ for (const card of cards) {
   video.playsInline = true;
   video.addEventListener('playing', () => card.classList.add('video-ready'));
   video.addEventListener('ended', () => {
-    card.classList.remove('video-ready');
+    if (card.dataset.motion !== 'bottom-pop') card.classList.remove('video-ready');
     if (card.dataset.visible === 'true' && !reducedMotion && !saveData && !document.hidden) {
       // Restart the entrance together with the next video pass.
       void video.offsetWidth;
@@ -123,7 +124,8 @@ for (const card of cards) {
   controls.className = 'motion-controls';
   controls.setAttribute('role', 'group');
   controls.setAttribute('aria-label', `${animalName}: ${copy.controls}`);
-  for (const motion of motionGroups[group]) {
+  const motions = motionGroups[group];
+  for (const motion of motions) {
     const button = document.createElement('button');
     button.type = 'button';
     button.textContent = copy[motion];
@@ -140,7 +142,7 @@ for (const card of cards) {
   error.setAttribute('role', 'status');
   error.hidden = true;
   card.append(error);
-  card.dataset.motion = motionGroups[group][0];
+  card.dataset.motion = motions[0];
   card.dataset.entrance = entranceFor(card.dataset.motion);
 }
 

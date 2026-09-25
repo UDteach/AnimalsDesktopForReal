@@ -18,6 +18,9 @@
     }
     #animal.djungarian-dash, #motion-video.djungarian-dash { animation: edge-dash 4s linear both; }
     #motion-video.sugar-glider-glide { left: -45vw; bottom: 22vh; animation: sky-glide 4s linear both; }
+    #motion-video:is(.chinchilla-bottom-pop, .hamster-bottom-pop, .djungarian-bottom-pop, .macaroni-bottom-pop) {
+      bottom: 0; opacity: 1; transform: translateX(-50%); animation: none;
+    }
     @keyframes edge-pop {
       0%, 7%, 100% { opacity: 1; transform: translateX(-115%); }
       19% { opacity: 1; transform: translateX(-26%); }
