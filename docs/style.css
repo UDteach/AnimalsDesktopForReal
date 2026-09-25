@@ -60,3 +60,6 @@
 .hero-dots button:focus-visible{outline:3px solid #396392;outline-offset:0}
 .hero-caption{margin:0;text-align:center;color:#665f57;font-size:12px;font-weight:700}
 @media(max-width:650px){.hero-dots{max-width:220px;gap:0}.hero-dots button{width:44px;height:44px}}
+/* Keep the product name visible as the page title on every screen size. */
+.hero h1.product-title{font-size:clamp(44px,4.2vw,70px);line-height:1.12;letter-spacing:-.065em;max-width:680px}
+@media(max-width:650px){.brand{font-size:13px}.brand-tag{display:inline;font-size:.76em}.hero h1.product-title{font-size:clamp(38px,9vw,52px)}}
