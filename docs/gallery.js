@@ -4,6 +4,7 @@ const motionGroups = {
   djungarian: ['dash', 'pause', 'peek', 'bottom-pop'],
   'macaroni-mouse': ['emerge', 'shuffle', 'settle', 'bottom-pop'],
   'sugar-glider': ['glide', 'perch', 'peek'],
+  'guinea-pig': ['trot', 'forage', 'popcorn', 'bottom-pop'],
 };
 
 const motionCopy = {
@@ -11,12 +12,14 @@ const motionCopy = {
     hop: '跳ぶ', perch: '立ち止まる', peek: 'のぞく',
     forage: '小走り', explore: '探索', dash: '走る', pause: 'ひと休み',
     emerge: '顔を出す', shuffle: 'ちょこちょこ', settle: 'ぺたり', glide: '滑空', 'bottom-pop': '下からぴょこ',
+    trot: 'てこてこ歩く', popcorn: '小さく跳ねる', 'guinea-pig-forage': '鼻で探す',
     controls: '動きを選ぶ', error: 'この動画は再生できませんでした。',
   },
   en: {
     hop: 'Hop', perch: 'Perch', peek: 'Peek',
     forage: 'Forage', explore: 'Explore', dash: 'Dash', pause: 'Pause',
     emerge: 'Emerge', shuffle: 'Shuffle', settle: 'Settle', glide: 'Glide', 'bottom-pop': 'Pop up',
+    trot: 'Trot', popcorn: 'Popcorn hop', 'guinea-pig-forage': 'Sniff & forage',
     controls: 'Choose a motion', error: 'This clip could not be played.',
   },
 };
@@ -30,7 +33,7 @@ const preferMp4 = /iPhone|iPad|iPod/.test(userAgent) ||
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const saveData = navigator.connection?.saveData === true;
 const cards = [...document.querySelectorAll('.animal-grid figure[data-variant]')];
-const walkingMotions = new Set(['forage', 'explore', 'shuffle']);
+const walkingMotions = new Set(['forage', 'explore', 'shuffle', 'trot']);
 const heroMotionByVariant = {
   'chinchilla-standard-gray': 'bottom-pop',
   'chinchilla-beige': 'perch',
@@ -42,6 +45,9 @@ const heroMotionByVariant = {
   'sugar-glider-standard-gray': 'glide',
   'sugar-glider-leucistic': 'perch',
   'sugar-glider-gray-mosaic': 'glide',
+  'guinea-pig-tricolor': 'bottom-pop',
+  'guinea-pig-self-cream': 'popcorn',
+  'guinea-pig-golden-agouti': 'trot',
 };
 
 function entranceFor(motion) {
@@ -128,10 +134,11 @@ for (const card of cards) {
   for (const motion of motions) {
     const button = document.createElement('button');
     button.type = 'button';
-    button.textContent = copy[motion];
+    const motionLabel = copy[`${group}-${motion}`] || copy[motion];
+    button.textContent = motionLabel;
     button.dataset.motion = motion;
     button.setAttribute('aria-pressed', 'false');
-    button.setAttribute('aria-label', `${animalName}: ${copy[motion]}`);
+    button.setAttribute('aria-label', `${animalName}: ${motionLabel}`);
     button.addEventListener('click', () => selectMotion(card, motion));
     controls.append(button);
   }

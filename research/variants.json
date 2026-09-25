@@ -8,5 +8,8 @@
   { "id": "macaroni-mouse-natural", "species": "macaroni-mouse", "name": { "ja": "自然色", "en": "Natural coat" } },
   { "id": "sugar-glider-standard-gray", "species": "sugar-glider", "name": { "ja": "スタンダードグレー", "en": "Standard gray" } },
   { "id": "sugar-glider-leucistic", "species": "sugar-glider", "name": { "ja": "リューシスティック", "en": "Leucistic" } },
-  { "id": "sugar-glider-gray-mosaic", "species": "sugar-glider", "name": { "ja": "グレーモザイク", "en": "Gray mosaic" } }
+  { "id": "sugar-glider-gray-mosaic", "species": "sugar-glider", "name": { "ja": "グレーモザイク", "en": "Gray mosaic" } },
+  { "id": "guinea-pig-tricolor", "species": "guinea-pig", "name": { "ja": "三毛", "en": "Tricolor" } },
+  { "id": "guinea-pig-self-cream", "species": "guinea-pig", "name": { "ja": "クリーム", "en": "Self cream" } },
+  { "id": "guinea-pig-golden-agouti", "species": "guinea-pig", "name": { "ja": "ゴールデンアグーチ", "en": "Golden agouti" } }
 ]

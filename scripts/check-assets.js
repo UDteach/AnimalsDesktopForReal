@@ -16,7 +16,7 @@ for (const variant of variants) {
   if (width < 512 || height < 512 || colorType !== 6) throw new Error(`Expected large RGBA PNG: ${file}`);
   console.log(`${variant.id}: ${width}x${height} RGBA`);
 }
-if (variants.length !== 10) throw new Error(`Expected 10 approved variants; found ${variants.length}`);
+if (variants.length !== 13) throw new Error(`Expected 13 approved variants; found ${variants.length}`);
 const present = fs.readdirSync(root).filter((name) => name.endsWith('.png')).sort();
 const expected = variants.map((variant) => `${variant.id}.png`).sort();
 if (JSON.stringify(present) !== JSON.stringify(expected)) {
@@ -30,11 +30,12 @@ const actionsBySpecies = {
   djungarian: ['dash', 'pause', 'peek', 'bottom-pop'],
   'macaroni-mouse': ['emerge', 'shuffle', 'settle', 'bottom-pop'],
   'sugar-glider': ['glide', 'perch', 'peek'],
+  'guinea-pig': ['trot', 'forage', 'popcorn', 'bottom-pop'],
 };
 const allowedMotions = new Set(variants.flatMap((variant) =>
   actionsBySpecies[variant.species].map((action) => `${variant.id}-${action}.webm`)));
 const presentMotions = fs.readdirSync(motionRoot).filter((name) => name.endsWith('.webm')).sort();
-if (allowedMotions.size !== 37) throw new Error(`Expected 37 motion variants; found ${allowedMotions.size}`);
+if (allowedMotions.size !== 49) throw new Error(`Expected 49 motion variants; found ${allowedMotions.size}`);
 if (JSON.stringify(presentMotions) !== JSON.stringify([...allowedMotions].sort())) {
   throw new Error('Packaged motion set differs from catalog');
 }
