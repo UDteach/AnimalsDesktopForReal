@@ -1,6 +1,6 @@
 {
   "name": "animals-desktop-for-real",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": true,
   "author": "UDteach",
   "description": "Realistic small animals occasionally visit your desktop",
@@ -51,7 +51,10 @@
     "mac": {
       "category": "public.app-category.entertainment",
       "icon": "assets/icons/app.icns",
-      "identity": null,
+      "identity": "-",
+      "hardenedRuntime": true,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.inherit.plist",
       "minimumSystemVersion": "12.0",
       "target": [
         {

@@ -12,13 +12,28 @@
   <main class="download-page">
     <section class="download-intro" aria-labelledby="download-title"><div><span class="eyebrow">MAC / WINDOWS</span><h1 id="download-title">お使いのパソコンを<br>選んでダウンロード。</h1><p>チンチラやハムスターたちが、ときどき画面に現れます。Mac のチップか Windows を選んでください。</p></div><img src="assets/animals/hamster-golden.png" alt=""></section>
     <section class="platforms" aria-label="ダウンロード形式を選ぶ">
-      <article class="platform-card"><span class="platform-kicker">MAC · INTEL</span><h2>Intel Mac</h2><p>Intel プロセッサを搭載した Mac。macOS 12 Monterey 以降。</p><a class="button primary platform-action" href="https://github.com/UDteach/AnimalsDesktopForReal/releases/latest/download/AnimalsDesktopForReal-mac-x64.dmg">Intel Mac 版をダウンロード ↘</a><a class="alternate-link" href="https://github.com/UDteach/AnimalsDesktopForReal/releases/latest/download/AnimalsDesktopForReal-mac-x64.zip">ZIP 形式 ↗</a></article>
-      <article class="platform-card"><span class="platform-kicker">MAC · APPLE SILICON</span><h2>M1 以降の Mac</h2><p>M1・M2・M3 など Apple 製チップを搭載した Mac。macOS 12 Monterey 以降。</p><a class="button primary platform-action" href="https://github.com/UDteach/AnimalsDesktopForReal/releases/latest/download/AnimalsDesktopForReal-mac-arm64.dmg">M1 以降の Mac 版をダウンロード ↘</a><a class="alternate-link" href="https://github.com/UDteach/AnimalsDesktopForReal/releases/latest/download/AnimalsDesktopForReal-mac-arm64.zip">ZIP 形式 ↗</a></article>
+      <article class="platform-card"><span class="platform-kicker">MAC · INTEL</span><h2>Intel Mac</h2><p>Intel プロセッサを搭載した Mac。macOS 12 Monterey 以降。</p><a class="button primary platform-action" href="https://github.com/UDteach/AnimalsDesktopForReal/releases/latest/download/AnimalsDesktopForReal-mac-x64.dmg">Intel Mac 版をダウンロード ↘</a><a class="alternate-link" href="https://github.com/UDteach/AnimalsDesktopForReal/releases/latest/download/AnimalsDesktopForReal-mac-x64.zip">ZIP 形式 ↗</a><a class="first-launch-link" href="#mac-first-open">初回起動で警告が出たら →</a></article>
+      <article class="platform-card"><span class="platform-kicker">MAC · APPLE SILICON</span><h2>M1 以降の Mac</h2><p>M1・M2・M3 など Apple 製チップを搭載した Mac。macOS 12 Monterey 以降。</p><a class="button primary platform-action" href="https://github.com/UDteach/AnimalsDesktopForReal/releases/latest/download/AnimalsDesktopForReal-mac-arm64.dmg">M1 以降の Mac 版をダウンロード ↘</a><a class="alternate-link" href="https://github.com/UDteach/AnimalsDesktopForReal/releases/latest/download/AnimalsDesktopForReal-mac-arm64.zip">ZIP 形式 ↗</a><a class="first-launch-link" href="#mac-first-open">初回起動で警告が出たら →</a></article>
       <article class="platform-card"><span class="platform-kicker">WINDOWS · 64-BIT</span><h2>Windows</h2><p>Windows 10・11 の 64-bit 版。セットアッププログラムを使用します。</p><a class="button primary platform-action" href="https://github.com/UDteach/AnimalsDesktopForReal/releases/latest/download/AnimalsDesktopForReal-win-x64.exe">Windows 版をダウンロード ↘</a><a class="alternate-link" href="https://github.com/UDteach/AnimalsDesktopForReal/releases/latest/download/AnimalsDesktopForReal-win-x64.zip">ZIP 形式 ↗</a></article>
+    </section>
+    <section class="mac-first-open" id="mac-first-open" aria-labelledby="mac-first-open-title">
+      <span class="eyebrow">MAC の初回起動</span>
+      <h2 id="mac-first-open-title">「マルウェアが含まれていないことを検証できません」と表示されたら</h2>
+      <p class="mac-first-open-intro">Mac 版はアプリ内部の整合性のためにアドホック署名していますが、Apple Developer ID 署名・公証はしていません。公式のダウンロードリンクから入手したアプリを開く場合は、次の手順で個別に許可できます。</p>
+      <ol class="mac-steps">
+        <li><strong>DMG からインストール</strong><p>ダウンロードした DMG を開き、「Animals Desktop - for Real」を「アプリケーション」フォルダへドラッグします。</p></li>
+        <li><strong>アプリを一度開く</strong><p>「アプリケーション」フォルダからアプリを開きます。警告が出たらダイアログを閉じます。</p></li>
+        <li><strong>設定の「このまま開く」を選ぶ</strong><p><span class="mac-os">macOS 13 以降</span>Apple メニュー →「システム設定」→「プライバシーとセキュリティ」。下部の「セキュリティ」までスクロールし、このアプリの「このまま開く」を選びます。</p><p><span class="mac-os">macOS 12 Monterey</span>Apple メニュー →「システム環境設定」→「セキュリティとプライバシー」→「一般」→「このまま開く」を選びます。</p></li>
+        <li><strong>確認して開く</strong><p>確認ダイアログでも「このまま開く」または「開く」を選びます。認証が必要な場合は、Mac 上で管理者名とパスワードを入力してください。</p></li>
+      </ol>
+      <p class="mac-first-open-note"><strong>起動後はメニューバーへ。</strong>画面上部の肉球アイコンから「今すぐ表示」や設定を選べます。Dock にアイコンは表示されません。</p>
+      <p class="mac-first-open-note">「このまま開く」が見つからない場合は、アプリをもう一度開こうとしてから設定画面に戻ってください。</p>
+      <p class="mac-first-open-note">「壊れているため開けません」は別のエラーです。最新版の DMG をダウンロードし直して入れ替えてください。続く場合は <a href="https://github.com/UDteach/AnimalsDesktopForReal/issues">GitHub Issues</a> でお知らせください。</p>
+      <a class="mac-apple-link" href="https://support.apple.com/ja-jp/102445">Apple 公式の説明を見る ↗</a>
     </section>
     <section class="download-help">
       <div class="help-block"><h2>Mac の種類が分からないとき</h2><p>画面左上の Apple メニューから「この Mac について」を開き、「チップ」または「プロセッサ」を確認してください。Intel と表示されれば Intel Mac 版、M1 などと表示されれば M1 以降の Mac 版を選びます。</p></div>
-      <div class="help-block"><h2>ダウンロードしたら</h2><p>Mac は DMG を開き、アプリを「アプリケーション」へ移動します。Windows は EXE を実行して画面の案内に従ってください。アプリは未署名のため、初回起動時に OS の警告が出る場合があります。</p></div>
+      <div class="help-block"><h2>Windows のインストール</h2><p>ダウンロードした EXE を実行して画面の案内に従ってください。インストールせずに使う場合は ZIP 形式を選べます。</p></div>
     </section>
     <p class="release-link">更新履歴・過去の版・その他の形式は <a class="text-link" href="https://github.com/UDteach/AnimalsDesktopForReal/releases/latest">GitHub Releases</a> をご覧ください。</p>
   </main>

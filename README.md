@@ -8,7 +8,7 @@
 
 ポモドーロを有効にすると集中中の自動表示を休み、休憩開始時に動物が現れます。標準設定は集中25分・短い休憩5分・4回目の長い休憩15分です。「時間の設定…」で各時間を変えられ、クリック操作を妨げない画面右上の残り時間表示も選べます。「今すぐ表示」は集中中にも使えます。
 
-公式サイト: [Animals Desktop - for Real](https://udteach.github.io/AnimalsDesktopForReal/) ／ [ダウンロード](https://udteach.github.io/AnimalsDesktopForReal/download.html)。サイトでは10種類の毛色・模様をトップの丸いボタンで切り替えられ、地上の動物のカードでは各4つ、フクロモモンガのカードでは各3つの動作動画を再生できます。
+公式サイト: [Animals Desktop - for Real](https://udteach.github.io/AnimalsDesktopForReal/) ／ [ダウンロード](https://udteach.github.io/AnimalsDesktopForReal/download.html) ／ [Mac 初回起動の手順](https://udteach.github.io/AnimalsDesktopForReal/download.html#mac-first-open)。サイトでは10種類の毛色・模様をトップの丸いボタンで切り替えられ、地上の動物のカードでは各4つ、フクロモモンガのカードでは各3つの動作動画を再生できます。
 
 ## 起動
 
@@ -27,7 +27,7 @@ npm run dist:mac
 npm run dist:win
 ```
 
-Mac は Apple Silicon / Intel の DMG と ZIP、Windows は x64 の ZIP を生成します。GitHub のリリースワークフローは Windows 上で NSIS インストーラーも生成します。Mac の最小設定は macOS 12 です。コード署名・公証は行っていません。Mac で初回起動時に警告が出た場合は Finder からアプリを右クリックして「開く」を選んでください。
+Mac は Apple Silicon / Intel の DMG と ZIP、Windows は x64 の ZIP を生成します。GitHub のリリースワークフローは Windows 上で NSIS インストーラーも生成します。Mac の最小設定は macOS 12 です。Mac 版はアプリ内部の整合性のためアドホック署名していますが、Apple Developer ID 署名・公証は行っていません。初回起動時に警告が出た場合は [Mac 初回起動の手順](https://udteach.github.io/AnimalsDesktopForReal/download.html#mac-first-open)をご覧ください。
 
 ## 素材と根拠
 

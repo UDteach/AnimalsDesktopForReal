@@ -27,6 +27,16 @@ jobs:
       - name: Build Mac (Intel and Apple Silicon)
         if: runner.os == 'macOS'
         run: npm run dist:mac
+      - name: Verify Mac app bundles
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          count=0
+          while IFS= read -r -d '' app; do
+            codesign --verify --deep --strict "$app"
+            count=$((count + 1))
+          done < <(find release-build -maxdepth 2 -name '*.app' -print0)
+          test "$count" -eq 2
       - name: Build Windows (installer and ZIP)
         if: runner.os == 'Windows'
         run: npx electron-builder --win nsis zip --x64 --publish never

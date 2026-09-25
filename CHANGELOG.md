@@ -1,5 +1,11 @@
 # 更新履歴
 
+## v0.1.3 — 2026-09-25
+
+- Mac 版のアドホック署名をアプリ全体で整合させ、配布ビルドの署名検証を追加。
+- 日本語・英語のダウンロードページに、Mac での初回起動と「このまま開く」の手順を追加。
+- [Mac 版の初回起動の手順](https://udteach.github.io/AnimalsDesktopForReal/download.html#mac-first-open) / [English guide](https://udteach.github.io/AnimalsDesktopForReal/download-en.html#mac-first-open)
+
 ## v0.1.2 — 2026-09-25
 
 - チンチラ3毛色、ハムスター3種類、マカロニマウスに、下から顔と前足を出して戻る透過動画を追加。合計37本の動きに対応。
