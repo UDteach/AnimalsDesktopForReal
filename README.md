@@ -27,7 +27,7 @@ npm run dist:mac
 npm run dist:win
 ```
 
-Mac は Apple Silicon / Intel の DMG と ZIP、Windows は x64 の ZIP を生成します。Windows のインストーラーは Windows 上で `npm run dist:win:installer` を実行できます。Mac の最小設定は macOS 12 です。コード署名・公証は行っていません。Mac で初回起動時に警告が出た場合は Finder からアプリを右クリックして「開く」を選んでください。
+Mac は Apple Silicon / Intel の DMG と ZIP、Windows は x64 の ZIP を生成します。GitHub のリリースワークフローは Windows 上で NSIS インストーラーも生成します。Mac の最小設定は macOS 12 です。コード署名・公証は行っていません。Mac で初回起動時に警告が出た場合は Finder からアプリを右クリックして「開く」を選んでください。
 
 ## 素材と根拠
 
