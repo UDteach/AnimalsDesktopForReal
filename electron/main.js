@@ -4,6 +4,7 @@ const path = require('node:path');
 const { pathToFileURL } = require('node:url');
 const { species, variants } = require('./catalog');
 const { defaultModes, validModes, pomodoroPhase } = require('./modes');
+const { validSizeIndex, sizeIndexFor, validDisplayTarget, displaysForTarget } = require('./appearance');
 
 const motionsBySpecies = {
   chinchilla: ['chinchilla-hop', 'chinchilla-perch', 'chinchilla-peek', 'chinchilla-bottom-pop'],
@@ -28,12 +29,15 @@ const sizes = [
   { label: { ja: '特大', en: 'Extra large' }, scale: 0.68 },
 ];
 const copy = {
-  ja: { show: '今すぐ表示', pause: '一時停止', resume: '再開', animals: '動物', all: '全種類ランダム', one: '1種類だけ表示', selected: '選択した種類からランダム', interval: '出現間隔', custom: 'カスタム間隔…', size: '表示サイズ', language: '言語', quit: '終了', pomodoro: 'ポモドーロ', enabled: 'ポモドーロを使う', showTimer: '残り時間を画面に表示', modes: '時間の設定…', focus: '集中', break: '休憩', longBreak: '長い休憩', minutesLeft: '残り{n}分' },
-  en: { show: 'Show now', pause: 'Pause', resume: 'Resume', animals: 'Animals', all: 'Random from all', one: 'One variant only', selected: 'Random from selected variants', interval: 'Appearance interval', custom: 'Custom interval…', size: 'Display size', language: 'Language', quit: 'Quit', pomodoro: 'Pomodoro', enabled: 'Use Pomodoro', showTimer: 'Show remaining time on screen', modes: 'Time settings…', focus: 'Focus', break: 'Break', longBreak: 'Long break', minutesLeft: '{n} min left' },
+  ja: { show: '今すぐ表示', pause: '一時停止', resume: '再開', animals: '動物', all: '全種類ランダム', one: '1種類だけ表示', selected: '選択した種類からランダム', interval: '出現間隔', custom: 'カスタム間隔…', size: '表示サイズ', baseSize: '全体の基本サイズ', speciesSize: '動物の種類ごと', variantSize: '毛色・模様ごと', inheritGlobal: '全体の基本サイズを使う', inheritSpecies: '種類の設定を使う', clearSizes: '個別設定を消して全体に統一', monitor: '動物の表示先', monitorCursor: 'カーソルのあるモニタ', monitorPrimary: 'メインモニタ', monitorAll: 'すべてのモニタ', monitorName: 'モニタ', monitorMain: 'メイン', monitorMissing: '選択中のモニタは未接続（メインに表示）', language: '言語', quit: '終了', pomodoro: 'ポモドーロ', enabled: 'ポモドーロを使う', showTimer: '残り時間を画面に表示', modes: '時間の設定…', focus: '集中', break: '休憩', longBreak: '長い休憩', minutesLeft: '残り{n}分' },
+  en: { show: 'Show now', pause: 'Pause', resume: 'Resume', animals: 'Animals', all: 'Random from all', one: 'One variant only', selected: 'Random from selected variants', interval: 'Appearance interval', custom: 'Custom interval…', size: 'Display size', baseSize: 'Default size for all', speciesSize: 'By animal type', variantSize: 'By coat or pattern', inheritGlobal: 'Use default size', inheritSpecies: 'Use animal type size', clearSizes: 'Clear overrides and use one size', monitor: 'Animal display', monitorCursor: 'Monitor with cursor', monitorPrimary: 'Primary monitor', monitorAll: 'All monitors', monitorName: 'Monitor', monitorMain: 'Primary', monitorMissing: 'Selected monitor disconnected (using primary)', language: 'Language', quit: 'Quit', pomodoro: 'Pomodoro', enabled: 'Use Pomodoro', showTimer: 'Show remaining time on screen', modes: 'Time settings…', focus: 'Focus', break: 'Break', longBreak: 'Long break', minutesLeft: '{n} min left' },
 };
 
 let tray;
-let overlay;
+const overlays = new Map();
+const readyOverlays = new Set();
+const pendingOverlays = new Set();
+let playGeneration = 0;
 let intervalWindow;
 let modesWindow;
 let timerWindow;
@@ -45,7 +49,9 @@ let lastMotion;
 let paused = false;
 let lastAllowed;
 let lastMenuStatus = '';
-let settings = { frequency: 2, customInterval: { min: 180, max: 360 }, size: 1, language: 'ja', all: true, selected: [], modes: structuredClone(defaultModes) };
+let settings = { frequency: 2, customInterval: { min: 180, max: 360 }, size: 1,
+  sizeBySpecies: {}, sizeByVariant: {}, displayTarget: 'cursor', language: 'ja', all: true,
+  selected: [], modes: structuredClone(defaultModes) };
 
 function animalDir() {
   return app.isPackaged ? path.join(process.resourcesPath, 'animals') : path.join(__dirname, '..', 'assets', 'animals');
@@ -65,7 +71,18 @@ function loadSettings() {
     if (Number.isInteger(saved.frequency) && frequencies[saved.frequency]) settings.frequency = saved.frequency;
     if (saved.frequency === 'custom' && validInterval(saved.customInterval)) settings.frequency = 'custom';
     if (validInterval(saved.customInterval)) settings.customInterval = saved.customInterval;
-    if (Number.isInteger(saved.size) && sizes[saved.size]) settings.size = saved.size;
+    if (validSizeIndex(saved.size)) settings.size = saved.size;
+    if (saved.sizeBySpecies && typeof saved.sizeBySpecies === 'object' && !Array.isArray(saved.sizeBySpecies)) {
+      for (const group of species) {
+        if (validSizeIndex(saved.sizeBySpecies[group.id])) settings.sizeBySpecies[group.id] = saved.sizeBySpecies[group.id];
+      }
+    }
+    if (saved.sizeByVariant && typeof saved.sizeByVariant === 'object' && !Array.isArray(saved.sizeByVariant)) {
+      for (const variant of variants) {
+        if (validSizeIndex(saved.sizeByVariant[variant.id])) settings.sizeByVariant[variant.id] = saved.sizeByVariant[variant.id];
+      }
+    }
+    if (validDisplayTarget(saved.displayTarget)) settings.displayTarget = saved.displayTarget;
     if (saved.language === 'ja' || saved.language === 'en') settings.language = saved.language;
     if (typeof saved.all === 'boolean') settings.all = saved.all;
     if (Array.isArray(saved.selected)) settings.selected = saved.selected.filter((id) => typeof id === 'string');
@@ -102,6 +119,44 @@ function groupedVariantMenu(language, action, checked) {
     })),
   })).filter((item) => item.submenu.length);
 }
+function sizeOptions(language, inheritedLabel, current, choose) {
+  return [
+    { label: inheritedLabel, type: 'radio', checked: !validSizeIndex(current), click: () => choose(undefined) },
+    ...sizes.map((item, index) => ({ label: item.label[language], type: 'radio', checked: current === index,
+      click: () => choose(index) })),
+  ];
+}
+function setSizeOverride(scope, id, index) {
+  const overrides = scope === 'species' ? settings.sizeBySpecies : settings.sizeByVariant;
+  if (validSizeIndex(index)) overrides[id] = index;
+  else delete overrides[id];
+  saveSettings(); refreshMenu();
+}
+function monitorMenu(language) {
+  const t = copy[language];
+  const displays = screen.getAllDisplays();
+  const primaryId = screen.getPrimaryDisplay().id;
+  const target = settings.displayTarget;
+  const options = [
+    { label: t.monitorCursor, type: 'radio', checked: target === 'cursor', click: () => setDisplayTarget('cursor') },
+    { label: t.monitorPrimary, type: 'radio', checked: target === 'primary', click: () => setDisplayTarget('primary') },
+    { label: t.monitorAll, type: 'radio', checked: target === 'all', click: () => setDisplayTarget('all') },
+    { type: 'separator' },
+    ...displays.map((display, index) => ({
+      label: `${index + 1}. ${display.label || `${t.monitorName} ${index + 1}`}${display.id === primaryId ? ` (${t.monitorMain})` : ''}`,
+      type: 'radio', checked: target === `display:${display.id}`,
+      click: () => setDisplayTarget(`display:${display.id}`),
+    })),
+  ];
+  if (target.startsWith('display:') && !displays.some((display) => target === `display:${display.id}`)) {
+    options.push({ label: t.monitorMissing, type: 'radio', checked: true, enabled: false });
+  }
+  return options;
+}
+function setDisplayTarget(target) {
+  settings.displayTarget = target;
+  saveSettings(); stop(); schedule(); refreshMenu();
+}
 function pomodoroStatus(language) {
   const phase = pomodoroPhase(settings.modes.pomodoro);
   if (!phase) return null;
@@ -135,8 +190,24 @@ function menu() {
         click: () => { settings.frequency = index; saveSettings(); schedule(); refreshMenu(); } })),
       { label: t.custom, type: 'radio', checked: settings.frequency === 'custom', click: openIntervalWindow },
     ] },
-    { label: t.size, submenu: sizes.map((item, index) => ({ label: item.label[language], type: 'radio', checked: settings.size === index,
-      click: () => { settings.size = index; saveSettings(); refreshMenu(); } })) },
+    { label: t.size, submenu: [
+      { label: t.baseSize, submenu: sizes.map((item, index) => ({ label: item.label[language], type: 'radio', checked: settings.size === index,
+        click: () => { settings.size = index; saveSettings(); refreshMenu(); } })) },
+      { label: t.speciesSize, submenu: species.filter((group) => available.some((variant) => variant.species === group.id))
+        .map((group) => ({ label: group.name[language], submenu: sizeOptions(language, t.inheritGlobal,
+          settings.sizeBySpecies[group.id], (index) => setSizeOverride('species', group.id, index)) })) },
+      { label: t.variantSize, submenu: species.map((group) => ({
+        label: group.name[language],
+        submenu: available.filter((variant) => variant.species === group.id).map((variant) => ({
+          label: variant.name[language], submenu: sizeOptions(language, t.inheritSpecies,
+            settings.sizeByVariant[variant.id], (index) => setSizeOverride('variant', variant.id, index)),
+        })),
+      })).filter((group) => group.submenu.length) },
+      { type: 'separator' },
+      { label: t.clearSizes, enabled: Object.keys(settings.sizeBySpecies).length > 0 || Object.keys(settings.sizeByVariant).length > 0,
+        click: () => { settings.sizeBySpecies = {}; settings.sizeByVariant = {}; saveSettings(); refreshMenu(); } },
+    ] },
+    { label: t.monitor, submenu: monitorMenu(language) },
     { label: t.pomodoro, submenu: [
       { label: t.enabled, type: 'checkbox', checked: settings.modes.pomodoro.enabled, click: togglePomodoro },
       { label: t.showTimer, type: 'checkbox', checked: settings.modes.showTimer, click: toggleShowTimer },
@@ -156,7 +227,11 @@ function refreshMenu() { tray?.setContextMenu(menu()); }
 function stop() {
   clearTimeout(nextTimer); clearTimeout(stopTimer);
   nextTimer = undefined; stopTimer = undefined;
-  if (overlay && !overlay.isDestroyed()) overlay.hide();
+  playGeneration += 1;
+  pendingOverlays.clear();
+  for (const window of overlays.values()) {
+    if (!window.isDestroyed()) window.hide();
+  }
 }
 function schedule() {
   clearTimeout(nextTimer);
@@ -212,20 +287,38 @@ function syncTimerWindow() {
   });
   timerWindow.showInactive();
 }
-function ensureOverlay() {
-  if (overlay && !overlay.isDestroyed()) return overlay;
-  overlay = new BrowserWindow({ show: false, frame: false, transparent: true, backgroundColor: '#00000000',
+function ensureOverlay(display) {
+  const existing = overlays.get(display.id);
+  if (existing && !existing.isDestroyed()) return existing;
+  const window = new BrowserWindow({ show: false, frame: false, transparent: true, backgroundColor: '#00000000',
     skipTaskbar: true, focusable: false, hasShadow: false, resizable: false,
     webPreferences: { preload: path.join(__dirname, 'preload.js'), contextIsolation: true, nodeIntegration: false, sandbox: true, backgroundThrottling: false } });
-  overlay.setIgnoreMouseEvents(true, { forward: true });
-  overlay.setAlwaysOnTop(true, 'screen-saver');
+  overlays.set(display.id, window);
+  window.setIgnoreMouseEvents(true, { forward: true });
+  window.setAlwaysOnTop(true, 'screen-saver');
   if (process.platform === 'darwin') {
-    overlay.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
-    overlay.setFullScreenable(false);
+    window.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
+    window.setFullScreenable(false);
   }
-  overlay.loadFile(path.join(__dirname, 'overlay.html'));
-  overlay.on('closed', () => { overlay = undefined; });
-  return overlay;
+  const contentsId = window.webContents.id;
+  window.webContents.once('did-finish-load', () => readyOverlays.add(contentsId));
+  window.loadFile(path.join(__dirname, 'overlay.html'));
+  window.on('closed', () => {
+    if (overlays.get(display.id) === window) overlays.delete(display.id);
+    readyOverlays.delete(contentsId);
+    pendingOverlays.delete(contentsId);
+  });
+  return window;
+}
+function selectedDisplays() {
+  const displays = screen.getAllDisplays();
+  const primaryId = screen.getPrimaryDisplay().id;
+  let cursorId = primaryId;
+  if (settings.displayTarget === 'cursor') {
+    try { cursorId = screen.getDisplayNearestPoint(screen.getCursorScreenPoint()).id; }
+    catch { /* Use the primary display if cursor coordinates are unavailable. */ }
+  }
+  return displaysForTarget(settings.displayTarget, displays, primaryId, cursorId);
 }
 function playNext(manual = false) {
   if (!manual && !canAutoPlay()) return;
@@ -247,19 +340,26 @@ function playNext(manual = false) {
   const imageFile = path.join(animalDir(), `${variant.id}.png`);
   const isVideo = fs.existsSync(videoFile);
   const file = isVideo ? videoFile : imageFile;
-  const display = screen.getDisplayNearestPoint(screen.getCursorScreenPoint());
-  const window = ensureOverlay();
-  window.setBounds(display.bounds);
-  const send = () => {
-    window.webContents.send('play', {
-      url: pathToFileURL(file).href, fallbackUrl: pathToFileURL(imageFile).href,
-      motion, scale: sizes[settings.size].scale, kind: isVideo ? 'video' : 'image',
-    });
-    window.showInactive();
-    stopTimer = setTimeout(() => { stop(); schedule(); }, 7000);
+  const displays = selectedDisplays();
+  const generation = playGeneration;
+  if (!displays.length) { schedule(); return; }
+  const play = {
+    url: pathToFileURL(file).href, fallbackUrl: pathToFileURL(imageFile).href,
+    motion, scale: sizes[sizeIndexFor(settings, variant)].scale, kind: isVideo ? 'video' : 'image',
   };
-  if (window.webContents.isLoading()) window.webContents.once('did-finish-load', send);
-  else send();
+  for (const display of displays) {
+    const window = ensureOverlay(display);
+    window.setBounds(display.bounds);
+    pendingOverlays.add(window.webContents.id);
+    const send = () => {
+      if (generation !== playGeneration || window.isDestroyed()) return;
+      window.webContents.send('play', play);
+      window.showInactive();
+    };
+    if (readyOverlays.has(window.webContents.id)) send();
+    else window.webContents.once('did-finish-load', send);
+  }
+  stopTimer = setTimeout(() => { if (generation === playGeneration) { stop(); schedule(); } }, 7000);
 }
 function openIntervalWindow() {
   if (intervalWindow && !intervalWindow.isDestroyed()) { intervalWindow.focus(); return; }
@@ -312,14 +412,25 @@ ipcMain.handle('interval:save', (event, value) => {
   saveSettings(); refreshMenu(); setImmediate(() => intervalWindow?.close()); return true;
 });
 ipcMain.on('animation-ended', (event) => {
-  if (event.sender !== overlay?.webContents) return;
-  stop(); schedule();
+  if (!pendingOverlays.delete(event.sender.id)) return;
+  if (pendingOverlays.size === 0) { stop(); schedule(); }
 });
+function handleDisplayChange() {
+  stop();
+  const connected = new Set(screen.getAllDisplays().map((display) => display.id));
+  for (const [id, window] of overlays) {
+    if (!connected.has(id) && !window.isDestroyed()) window.destroy();
+  }
+  syncTimerWindow(); refreshMenu(); schedule();
+}
 app.whenReady().then(() => {
   if (process.platform === 'darwin') app.dock.hide();
   loadSettings(); discoverAssets();
   tray = new Tray(nativeImage.createFromPath(path.join(__dirname, '..', 'assets', 'icons', 'tray.png')));
   tray.setToolTip('Animals Desktop - for Real'); refreshMenu();
+  screen.on('display-added', handleDisplayChange);
+  screen.on('display-removed', handleDisplayChange);
+  screen.on('display-metrics-changed', handleDisplayChange);
   reconcileRuntime();
   setInterval(reconcileRuntime, 1000);
 });

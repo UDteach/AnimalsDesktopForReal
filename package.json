@@ -1,6 +1,6 @@
 {
   "name": "animals-desktop-for-real",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "author": "UDteach",
   "description": "Realistic small animals occasionally visit your desktop",
@@ -13,7 +13,7 @@
     "dist:mac:x64": "electron-builder --mac dmg zip --x64",
     "dist:win": "electron-builder --win zip --x64",
     "dist:win:installer": "electron-builder --win nsis --x64",
-    "check": "node --check electron/main.js && node --check electron/overlay.js && node --check electron/interval.js && node --check electron/modes.js && node --check electron/modes-ui.js && node --check electron/timer.js && node --test test/modes.test.js && node scripts/check-assets.js"
+    "check": "node --check electron/main.js && node --check electron/overlay.js && node --check electron/interval.js && node --check electron/modes.js && node --check electron/modes-ui.js && node --check electron/timer.js && node --test && node scripts/check-assets.js"
   },
   "devDependencies": {
     "electron": "43.7.5",
