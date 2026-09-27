@@ -1,0 +1,163 @@
+#!/usr/bin/env node
+
+// Build the static OBS pages without bundling the motion videos a second time.
+// Run with --check to verify that committed output matches the source files.
+const fs = require('node:fs');
+const path = require('node:path');
+const assert = require('node:assert/strict');
+const { species, variants } = require('../electron/catalog');
+const { actionsBySpecies: motionsBySpecies } = require('../shared/motions.cjs');
+
+const root = path.resolve(__dirname, '..');
+const sourceDir = path.join(root, 'web', 'obs');
+const sharedDir = path.join(root, 'shared', 'overlay');
+const outputDir = path.join(root, 'docs', 'obs');
+const publicAssetsDir = path.join(root, 'docs', 'assets');
+const checkOnly = process.argv.includes('--check');
+
+const motionNames = {
+  hop: { ja: '跳ぶ', en: 'Hop' },
+  perch: { ja: '立ち止まる', en: 'Perch' },
+  peek: { ja: 'のぞく', en: 'Peek' },
+  forage: { ja: '小走り', en: 'Forage' },
+  explore: { ja: '探索', en: 'Explore' },
+  dash: { ja: '走る', en: 'Dash' },
+  pause: { ja: 'ひと休み', en: 'Pause' },
+  emerge: { ja: '顔を出す', en: 'Emerge' },
+  shuffle: { ja: 'ちょこちょこ', en: 'Shuffle' },
+  settle: { ja: 'ぺたり', en: 'Settle' },
+  glide: { ja: '滑空', en: 'Glide' },
+  'bottom-pop': { ja: '下からぴょこ', en: 'Pop up' },
+  trot: { ja: 'てこてこ歩く', en: 'Trot' },
+  popcorn: { ja: '小さく跳ねる', en: 'Popcorn hop' },
+  sniff: { ja: '鼻で探る', en: 'Sniff around' },
+  periscope: { ja: '立って見回す', en: 'Stand & look' },
+};
+
+const motionNameOverrides = {
+  'guinea-pig:forage': { ja: '鼻で探す', en: 'Sniff & forage' },
+  'rabbit:hop': { ja: 'ぴょんぴょん', en: 'Hop along' },
+};
+
+function relativeFiles(directory) {
+  assert.ok(fs.existsSync(directory), `Missing source directory: ${path.relative(root, directory)}`);
+  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const fullPath = path.join(directory, entry.name);
+    if (entry.isDirectory()) return relativeFiles(fullPath).map((file) => path.join(entry.name, file));
+    assert.ok(entry.isFile(), `Unsupported source entry: ${fullPath}`);
+    return [entry.name];
+  });
+}
+
+function copyOrCheck(source, destination) {
+  if (checkOnly) {
+    assert.ok(fs.existsSync(destination), `Missing generated file: ${path.relative(root, destination)}`);
+    assert.deepEqual(fs.readFileSync(destination), fs.readFileSync(source),
+      `Outdated generated file: ${path.relative(root, destination)}`);
+  } else {
+    fs.mkdirSync(path.dirname(destination), { recursive: true });
+    fs.copyFileSync(source, destination);
+  }
+}
+
+function writeOrCheck(content, destination) {
+  if (checkOnly) {
+    assert.ok(fs.existsSync(destination), `Missing generated file: ${path.relative(root, destination)}`);
+    assert.equal(fs.readFileSync(destination, 'utf8'), content,
+      `Outdated generated file: ${path.relative(root, destination)}`);
+  } else {
+    fs.mkdirSync(path.dirname(destination), { recursive: true });
+    fs.writeFileSync(destination, content);
+  }
+}
+
+function buildCatalog() {
+  const speciesIds = new Set(species.map((item) => item.id));
+  const variantIds = new Set();
+  assert.equal(speciesIds.size, species.length, 'Duplicate species IDs');
+  assert.deepEqual([...speciesIds].sort(), Object.keys(motionsBySpecies).sort(),
+    'Motion table and species catalog differ');
+
+  const publicVariants = variants.map((variant) => {
+    assert.ok(speciesIds.has(variant.species), `Unknown species: ${variant.species}`);
+    assert.ok(!variantIds.has(variant.id), `Duplicate variant ID: ${variant.id}`);
+    variantIds.add(variant.id);
+    const image = `../assets/animals/${variant.id}.png`;
+    const publicImage = path.join(publicAssetsDir, 'animals', `${variant.id}.png`);
+    if (!fs.existsSync(publicImage)) {
+      assert.ok(variant.id.startsWith('rabbit-netherland-'),
+        `Missing published PNG: ${path.relative(root, publicImage)}`);
+      const original = path.join(root, 'assets', 'animals', `${variant.id}.png`);
+      assert.ok(fs.existsSync(original), `Missing source PNG: ${path.relative(root, original)}`);
+      copyOrCheck(original, publicImage);
+    }
+
+    const motions = motionsBySpecies[variant.species].map((id) => {
+      const file = `${variant.id}-${id}.webm`;
+      const publicVideo = path.join(publicAssetsDir, 'motions', file);
+      assert.ok(fs.existsSync(publicVideo), `Missing published WebM: ${path.relative(root, publicVideo)}`);
+      const name = motionNameOverrides[`${variant.species}:${id}`] || motionNames[id];
+      assert.ok(name, `Missing motion name: ${id}`);
+      return { id, name, video: `../assets/motions/${file}` };
+    });
+
+    return { id: variant.id, species: variant.species, name: variant.name, image, motions };
+  });
+  assert.equal(publicVariants.length, 16, 'Expected 16 approved variants');
+  assert.equal(publicVariants.reduce((count, variant) => count + variant.motions.length, 0), 64,
+    'Expected 64 approved motion videos');
+  return `// Generated by scripts/build-obs-web.js. Do not edit.\n` +
+    `export const species = ${JSON.stringify(species, null, 2)};\n` +
+    `export const variants = ${JSON.stringify(publicVariants, null, 2)};\n`;
+}
+
+function checkReferences(files) {
+  for (const relativeFile of files) {
+    const file = path.join(outputDir, relativeFile);
+    if (!/\.(html|mjs)$/.test(file)) continue;
+    const source = fs.readFileSync(file, 'utf8');
+    const pattern = file.endsWith('.html')
+      ? /\b(?:src|href)=["']([^"']+)["']/g
+      : /\b(?:from\s*|import\s*)["']([^"']+)["']/g;
+    for (const match of source.matchAll(pattern)) {
+      const reference = match[1];
+      if (!reference.startsWith('.')) continue;
+      const target = path.resolve(path.dirname(file), decodeURIComponent(reference.split(/[?#]/, 1)[0]));
+      assert.ok(fs.existsSync(target),
+        `Broken reference ${reference} in ${path.relative(root, file)}`);
+    }
+  }
+}
+
+function main() {
+  const catalog = buildCatalog();
+  const webFiles = relativeFiles(sourceDir);
+  const sharedFiles = relativeFiles(sharedDir);
+  for (const required of ['index.html', 'overlay.html']) {
+    assert.ok(webFiles.includes(required), `Missing OBS page: web/obs/${required}`);
+  }
+  for (const required of ['renderer.mjs', 'motions.css']) {
+    assert.ok(sharedFiles.includes(required), `Missing shared renderer: shared/overlay/${required}`);
+  }
+  const expectedOutput = [
+    ...webFiles,
+    ...sharedFiles.map((file) => path.join('shared', 'overlay', file)),
+    'catalog.mjs',
+  ].sort();
+  if (checkOnly) {
+    assert.deepEqual(relativeFiles(outputDir).sort(), expectedOutput,
+      'Generated OBS file list differs from source');
+  } else {
+    fs.rmSync(outputDir, { recursive: true, force: true });
+  }
+
+  for (const file of webFiles) copyOrCheck(path.join(sourceDir, file), path.join(outputDir, file));
+  for (const file of sharedFiles) {
+    copyOrCheck(path.join(sharedDir, file), path.join(outputDir, 'shared', 'overlay', file));
+  }
+  writeOrCheck(catalog, path.join(outputDir, 'catalog.mjs'));
+  if (checkOnly) checkReferences(expectedOutput);
+  process.stdout.write(`OBS web ${checkOnly ? 'checked' : 'built'}: ${variants.length} variants, 64 motions, ${webFiles.length} page files.\n`);
+}
+
+main();

@@ -13,6 +13,8 @@
     "dist:mac:x64": "electron-builder --mac dmg zip --x64",
     "dist:win": "electron-builder --win zip --x64",
     "dist:win:installer": "electron-builder --win nsis --x64",
+    "build:obs": "node scripts/build-obs-web.js",
+    "check:obs": "npm run build:obs && node --test test/obs-web.test.mjs && node scripts/build-obs-web.js --check",
     "check": "node --check electron/main.js && node --check electron/overlay.js && node --check electron/interval.js && node --check electron/modes.js && node --check electron/modes-ui.js && node --check electron/timer.js && node --test && node scripts/check-assets.js"
   },
   "devDependencies": {
@@ -28,6 +30,7 @@
     },
     "files": [
       "electron/**/*",
+      "shared/motions.cjs",
       "research/variants.json",
       "assets/icons/tray.png",
       "package.json"

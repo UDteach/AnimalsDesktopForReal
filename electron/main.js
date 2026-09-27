@@ -5,16 +5,11 @@ const { pathToFileURL } = require('node:url');
 const { species, variants } = require('./catalog');
 const { defaultModes, validModes, pomodoroPhase } = require('./modes');
 const { validSizeIndex, sizeIndexFor, validDisplayTarget, displaysForTarget } = require('./appearance');
+const { actionsBySpecies } = require('../shared/motions.cjs');
 
-const motionsBySpecies = {
-  chinchilla: ['chinchilla-hop', 'chinchilla-perch', 'chinchilla-peek', 'chinchilla-bottom-pop'],
-  hamster: ['hamster-forage', 'hamster-explore', 'hamster-peek', 'hamster-bottom-pop'],
-  djungarian: ['djungarian-dash', 'djungarian-pause', 'djungarian-peek', 'djungarian-bottom-pop'],
-  'macaroni-mouse': ['macaroni-emerge', 'macaroni-shuffle', 'macaroni-settle', 'macaroni-bottom-pop'],
-  'sugar-glider': ['sugar-glider-glide', 'sugar-glider-perch', 'sugar-glider-peek', 'sugar-glider-bottom-pop'],
-  'guinea-pig': ['guinea-pig-trot', 'guinea-pig-forage', 'guinea-pig-popcorn', 'guinea-pig-bottom-pop'],
-  rabbit: ['rabbit-hop', 'rabbit-sniff', 'rabbit-periscope', 'rabbit-bottom-pop'],
-};
+const motionsBySpecies = Object.fromEntries(Object.entries(actionsBySpecies).map(([id, actions]) => [
+  id, actions.map((action) => `${id === 'macaroni-mouse' ? 'macaroni' : id}-${action}`),
+]));
 const frequencies = [
   { label: { ja: '1〜30秒ごと', en: 'Every 1–30 seconds' }, min: 1, max: 30 },
   { label: { ja: '1〜3分ごと', en: 'Every 1–3 minutes' }, min: 60, max: 180 },

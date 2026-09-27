@@ -2,7 +2,18 @@ name: Publish website
 on:
   push:
     branches: [main]
-    paths: ['docs/**', '.github/workflows/pages.yml']
+    paths:
+      - 'docs/**'
+      - 'web/**'
+      - 'shared/**'
+      - 'research/variants.json'
+      - 'electron/catalog.js'
+      - 'electron/main.js'
+      - 'scripts/check-assets.js'
+      - 'scripts/build-obs-web.js'
+      - 'test/obs-web.test.mjs'
+      - 'package.json'
+      - '.github/workflows/pages.yml'
   workflow_dispatch:
 permissions:
   contents: read
@@ -19,6 +30,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm run check:obs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

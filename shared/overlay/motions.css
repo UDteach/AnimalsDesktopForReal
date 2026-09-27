@@ -1,0 +1,39 @@
+.obs-area{position:absolute;overflow:hidden;pointer-events:none;box-sizing:border-box}
+.obs-actor{position:absolute;bottom:0;pointer-events:none;will-change:transform}
+.obs-actor.is-right{transform:scaleX(-1)}
+.obs-media{position:absolute;left:0;bottom:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;opacity:0;pointer-events:none;will-change:transform,opacity}
+.obs-video.is-playing,.obs-image.is-playing{animation-duration:var(--duration,4s);animation-timing-function:linear;animation-fill-mode:both}
+.obs-actor.obs-pop .is-playing{animation-name:obs-edge-pop}
+.obs-actor.obs-walk .is-playing{animation-name:obs-edge-walk}
+.obs-actor.obs-dash .is-playing{animation-name:obs-edge-dash}
+.obs-actor.obs-glide .is-playing{animation-name:obs-sky-glide}
+.obs-actor.obs-bottom .obs-video.is-playing{animation:none;opacity:1}
+.obs-actor.obs-bottom .obs-image.is-playing{animation-name:obs-bottom-peek}
+@keyframes obs-edge-pop{
+  0%,7%,100%{opacity:1;transform:translateX(-115%)}
+  19%{opacity:1;transform:translateX(-26%)}
+  26%,72%{opacity:1;transform:translateX(-18%)}
+  81%{opacity:1;transform:translateX(-24%)}
+  93%{opacity:1;transform:translateX(-115%)}
+}
+@keyframes obs-edge-walk{
+  0%,5%{opacity:0;transform:translateX(-80%)}
+  25%{opacity:1;transform:translateX(-18%)}
+  70%{opacity:1;transform:translateX(3%)}
+  100%{opacity:0;transform:translateX(60%)}
+}
+@keyframes obs-edge-dash{
+  0%,5%{opacity:1;transform:translateX(-115%)}
+  20%{opacity:1;transform:translateX(-12%)}
+  74%{opacity:1;transform:translateX(var(--dash-mid))}
+  100%{opacity:1;transform:translateX(var(--dash-travel))}
+}
+@keyframes obs-sky-glide{
+  0%{opacity:1;transform:translate(0,-5%)}
+  50%{opacity:1;transform:translate(var(--travel-half),-12%)}
+  100%{opacity:1;transform:translate(var(--travel),12%)}
+}
+@keyframes obs-bottom-peek{
+  0%,100%{opacity:1;transform:translateY(108%)}
+  25%,72%{opacity:1;transform:translateY(14%)}
+}

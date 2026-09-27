@@ -1,6 +1,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { variants } = require('../electron/catalog');
+const { actionsBySpecies } = require('../shared/motions.cjs');
 
 const root = path.join(__dirname, '..', 'assets', 'animals');
 const seen = new Set();
@@ -24,15 +25,6 @@ if (JSON.stringify(present) !== JSON.stringify(expected)) {
 }
 
 const motionRoot = path.join(__dirname, '..', 'assets', 'motions');
-const actionsBySpecies = {
-  chinchilla: ['hop', 'perch', 'peek', 'bottom-pop'],
-  hamster: ['forage', 'explore', 'peek', 'bottom-pop'],
-  djungarian: ['dash', 'pause', 'peek', 'bottom-pop'],
-  'macaroni-mouse': ['emerge', 'shuffle', 'settle', 'bottom-pop'],
-  'sugar-glider': ['glide', 'perch', 'peek', 'bottom-pop'],
-  'guinea-pig': ['trot', 'forage', 'popcorn', 'bottom-pop'],
-  rabbit: ['hop', 'sniff', 'periscope', 'bottom-pop'],
-};
 const allowedMotions = new Set(variants.flatMap((variant) =>
   actionsBySpecies[variant.species].map((action) => `${variant.id}-${action}.webm`)));
 const presentMotions = fs.readdirSync(motionRoot).filter((name) => name.endsWith('.webm')).sort();
