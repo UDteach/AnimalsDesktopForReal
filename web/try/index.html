@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f3eb">
+  <title>Webでおためし | Animals Desktop - for Real</title>
+  <meta name="description" content="インストールせずに、ブラウザで動物たちの動きをおためし。好きな動物を選んで全画面でも眺められます。">
+  <link rel="icon" href="../assets/icon.png">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../obs/shared/overlay/motions.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./trial.mjs"></script>
+</head>
+<body>
+  <header class="trial-topbar">
+    <a class="brand" id="home-link" href="../"><span class="brand-mark" aria-hidden="true">●</span> Animals Desktop <span class="brand-tag">- for Real</span></a>
+    <nav aria-label="ページ移動"><a id="back-link" href="../" data-i18n="back">公式サイトへ</a><a id="language-link" class="language-link" href="?lang=en" lang="en" aria-label="Read this page in English">EN</a></nav>
+  </header>
+  <main class="trial-main">
+    <div class="trial-intro"><h1 data-i18n="title">Webでおためし</h1><p data-i18n="intro">インストールせずに、小さな訪問者たちを。全画面にして、のんびり眺めることもできます。</p></div>
+    <section id="scene" class="scene" data-background="meadow" aria-label="動物のおためし画面" tabindex="-1">
+      <div class="scenery" aria-hidden="true"></div>
+      <div id="stage" class="trial-stage" aria-hidden="true"></div>
+      <div id="scene-controls" class="scene-controls">
+        <div class="scene-caption"><p id="animal-name" data-i18n="welcome">もうすぐ、会いにきます。</p><span id="playback-status" role="status" aria-live="polite"></span></div>
+        <div class="scene-buttons">
+          <button id="show-now" type="button" data-i18n="showNow" disabled>今すぐ表示</button>
+          <button id="pause" type="button" data-i18n="pause" disabled>一時停止</button>
+          <button id="fullscreen" type="button" class="fullscreen-button" data-i18n="fullscreen" aria-pressed="false" disabled>全画面にする</button>
+        </div>
+        <p id="screen-notice" class="screen-notice" role="status" hidden></p>
+      </div>
+      <p id="fullscreen-hint" class="fullscreen-hint" data-i18n="fullscreenHint">マウスを動かすか、画面をタップすると操作できます。Escで戻れます。</p>
+    </section>
+    <div class="trial-options" role="group" aria-label="おためしの設定">
+      <label><span data-i18n="animal">動物</span><select id="animal" disabled><option value="all">すべての動物</option></select></label>
+      <label><span data-i18n="coat">毛色・模様</span><select id="coat" disabled><option value="all">おまかせ</option></select></label>
+      <label><span data-i18n="interval">出現間隔</span><select id="interval" disabled><option value="5" data-i18n="sec5">5秒</option><option value="10" selected data-i18n="sec10">10秒</option><option value="30" data-i18n="sec30">30秒</option><option value="60" data-i18n="sec60">1分</option></select></label>
+      <label><span data-i18n="size">大きさ</span><select id="size" disabled><option value="240" data-i18n="small">小さめ</option><option value="360" selected data-i18n="medium">ふつう</option><option value="480" data-i18n="large">大きめ</option></select></label>
+      <label><span data-i18n="background">背景</span><select id="background" disabled><option value="meadow" data-i18n="meadow">草原</option><option value="light" data-i18n="light">明るい</option><option value="dark" data-i18n="dark">暗い</option></select></label>
+    </div>
+    <p class="trial-note" data-i18n="scope">動物はこのページの中に表示されます。音は出ません。</p>
+    <p id="load-error" class="load-error" hidden>読み込みができませんでした。ページを再読み込みしてください。 / Could not load. Please reload the page.</p>
+    <noscript><p class="load-error">おためしにはJavaScriptを有効にしてください。 / Enable JavaScript to try the animals.</p></noscript>
+    <div class="trial-next"><div><h2 data-i18n="nextTitle">いつものデスクトップにも。</h2><p data-i18n="nextBody">アプリなら、作業中の画面に動物が現れます。壁紙はそのまま、マウス操作も続けられます。</p></div><div class="trial-next-links"><a id="download-link" class="button primary" href="../download.html" data-i18n="download">アプリをダウンロード ↗</a><a id="obs-link" class="trial-obs-link" href="../obs/" data-i18n="obs">配信に出したい方は、OBSで使う ↗</a></div></div>
+  </main>
+</body>
+</html>

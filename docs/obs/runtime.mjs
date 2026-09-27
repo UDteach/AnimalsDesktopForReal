@@ -36,7 +36,7 @@ export function createPlayback(stage, { onState = () => {}, random = Math.random
         previewOnly = false;
         emit('paused', { result });
       } else {
-        schedule();
+        schedule(result);
       }
     },
     onError(reason) { if (!destroyed) emit(state, { error: reason }); },
@@ -57,12 +57,12 @@ export function createPlayback(stage, { onState = () => {}, random = Math.random
       area: config.area, opacity: config.opacity, renderer: config.renderer });
   }
 
-  function schedule() {
+  function schedule(result) {
     if (destroyed || paused) return;
     clearWait();
     const delay = chooseDelayMs(config.interval, random);
     nextAt = Date.now() + delay;
-    emit('waiting');
+    emit('waiting', { result });
     nextTimer = setTimeout(() => run(), delay);
   }
 

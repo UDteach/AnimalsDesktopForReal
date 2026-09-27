@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// Build the static OBS pages without bundling the motion videos a second time.
+// Build the static OBS and browser trial pages with one shared set of motion videos.
 // Run with --check to verify that committed output matches the source files.
 const fs = require('node:fs');
 const path = require('node:path');
@@ -12,6 +12,8 @@ const root = path.resolve(__dirname, '..');
 const sourceDir = path.join(root, 'web', 'obs');
 const sharedDir = path.join(root, 'shared', 'overlay');
 const outputDir = path.join(root, 'docs', 'obs');
+const trialSourceDir = path.join(root, 'web', 'try');
+const trialOutputDir = path.join(root, 'docs', 'try');
 const publicAssetsDir = path.join(root, 'docs', 'assets');
 const checkOnly = process.argv.includes('--check');
 
@@ -111,14 +113,14 @@ function buildCatalog() {
     `export const variants = ${JSON.stringify(publicVariants, null, 2)};\n`;
 }
 
-function checkReferences(files) {
+function checkReferences(files, directory = outputDir) {
   for (const relativeFile of files) {
-    const file = path.join(outputDir, relativeFile);
+    const file = path.join(directory, relativeFile);
     if (!/\.(html|mjs)$/.test(file)) continue;
     const source = fs.readFileSync(file, 'utf8');
     const pattern = file.endsWith('.html')
       ? /\b(?:src|href)=["']([^"']+)["']/g
-      : /\b(?:from\s*|import\s*)["']([^"']+)["']/g;
+      : /\b(?:from\s*|import\s*\(?\s*)["']([^"']+)["']/g;
     for (const match of source.matchAll(pattern)) {
       const reference = match[1];
       if (!reference.startsWith('.')) continue;
@@ -156,8 +158,20 @@ function main() {
     copyOrCheck(path.join(sharedDir, file), path.join(outputDir, 'shared', 'overlay', file));
   }
   writeOrCheck(catalog, path.join(outputDir, 'catalog.mjs'));
-  if (checkOnly) checkReferences(expectedOutput);
-  process.stdout.write(`OBS web ${checkOnly ? 'checked' : 'built'}: ${variants.length} variants, 64 motions, ${webFiles.length} page files.\n`);
+  const trialFiles = relativeFiles(trialSourceDir);
+  assert.ok(trialFiles.includes('index.html'), 'Missing browser trial page');
+  if (checkOnly) {
+    assert.deepEqual(relativeFiles(trialOutputDir).sort(), trialFiles.sort(),
+      'Generated browser trial file list differs from source');
+  } else {
+    fs.rmSync(trialOutputDir, { recursive: true, force: true });
+  }
+  for (const file of trialFiles) copyOrCheck(path.join(trialSourceDir, file), path.join(trialOutputDir, file));
+  if (checkOnly) {
+    checkReferences(expectedOutput);
+    checkReferences(trialFiles, trialOutputDir);
+  }
+  process.stdout.write(`OBS and browser trial ${checkOnly ? 'checked' : 'built'}: ${variants.length} variants, 64 motions, ${webFiles.length + trialFiles.length} page files.\n`);
 }
 
 main();
