@@ -12,6 +12,7 @@ const strings = {
     all: 'すべての動物', random: 'おまかせ', sec5: '5秒', sec10: '10秒', sec30: '30秒', sec60: '1分',
     small: '小さめ', medium: 'ふつう', large: '大きめ', meadow: '草原', light: '明るい', dark: '暗い',
     scope: '動物はこのページの中に表示されます。音は出ません。',
+    videoBackground: 'この端末では、動画に合わせて明るい背景で表示します。',
     nextTitle: 'いつものデスクトップにも。', nextBody: 'アプリなら、作業中の画面に動物が現れます。壁紙はそのまま、マウス操作も続けられます。',
     download: 'アプリをダウンロード ↗', obs: '配信に出したい方は、OBSで使う ↗',
     paused: '一時停止中。「再開」でまた会えます。', waiting: '次の動物が来るまで、少しひと休み。',
@@ -29,6 +30,7 @@ const strings = {
     all: 'All animals', random: 'Random', sec5: '5 seconds', sec10: '10 seconds', sec30: '30 seconds', sec60: '1 minute',
     small: 'Small', medium: 'Medium', large: 'Large', meadow: 'Meadow', light: 'Light', dark: 'Dark',
     scope: 'Animals appear within this page. Playback is silent.',
+    videoBackground: 'This device uses a light background to match the video.',
     nextTitle: 'Bring them to your desktop.', nextBody: 'With the app, animals visit while you work. Your wallpaper stays in place, and clicks pass through.',
     download: 'Download the app ↗', obs: 'Want them on stream? Use with OBS ↗',
     paused: 'Paused. Select Resume for another visit.', waiting: 'A little break before the next visitor.',
@@ -55,7 +57,7 @@ if (language === 'en') {
 async function init() {
   // Dynamic imports keep a useful error message available if a module fails to load.
   const [{ species, variants }, { makeDefaultConfig }, { createPlayback }] = await Promise.all([
-    import('../obs/catalog.mjs'), import('../obs/config.mjs'), import('../obs/runtime.mjs'),
+    import('../obs/catalog.mjs?v=20260927-mp4'), import('../obs/config.mjs?v=20260927-mp4'), import('../obs/runtime.mjs?v=20260927-mp4'),
   ]);
   const key = 'animals-web-trial-v1';
   let saved;
@@ -71,6 +73,8 @@ async function init() {
   let userPaused = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let pageAway = false;
   let phase = 'paused';
+  let opaqueVideo = false;
+  let videoBackground = '';
   let resizeTimer;
   let hideTimer;
   let keyboardInput = false;
@@ -103,8 +107,20 @@ async function init() {
     config.start = 'wait';
     return config;
   }
-  const playback = createPlayback($('stage'), { onState(state) {
+  function syncBackground() {
+    scene.dataset.background = opaqueVideo ? 'light' : preferences.background;
+    scene.style.backgroundColor = opaqueVideo ? videoBackground : '';
+    $('background').value = opaqueVideo ? 'light' : preferences.background;
+    $('background').disabled = opaqueVideo;
+    $('background-note').hidden = !opaqueVideo;
+  }
+  const playback = createPlayback($('stage'), { allowOpaqueVideo: true, onState(state) {
     phase = state.phase;
+    if (state.format) {
+      opaqueVideo = state.format === 'mp4';
+      videoBackground = state.backgroundColor || '';
+      syncBackground();
+    }
     if (state.variant) {
       const group = species.find(({ id }) => id === state.variant.species);
       $('animal-name').textContent = `${group.name[language]} · ${state.variant.name[language]}`;
@@ -114,7 +130,7 @@ async function init() {
   }});
   function syncPauseButton() { $('pause').textContent = t(userPaused ? 'resume' : 'pause'); }
   function applySettings() {
-    scene.dataset.background = preferences.background;
+    syncBackground();
     playback.configure(configuration());
     if (userPaused || document.hidden || pageAway) playback.pause();
     else playback.playNow();

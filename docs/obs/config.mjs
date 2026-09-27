@@ -1,4 +1,4 @@
-import { species, variants } from './catalog.mjs';
+import { species, variants } from './catalog.mjs?v=20260927-mp4';
 
 const variantById = new Map(variants.map((variant) => [variant.id, variant]));
 const speciesIds = new Set(species.map((group) => group.id));

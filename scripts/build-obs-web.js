@@ -98,9 +98,11 @@ function buildCatalog() {
       const file = `${variant.id}-${id}.webm`;
       const publicVideo = path.join(publicAssetsDir, 'motions', file);
       assert.ok(fs.existsSync(publicVideo), `Missing published WebM: ${path.relative(root, publicVideo)}`);
+      const mp4 = `${variant.id}-${id}.mp4`;
+      assert.ok(fs.existsSync(path.join(publicAssetsDir, 'motions', mp4)), `Missing published MP4: ${mp4}`);
       const name = motionNameOverrides[`${variant.species}:${id}`] || motionNames[id];
       assert.ok(name, `Missing motion name: ${id}`);
-      return { id, name, video: `../assets/motions/${file}` };
+      return { id, name, video: `../assets/motions/${file}`, fallbackVideo: `../assets/motions/${mp4}` };
     });
 
     return { id: variant.id, species: variant.species, name: variant.name, image, motions };

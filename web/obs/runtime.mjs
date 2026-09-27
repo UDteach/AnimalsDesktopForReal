@@ -1,9 +1,9 @@
-import { makeDefaultConfig, serializeConfig, parseConfig, sizeFor } from './config.mjs';
-import { chooseDelayMs, createSelector } from './scheduler.mjs';
-import { createRenderer } from './shared/overlay/renderer.mjs';
-import { variants } from './catalog.mjs';
+import { makeDefaultConfig, serializeConfig, parseConfig, sizeFor } from './config.mjs?v=20260927-mp4';
+import { chooseDelayMs, createSelector } from './scheduler.mjs?v=20260927-mp4';
+import { createRenderer } from './shared/overlay/renderer.mjs?v=20260927-mp4';
+import { variants } from './catalog.mjs?v=20260927-mp4';
 
-export function createPlayback(stage, { onState = () => {}, random = Math.random } = {}) {
+export function createPlayback(stage, { onState = () => {}, random = Math.random, allowOpaqueVideo = false } = {}) {
   let config = makeDefaultConfig();
   let selector = createSelector(config, random);
   let nextTimer = null;
@@ -27,6 +27,8 @@ export function createPlayback(stage, { onState = () => {}, random = Math.random
   }
 
   const renderer = createRenderer(stage, {
+    allowOpaqueVideo,
+    onFormat(details) { if (!destroyed) emit(state, details); },
     onEnded(result) {
       renderer.stop();
       current = null;

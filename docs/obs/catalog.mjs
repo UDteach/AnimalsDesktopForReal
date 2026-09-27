@@ -66,7 +66,8 @@ export const variants = [
           "ja": "跳ぶ",
           "en": "Hop"
         },
-        "video": "../assets/motions/chinchilla-standard-gray-hop.webm"
+        "video": "../assets/motions/chinchilla-standard-gray-hop.webm",
+        "fallbackVideo": "../assets/motions/chinchilla-standard-gray-hop.mp4"
       },
       {
         "id": "perch",
@@ -74,7 +75,8 @@ export const variants = [
           "ja": "立ち止まる",
           "en": "Perch"
         },
-        "video": "../assets/motions/chinchilla-standard-gray-perch.webm"
+        "video": "../assets/motions/chinchilla-standard-gray-perch.webm",
+        "fallbackVideo": "../assets/motions/chinchilla-standard-gray-perch.mp4"
       },
       {
         "id": "peek",
@@ -82,7 +84,8 @@ export const variants = [
           "ja": "のぞく",
           "en": "Peek"
         },
-        "video": "../assets/motions/chinchilla-standard-gray-peek.webm"
+        "video": "../assets/motions/chinchilla-standard-gray-peek.webm",
+        "fallbackVideo": "../assets/motions/chinchilla-standard-gray-peek.mp4"
       },
       {
         "id": "bottom-pop",
@@ -90,7 +93,8 @@ export const variants = [
           "ja": "下からぴょこ",
           "en": "Pop up"
         },
-        "video": "../assets/motions/chinchilla-standard-gray-bottom-pop.webm"
+        "video": "../assets/motions/chinchilla-standard-gray-bottom-pop.webm",
+        "fallbackVideo": "../assets/motions/chinchilla-standard-gray-bottom-pop.mp4"
       }
     ]
   },
@@ -109,7 +113,8 @@ export const variants = [
           "ja": "跳ぶ",
           "en": "Hop"
         },
-        "video": "../assets/motions/chinchilla-beige-hop.webm"
+        "video": "../assets/motions/chinchilla-beige-hop.webm",
+        "fallbackVideo": "../assets/motions/chinchilla-beige-hop.mp4"
       },
       {
         "id": "perch",
@@ -117,7 +122,8 @@ export const variants = [
           "ja": "立ち止まる",
           "en": "Perch"
         },
-        "video": "../assets/motions/chinchilla-beige-perch.webm"
+        "video": "../assets/motions/chinchilla-beige-perch.webm",
+        "fallbackVideo": "../assets/motions/chinchilla-beige-perch.mp4"
       },
       {
         "id": "peek",
@@ -125,7 +131,8 @@ export const variants = [
           "ja": "のぞく",
           "en": "Peek"
         },
-        "video": "../assets/motions/chinchilla-beige-peek.webm"
+        "video": "../assets/motions/chinchilla-beige-peek.webm",
+        "fallbackVideo": "../assets/motions/chinchilla-beige-peek.mp4"
       },
       {
         "id": "bottom-pop",
@@ -133,7 +140,8 @@ export const variants = [
           "ja": "下からぴょこ",
           "en": "Pop up"
         },
-        "video": "../assets/motions/chinchilla-beige-bottom-pop.webm"
+        "video": "../assets/motions/chinchilla-beige-bottom-pop.webm",
+        "fallbackVideo": "../assets/motions/chinchilla-beige-bottom-pop.mp4"
       }
     ]
   },
@@ -152,7 +160,8 @@ export const variants = [
           "ja": "跳ぶ",
           "en": "Hop"
         },
-        "video": "../assets/motions/chinchilla-white-mosaic-hop.webm"
+        "video": "../assets/motions/chinchilla-white-mosaic-hop.webm",
+        "fallbackVideo": "../assets/motions/chinchilla-white-mosaic-hop.mp4"
       },
       {
         "id": "perch",
@@ -160,7 +169,8 @@ export const variants = [
           "ja": "立ち止まる",
           "en": "Perch"
         },
-        "video": "../assets/motions/chinchilla-white-mosaic-perch.webm"
+        "video": "../assets/motions/chinchilla-white-mosaic-perch.webm",
+        "fallbackVideo": "../assets/motions/chinchilla-white-mosaic-perch.mp4"
       },
       {
         "id": "peek",
@@ -168,7 +178,8 @@ export const variants = [
           "ja": "のぞく",
           "en": "Peek"
         },
-        "video": "../assets/motions/chinchilla-white-mosaic-peek.webm"
+        "video": "../assets/motions/chinchilla-white-mosaic-peek.webm",
+        "fallbackVideo": "../assets/motions/chinchilla-white-mosaic-peek.mp4"
       },
       {
         "id": "bottom-pop",
@@ -176,7 +187,8 @@ export const variants = [
           "ja": "下からぴょこ",
           "en": "Pop up"
         },
-        "video": "../assets/motions/chinchilla-white-mosaic-bottom-pop.webm"
+        "video": "../assets/motions/chinchilla-white-mosaic-bottom-pop.webm",
+        "fallbackVideo": "../assets/motions/chinchilla-white-mosaic-bottom-pop.mp4"
       }
     ]
   },
@@ -195,7 +207,8 @@ export const variants = [
           "ja": "小走り",
           "en": "Forage"
         },
-        "video": "../assets/motions/hamster-golden-forage.webm"
+        "video": "../assets/motions/hamster-golden-forage.webm",
+        "fallbackVideo": "../assets/motions/hamster-golden-forage.mp4"
       },
       {
         "id": "explore",
@@ -203,7 +216,8 @@ export const variants = [
           "ja": "探索",
           "en": "Explore"
         },
-        "video": "../assets/motions/hamster-golden-explore.webm"
+        "video": "../assets/motions/hamster-golden-explore.webm",
+        "fallbackVideo": "../assets/motions/hamster-golden-explore.mp4"
       },
       {
         "id": "peek",
@@ -211,7 +225,8 @@ export const variants = [
           "ja": "のぞく",
           "en": "Peek"
         },
-        "video": "../assets/motions/hamster-golden-peek.webm"
+        "video": "../assets/motions/hamster-golden-peek.webm",
+        "fallbackVideo": "../assets/motions/hamster-golden-peek.mp4"
       },
       {
         "id": "bottom-pop",
@@ -219,7 +234,8 @@ export const variants = [
           "ja": "下からぴょこ",
           "en": "Pop up"
         },
-        "video": "../assets/motions/hamster-golden-bottom-pop.webm"
+        "video": "../assets/motions/hamster-golden-bottom-pop.webm",
+        "fallbackVideo": "../assets/motions/hamster-golden-bottom-pop.mp4"
       }
     ]
   },
@@ -238,7 +254,8 @@ export const variants = [
           "ja": "小走り",
           "en": "Forage"
         },
-        "video": "../assets/motions/hamster-cream-forage.webm"
+        "video": "../assets/motions/hamster-cream-forage.webm",
+        "fallbackVideo": "../assets/motions/hamster-cream-forage.mp4"
       },
       {
         "id": "explore",
@@ -246,7 +263,8 @@ export const variants = [
           "ja": "探索",
           "en": "Explore"
         },
-        "video": "../assets/motions/hamster-cream-explore.webm"
+        "video": "../assets/motions/hamster-cream-explore.webm",
+        "fallbackVideo": "../assets/motions/hamster-cream-explore.mp4"
       },
       {
         "id": "peek",
@@ -254,7 +272,8 @@ export const variants = [
           "ja": "のぞく",
           "en": "Peek"
         },
-        "video": "../assets/motions/hamster-cream-peek.webm"
+        "video": "../assets/motions/hamster-cream-peek.webm",
+        "fallbackVideo": "../assets/motions/hamster-cream-peek.mp4"
       },
       {
         "id": "bottom-pop",
@@ -262,7 +281,8 @@ export const variants = [
           "ja": "下からぴょこ",
           "en": "Pop up"
         },
-        "video": "../assets/motions/hamster-cream-bottom-pop.webm"
+        "video": "../assets/motions/hamster-cream-bottom-pop.webm",
+        "fallbackVideo": "../assets/motions/hamster-cream-bottom-pop.mp4"
       }
     ]
   },
@@ -281,7 +301,8 @@ export const variants = [
           "ja": "走る",
           "en": "Dash"
         },
-        "video": "../assets/motions/djungarian-normal-dash.webm"
+        "video": "../assets/motions/djungarian-normal-dash.webm",
+        "fallbackVideo": "../assets/motions/djungarian-normal-dash.mp4"
       },
       {
         "id": "pause",
@@ -289,7 +310,8 @@ export const variants = [
           "ja": "ひと休み",
           "en": "Pause"
         },
-        "video": "../assets/motions/djungarian-normal-pause.webm"
+        "video": "../assets/motions/djungarian-normal-pause.webm",
+        "fallbackVideo": "../assets/motions/djungarian-normal-pause.mp4"
       },
       {
         "id": "peek",
@@ -297,7 +319,8 @@ export const variants = [
           "ja": "のぞく",
           "en": "Peek"
         },
-        "video": "../assets/motions/djungarian-normal-peek.webm"
+        "video": "../assets/motions/djungarian-normal-peek.webm",
+        "fallbackVideo": "../assets/motions/djungarian-normal-peek.mp4"
       },
       {
         "id": "bottom-pop",
@@ -305,7 +328,8 @@ export const variants = [
           "ja": "下からぴょこ",
           "en": "Pop up"
         },
-        "video": "../assets/motions/djungarian-normal-bottom-pop.webm"
+        "video": "../assets/motions/djungarian-normal-bottom-pop.webm",
+        "fallbackVideo": "../assets/motions/djungarian-normal-bottom-pop.mp4"
       }
     ]
   },
@@ -324,7 +348,8 @@ export const variants = [
           "ja": "顔を出す",
           "en": "Emerge"
         },
-        "video": "../assets/motions/macaroni-mouse-natural-emerge.webm"
+        "video": "../assets/motions/macaroni-mouse-natural-emerge.webm",
+        "fallbackVideo": "../assets/motions/macaroni-mouse-natural-emerge.mp4"
       },
       {
         "id": "shuffle",
@@ -332,7 +357,8 @@ export const variants = [
           "ja": "ちょこちょこ",
           "en": "Shuffle"
         },
-        "video": "../assets/motions/macaroni-mouse-natural-shuffle.webm"
+        "video": "../assets/motions/macaroni-mouse-natural-shuffle.webm",
+        "fallbackVideo": "../assets/motions/macaroni-mouse-natural-shuffle.mp4"
       },
       {
         "id": "settle",
@@ -340,7 +366,8 @@ export const variants = [
           "ja": "ぺたり",
           "en": "Settle"
         },
-        "video": "../assets/motions/macaroni-mouse-natural-settle.webm"
+        "video": "../assets/motions/macaroni-mouse-natural-settle.webm",
+        "fallbackVideo": "../assets/motions/macaroni-mouse-natural-settle.mp4"
       },
       {
         "id": "bottom-pop",
@@ -348,7 +375,8 @@ export const variants = [
           "ja": "下からぴょこ",
           "en": "Pop up"
         },
-        "video": "../assets/motions/macaroni-mouse-natural-bottom-pop.webm"
+        "video": "../assets/motions/macaroni-mouse-natural-bottom-pop.webm",
+        "fallbackVideo": "../assets/motions/macaroni-mouse-natural-bottom-pop.mp4"
       }
     ]
   },
@@ -367,7 +395,8 @@ export const variants = [
           "ja": "滑空",
           "en": "Glide"
         },
-        "video": "../assets/motions/sugar-glider-standard-gray-glide.webm"
+        "video": "../assets/motions/sugar-glider-standard-gray-glide.webm",
+        "fallbackVideo": "../assets/motions/sugar-glider-standard-gray-glide.mp4"
       },
       {
         "id": "perch",
@@ -375,7 +404,8 @@ export const variants = [
           "ja": "立ち止まる",
           "en": "Perch"
         },
-        "video": "../assets/motions/sugar-glider-standard-gray-perch.webm"
+        "video": "../assets/motions/sugar-glider-standard-gray-perch.webm",
+        "fallbackVideo": "../assets/motions/sugar-glider-standard-gray-perch.mp4"
       },
       {
         "id": "peek",
@@ -383,7 +413,8 @@ export const variants = [
           "ja": "のぞく",
           "en": "Peek"
         },
-        "video": "../assets/motions/sugar-glider-standard-gray-peek.webm"
+        "video": "../assets/motions/sugar-glider-standard-gray-peek.webm",
+        "fallbackVideo": "../assets/motions/sugar-glider-standard-gray-peek.mp4"
       },
       {
         "id": "bottom-pop",
@@ -391,7 +422,8 @@ export const variants = [
           "ja": "下からぴょこ",
           "en": "Pop up"
         },
-        "video": "../assets/motions/sugar-glider-standard-gray-bottom-pop.webm"
+        "video": "../assets/motions/sugar-glider-standard-gray-bottom-pop.webm",
+        "fallbackVideo": "../assets/motions/sugar-glider-standard-gray-bottom-pop.mp4"
       }
     ]
   },
@@ -410,7 +442,8 @@ export const variants = [
           "ja": "滑空",
           "en": "Glide"
         },
-        "video": "../assets/motions/sugar-glider-leucistic-glide.webm"
+        "video": "../assets/motions/sugar-glider-leucistic-glide.webm",
+        "fallbackVideo": "../assets/motions/sugar-glider-leucistic-glide.mp4"
       },
       {
         "id": "perch",
@@ -418,7 +451,8 @@ export const variants = [
           "ja": "立ち止まる",
           "en": "Perch"
         },
-        "video": "../assets/motions/sugar-glider-leucistic-perch.webm"
+        "video": "../assets/motions/sugar-glider-leucistic-perch.webm",
+        "fallbackVideo": "../assets/motions/sugar-glider-leucistic-perch.mp4"
       },
       {
         "id": "peek",
@@ -426,7 +460,8 @@ export const variants = [
           "ja": "のぞく",
           "en": "Peek"
         },
-        "video": "../assets/motions/sugar-glider-leucistic-peek.webm"
+        "video": "../assets/motions/sugar-glider-leucistic-peek.webm",
+        "fallbackVideo": "../assets/motions/sugar-glider-leucistic-peek.mp4"
       },
       {
         "id": "bottom-pop",
@@ -434,7 +469,8 @@ export const variants = [
           "ja": "下からぴょこ",
           "en": "Pop up"
         },
-        "video": "../assets/motions/sugar-glider-leucistic-bottom-pop.webm"
+        "video": "../assets/motions/sugar-glider-leucistic-bottom-pop.webm",
+        "fallbackVideo": "../assets/motions/sugar-glider-leucistic-bottom-pop.mp4"
       }
     ]
   },
@@ -453,7 +489,8 @@ export const variants = [
           "ja": "滑空",
           "en": "Glide"
         },
-        "video": "../assets/motions/sugar-glider-gray-mosaic-glide.webm"
+        "video": "../assets/motions/sugar-glider-gray-mosaic-glide.webm",
+        "fallbackVideo": "../assets/motions/sugar-glider-gray-mosaic-glide.mp4"
       },
       {
         "id": "perch",
@@ -461,7 +498,8 @@ export const variants = [
           "ja": "立ち止まる",
           "en": "Perch"
         },
-        "video": "../assets/motions/sugar-glider-gray-mosaic-perch.webm"
+        "video": "../assets/motions/sugar-glider-gray-mosaic-perch.webm",
+        "fallbackVideo": "../assets/motions/sugar-glider-gray-mosaic-perch.mp4"
       },
       {
         "id": "peek",
@@ -469,7 +507,8 @@ export const variants = [
           "ja": "のぞく",
           "en": "Peek"
         },
-        "video": "../assets/motions/sugar-glider-gray-mosaic-peek.webm"
+        "video": "../assets/motions/sugar-glider-gray-mosaic-peek.webm",
+        "fallbackVideo": "../assets/motions/sugar-glider-gray-mosaic-peek.mp4"
       },
       {
         "id": "bottom-pop",
@@ -477,7 +516,8 @@ export const variants = [
           "ja": "下からぴょこ",
           "en": "Pop up"
         },
-        "video": "../assets/motions/sugar-glider-gray-mosaic-bottom-pop.webm"
+        "video": "../assets/motions/sugar-glider-gray-mosaic-bottom-pop.webm",
+        "fallbackVideo": "../assets/motions/sugar-glider-gray-mosaic-bottom-pop.mp4"
       }
     ]
   },
@@ -496,7 +536,8 @@ export const variants = [
           "ja": "てこてこ歩く",
           "en": "Trot"
         },
-        "video": "../assets/motions/guinea-pig-tricolor-trot.webm"
+        "video": "../assets/motions/guinea-pig-tricolor-trot.webm",
+        "fallbackVideo": "../assets/motions/guinea-pig-tricolor-trot.mp4"
       },
       {
         "id": "forage",
@@ -504,7 +545,8 @@ export const variants = [
           "ja": "鼻で探す",
           "en": "Sniff & forage"
         },
-        "video": "../assets/motions/guinea-pig-tricolor-forage.webm"
+        "video": "../assets/motions/guinea-pig-tricolor-forage.webm",
+        "fallbackVideo": "../assets/motions/guinea-pig-tricolor-forage.mp4"
       },
       {
         "id": "popcorn",
@@ -512,7 +554,8 @@ export const variants = [
           "ja": "小さく跳ねる",
           "en": "Popcorn hop"
         },
-        "video": "../assets/motions/guinea-pig-tricolor-popcorn.webm"
+        "video": "../assets/motions/guinea-pig-tricolor-popcorn.webm",
+        "fallbackVideo": "../assets/motions/guinea-pig-tricolor-popcorn.mp4"
       },
       {
         "id": "bottom-pop",
@@ -520,7 +563,8 @@ export const variants = [
           "ja": "下からぴょこ",
           "en": "Pop up"
         },
-        "video": "../assets/motions/guinea-pig-tricolor-bottom-pop.webm"
+        "video": "../assets/motions/guinea-pig-tricolor-bottom-pop.webm",
+        "fallbackVideo": "../assets/motions/guinea-pig-tricolor-bottom-pop.mp4"
       }
     ]
   },
@@ -539,7 +583,8 @@ export const variants = [
           "ja": "てこてこ歩く",
           "en": "Trot"
         },
-        "video": "../assets/motions/guinea-pig-self-cream-trot.webm"
+        "video": "../assets/motions/guinea-pig-self-cream-trot.webm",
+        "fallbackVideo": "../assets/motions/guinea-pig-self-cream-trot.mp4"
       },
       {
         "id": "forage",
@@ -547,7 +592,8 @@ export const variants = [
           "ja": "鼻で探す",
           "en": "Sniff & forage"
         },
-        "video": "../assets/motions/guinea-pig-self-cream-forage.webm"
+        "video": "../assets/motions/guinea-pig-self-cream-forage.webm",
+        "fallbackVideo": "../assets/motions/guinea-pig-self-cream-forage.mp4"
       },
       {
         "id": "popcorn",
@@ -555,7 +601,8 @@ export const variants = [
           "ja": "小さく跳ねる",
           "en": "Popcorn hop"
         },
-        "video": "../assets/motions/guinea-pig-self-cream-popcorn.webm"
+        "video": "../assets/motions/guinea-pig-self-cream-popcorn.webm",
+        "fallbackVideo": "../assets/motions/guinea-pig-self-cream-popcorn.mp4"
       },
       {
         "id": "bottom-pop",
@@ -563,7 +610,8 @@ export const variants = [
           "ja": "下からぴょこ",
           "en": "Pop up"
         },
-        "video": "../assets/motions/guinea-pig-self-cream-bottom-pop.webm"
+        "video": "../assets/motions/guinea-pig-self-cream-bottom-pop.webm",
+        "fallbackVideo": "../assets/motions/guinea-pig-self-cream-bottom-pop.mp4"
       }
     ]
   },
@@ -582,7 +630,8 @@ export const variants = [
           "ja": "てこてこ歩く",
           "en": "Trot"
         },
-        "video": "../assets/motions/guinea-pig-golden-agouti-trot.webm"
+        "video": "../assets/motions/guinea-pig-golden-agouti-trot.webm",
+        "fallbackVideo": "../assets/motions/guinea-pig-golden-agouti-trot.mp4"
       },
       {
         "id": "forage",
@@ -590,7 +639,8 @@ export const variants = [
           "ja": "鼻で探す",
           "en": "Sniff & forage"
         },
-        "video": "../assets/motions/guinea-pig-golden-agouti-forage.webm"
+        "video": "../assets/motions/guinea-pig-golden-agouti-forage.webm",
+        "fallbackVideo": "../assets/motions/guinea-pig-golden-agouti-forage.mp4"
       },
       {
         "id": "popcorn",
@@ -598,7 +648,8 @@ export const variants = [
           "ja": "小さく跳ねる",
           "en": "Popcorn hop"
         },
-        "video": "../assets/motions/guinea-pig-golden-agouti-popcorn.webm"
+        "video": "../assets/motions/guinea-pig-golden-agouti-popcorn.webm",
+        "fallbackVideo": "../assets/motions/guinea-pig-golden-agouti-popcorn.mp4"
       },
       {
         "id": "bottom-pop",
@@ -606,7 +657,8 @@ export const variants = [
           "ja": "下からぴょこ",
           "en": "Pop up"
         },
-        "video": "../assets/motions/guinea-pig-golden-agouti-bottom-pop.webm"
+        "video": "../assets/motions/guinea-pig-golden-agouti-bottom-pop.webm",
+        "fallbackVideo": "../assets/motions/guinea-pig-golden-agouti-bottom-pop.mp4"
       }
     ]
   },
@@ -625,7 +677,8 @@ export const variants = [
           "ja": "ぴょんぴょん",
           "en": "Hop along"
         },
-        "video": "../assets/motions/rabbit-netherland-chestnut-hop.webm"
+        "video": "../assets/motions/rabbit-netherland-chestnut-hop.webm",
+        "fallbackVideo": "../assets/motions/rabbit-netherland-chestnut-hop.mp4"
       },
       {
         "id": "sniff",
@@ -633,7 +686,8 @@ export const variants = [
           "ja": "鼻で探る",
           "en": "Sniff around"
         },
-        "video": "../assets/motions/rabbit-netherland-chestnut-sniff.webm"
+        "video": "../assets/motions/rabbit-netherland-chestnut-sniff.webm",
+        "fallbackVideo": "../assets/motions/rabbit-netherland-chestnut-sniff.mp4"
       },
       {
         "id": "periscope",
@@ -641,7 +695,8 @@ export const variants = [
           "ja": "立って見回す",
           "en": "Stand & look"
         },
-        "video": "../assets/motions/rabbit-netherland-chestnut-periscope.webm"
+        "video": "../assets/motions/rabbit-netherland-chestnut-periscope.webm",
+        "fallbackVideo": "../assets/motions/rabbit-netherland-chestnut-periscope.mp4"
       },
       {
         "id": "bottom-pop",
@@ -649,7 +704,8 @@ export const variants = [
           "ja": "下からぴょこ",
           "en": "Pop up"
         },
-        "video": "../assets/motions/rabbit-netherland-chestnut-bottom-pop.webm"
+        "video": "../assets/motions/rabbit-netherland-chestnut-bottom-pop.webm",
+        "fallbackVideo": "../assets/motions/rabbit-netherland-chestnut-bottom-pop.mp4"
       }
     ]
   },
@@ -668,7 +724,8 @@ export const variants = [
           "ja": "ぴょんぴょん",
           "en": "Hop along"
         },
-        "video": "../assets/motions/rabbit-netherland-fawn-hop.webm"
+        "video": "../assets/motions/rabbit-netherland-fawn-hop.webm",
+        "fallbackVideo": "../assets/motions/rabbit-netherland-fawn-hop.mp4"
       },
       {
         "id": "sniff",
@@ -676,7 +733,8 @@ export const variants = [
           "ja": "鼻で探る",
           "en": "Sniff around"
         },
-        "video": "../assets/motions/rabbit-netherland-fawn-sniff.webm"
+        "video": "../assets/motions/rabbit-netherland-fawn-sniff.webm",
+        "fallbackVideo": "../assets/motions/rabbit-netherland-fawn-sniff.mp4"
       },
       {
         "id": "periscope",
@@ -684,7 +742,8 @@ export const variants = [
           "ja": "立って見回す",
           "en": "Stand & look"
         },
-        "video": "../assets/motions/rabbit-netherland-fawn-periscope.webm"
+        "video": "../assets/motions/rabbit-netherland-fawn-periscope.webm",
+        "fallbackVideo": "../assets/motions/rabbit-netherland-fawn-periscope.mp4"
       },
       {
         "id": "bottom-pop",
@@ -692,7 +751,8 @@ export const variants = [
           "ja": "下からぴょこ",
           "en": "Pop up"
         },
-        "video": "../assets/motions/rabbit-netherland-fawn-bottom-pop.webm"
+        "video": "../assets/motions/rabbit-netherland-fawn-bottom-pop.webm",
+        "fallbackVideo": "../assets/motions/rabbit-netherland-fawn-bottom-pop.mp4"
       }
     ]
   },
@@ -711,7 +771,8 @@ export const variants = [
           "ja": "ぴょんぴょん",
           "en": "Hop along"
         },
-        "video": "../assets/motions/rabbit-netherland-black-himalayan-hop.webm"
+        "video": "../assets/motions/rabbit-netherland-black-himalayan-hop.webm",
+        "fallbackVideo": "../assets/motions/rabbit-netherland-black-himalayan-hop.mp4"
       },
       {
         "id": "sniff",
@@ -719,7 +780,8 @@ export const variants = [
           "ja": "鼻で探る",
           "en": "Sniff around"
         },
-        "video": "../assets/motions/rabbit-netherland-black-himalayan-sniff.webm"
+        "video": "../assets/motions/rabbit-netherland-black-himalayan-sniff.webm",
+        "fallbackVideo": "../assets/motions/rabbit-netherland-black-himalayan-sniff.mp4"
       },
       {
         "id": "periscope",
@@ -727,7 +789,8 @@ export const variants = [
           "ja": "立って見回す",
           "en": "Stand & look"
         },
-        "video": "../assets/motions/rabbit-netherland-black-himalayan-periscope.webm"
+        "video": "../assets/motions/rabbit-netherland-black-himalayan-periscope.webm",
+        "fallbackVideo": "../assets/motions/rabbit-netherland-black-himalayan-periscope.mp4"
       },
       {
         "id": "bottom-pop",
@@ -735,7 +798,8 @@ export const variants = [
           "ja": "下からぴょこ",
           "en": "Pop up"
         },
-        "video": "../assets/motions/rabbit-netherland-black-himalayan-bottom-pop.webm"
+        "video": "../assets/motions/rabbit-netherland-black-himalayan-bottom-pop.webm",
+        "fallbackVideo": "../assets/motions/rabbit-netherland-black-himalayan-bottom-pop.mp4"
       }
     ]
   }

@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../obs/shared/overlay/motions.css">
   <link rel="stylesheet" href="./styles.css">
-  <script type="module" src="./trial.mjs"></script>
+  <script type="module" src="./trial.mjs?v=20260927-mp4"></script>
 </head>
 <body>
   <header class="trial-topbar">
@@ -38,8 +38,9 @@
       <label><span data-i18n="coat">毛色・模様</span><select id="coat" disabled><option value="all">おまかせ</option></select></label>
       <label><span data-i18n="interval">出現間隔</span><select id="interval" disabled><option value="5" data-i18n="sec5">5秒</option><option value="10" selected data-i18n="sec10">10秒</option><option value="30" data-i18n="sec30">30秒</option><option value="60" data-i18n="sec60">1分</option></select></label>
       <label><span data-i18n="size">大きさ</span><select id="size" disabled><option value="240" data-i18n="small">小さめ</option><option value="360" selected data-i18n="medium">ふつう</option><option value="480" data-i18n="large">大きめ</option></select></label>
-      <label><span data-i18n="background">背景</span><select id="background" disabled><option value="meadow" data-i18n="meadow">草原</option><option value="light" data-i18n="light">明るい</option><option value="dark" data-i18n="dark">暗い</option></select></label>
+      <label><span data-i18n="background">背景</span><select id="background" aria-describedby="background-note" disabled><option value="meadow" data-i18n="meadow">草原</option><option value="light" data-i18n="light">明るい</option><option value="dark" data-i18n="dark">暗い</option></select></label>
     </div>
+    <p id="background-note" class="trial-note" data-i18n="videoBackground" hidden>この端末では、動画に合わせて明るい背景で表示します。</p>
     <p class="trial-note" data-i18n="scope">動物はこのページの中に表示されます。音は出ません。</p>
     <p id="load-error" class="load-error" hidden>読み込みができませんでした。ページを再読み込みしてください。 / Could not load. Please reload the page.</p>
     <noscript><p class="load-error">おためしにはJavaScriptを有効にしてください。 / Enable JavaScript to try the animals.</p></noscript>
