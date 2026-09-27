@@ -63,8 +63,13 @@ function entranceFor(motion) {
   return walkingMotions.has(motion) ? 'walk' : 'pop';
 }
 
+function motionPath(variant, motion, format) {
+  const version = variant === 'rabbit-netherland-black-himalayan' ? '?v=0.5.1' : '';
+  return `assets/motions/${variant}-${motion}.${format}${version}`;
+}
+
 function videoPath(card, format) {
-  return `assets/motions/${card.dataset.variant}-${card.dataset.motion}.${format}`;
+  return motionPath(card.dataset.variant, card.dataset.motion, format);
 }
 
 function pauseCard(card) {
@@ -223,7 +228,7 @@ if (heroStage && cards.length) {
     const thisVersion = ++version;
     format = extension;
     video.pause();
-    video.src = `assets/motions/${slide.variant}-${slide.motion}.${extension}`;
+    video.src = motionPath(slide.variant, slide.motion, extension);
     video.load();
     video.play().catch(() => {
       if (version === thisVersion) videoFailed();

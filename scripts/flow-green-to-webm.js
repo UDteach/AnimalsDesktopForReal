@@ -21,9 +21,10 @@ function usage() {
   return `Usage: node scripts/flow-green-to-webm.js --input IN.mp4 --output OUT.webm [options]
 
 Options:
-  --key HEX               Chroma key RGB, e.g. 0x16e91b (default 0x16e91b)
-  --similarity NUMBER      FFmpeg chromakey similarity, >0..1 (default 0.12)
-  --blend NUMBER           FFmpeg chromakey edge blend, 0..1 (default 0.05)
+  --key HEX               Green-screen key RGB, e.g. 0x16e91b (default 0x16e91b)
+  --key-mode MODE          chroma (default) or rgb; RGB keeps pale white fur opaque
+  --similarity NUMBER      FFmpeg key similarity, >0..1 (default 0.12)
+  --blend NUMBER           FFmpeg key edge blend, 0..1 (default 0.05)
   --despill-mix NUMBER     Green-spill suppression, 0..1; 0 skips despill (default 0.8)
   --despill-expand NUMBER  Despill expansion, 0..1 (default 0.2)
   --flip                   Mirror horizontally after keying
@@ -40,11 +41,11 @@ function fail(message) {
 }
 
 const options = {
-  key: '0x16e91b', similarity: 0.12, blend: 0.05,
+  key: '0x16e91b', keyMode: 'chroma', similarity: 0.12, blend: 0.05,
   despillMix: 0.8, despillExpand: 0.2, crf: 32, flip: false,
 };
 const argumentNames = {
-  '--input': 'input', '--output': 'output', '--key': 'key',
+  '--input': 'input', '--output': 'output', '--key': 'key', '--key-mode': 'keyMode',
   '--similarity': 'similarity', '--blend': 'blend',
   '--despill-mix': 'despillMix', '--despill-expand': 'despillExpand',
   '--crf': 'crf', '--contact': 'contact',
@@ -59,6 +60,7 @@ for (let i = 2; i < process.argv.length; i += 1) {
 }
 if (!options.input || !options.output) fail('--input and --output are required');
 if (!/^0x[0-9a-f]{6}$/i.test(options.key)) fail('--key must be 0xRRGGBB');
+if (!['chroma', 'rgb'].includes(options.keyMode)) fail('--key-mode must be chroma or rgb');
 for (const name of ['similarity', 'blend', 'despillMix', 'despillExpand']) {
   const value = Number(options[name]);
   const flag = name.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`);
@@ -93,9 +95,12 @@ const probe = JSON.parse(run('ffprobe', [
 const stream = probe.streams?.[0];
 const duration = Number(probe.format?.duration);
 if (!stream || !Number.isFinite(duration) || duration <= 0) fail('Input has no usable video stream');
-const filters = [`chromakey=${options.key}:${options.similarity}:${options.blend}`];
+// chromakey compares chroma without brightness, so pale fur may resemble a
+// desaturated green screen and become translucent. colorkey compares RGB.
+const filters = options.keyMode === 'rgb' ? ['format=rgba'] : [];
+filters.push(`${options.keyMode === 'rgb' ? 'colorkey' : 'chromakey'}=${options.key}:${options.similarity}:${options.blend}`);
 // FFmpeg's despill mix=0 still replaces green with magenta. Skip the filter
-// entirely for white coats, which otherwise become visibly pink.
+// entirely when requested; strong despill can make white coats look pink.
 if (options.despillMix > 0) {
   filters.push(`despill=type=green:mix=${options.despillMix}:expand=${options.despillExpand}`);
 }
@@ -106,7 +111,7 @@ fs.mkdirSync(path.dirname(options.output), { recursive: true });
 console.log(JSON.stringify({
   input: options.input, output: options.output, contact: options.contact || null,
   source: { width: stream.width, height: stream.height, duration, fps: stream.avg_frame_rate },
-  key: options.key, similarity: options.similarity, blend: options.blend,
+  key: options.key, keyMode: options.keyMode, similarity: options.similarity, blend: options.blend,
   despillMix: options.despillMix, despillExpand: options.despillExpand,
   flip: options.flip, crf: options.crf,
 }, null, 2));

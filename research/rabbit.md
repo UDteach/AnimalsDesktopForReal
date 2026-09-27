@@ -27,10 +27,11 @@
 
 - 各毛色の透明PNGを `assets/animals/rabbit-netherland-*.png` に採用。ImageGenの元画像は `research/raw/` に保存。
 - Google Flowで4秒の動画を各毛色4本、計12本生成。緑背景の原本は `research/flow/rabbit-netherland-*/flow-source.mp4` に保存。
-- `scripts/flow-green-to-webm.js` で背景を透過。白毛に緑の逆補正でピンクが出るため、ブラック・ヒマラヤンでは despill を省略した。
+- `scripts/flow-green-to-webm.js` で背景を透過。初回のブラック・ヒマラヤンでは白毛がピンクになるのを避けるため despill を省略したが、下記の修正では弱い despill を適用した。
 - `bottom-pop` は `scripts/flow-bottom-pop-edge.js` で動画自体を画面下端の外から出入りさせ、開始・終了を透明にした。フェードではない。
 - ブラック・ヒマラヤンの `bottom-pop` は耳の短さを優先し、Flowの再生成版を採用。初稿と再生成版は同じフォルダに残した。
-- 各動画の明暗背景でのサンプルは `research/flow/rabbit-netherland-*/alpha-contact.jpg` と `entry-contact.jpg`、一覧は `research/flow/rabbit-alpha-overview.jpg`。採用した透過WebMは `assets/motions/`、Web用のWebMとMP4は `docs/assets/motions/`。
+- 2026-09-27、ブラック・ヒマラヤンの白い胴体が一部の透過動画で薄くなる問題を修正。`chromakey` は色差だけで白毛まで半透明にしたため、4本とも `--key-mode rgb --similarity 0.14 --blend 0.04 --despill-mix 0.3 --despill-expand 0` で原本から再変換した。`bottom-pop` にはその後に画面下端の出入り加工を再適用し、Web用MP4も更新した。立って見回す動画の1.5秒時点では、白毛部分のアルファ値中央値が101から255になった。
+- 各動画の明暗背景でのサンプルは `research/flow/rabbit-netherland-*/alpha-contact.jpg` と `entry-contact.jpg`。初回採用時の一覧は `research/flow/rabbit-alpha-overview.jpg` で、ブラック・ヒマラヤンの修正後は各動作フォルダのサンプルを参照。採用した透過WebMは `assets/motions/`、Web用のWebMとMP4は `docs/assets/motions/`。
 
 一覧は上からチェスナット、フォーン、ブラック・ヒマラヤン、各行は左から `hop`、`sniff`、`periscope`、`bottom-pop` の順。下から出る動画の欄には、出入りを加工した後の確認画像を使用した。
 
