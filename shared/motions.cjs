@@ -8,6 +8,8 @@ const actionsBySpecies = {
   'sugar-glider': ['glide', 'perch', 'peek', 'bottom-pop'],
   'guinea-pig': ['trot', 'forage', 'popcorn', 'bottom-pop'],
   rabbit: ['hop', 'sniff', 'periscope', 'bottom-pop'],
+  shoebill: ['perch', 'walk', 'clatter', 'bottom-pop'],
+  marmot: ['periscope', 'groom', 'shuffle', 'bottom-pop'],
 };
 
 module.exports = { actionsBySpecies };

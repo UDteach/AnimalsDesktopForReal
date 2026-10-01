@@ -17,7 +17,7 @@ for (const variant of variants) {
   if (width < 512 || height < 512 || colorType !== 6) throw new Error(`Expected large RGBA PNG: ${file}`);
   console.log(`${variant.id}: ${width}x${height} RGBA`);
 }
-if (variants.length !== 16) throw new Error(`Expected 16 approved variants; found ${variants.length}`);
+if (variants.length !== 18) throw new Error(`Expected 18 approved variants; found ${variants.length}`);
 const present = fs.readdirSync(root).filter((name) => name.endsWith('.png')).sort();
 const expected = variants.map((variant) => `${variant.id}.png`).sort();
 if (JSON.stringify(present) !== JSON.stringify(expected)) {
@@ -28,7 +28,7 @@ const motionRoot = path.join(__dirname, '..', 'assets', 'motions');
 const allowedMotions = new Set(variants.flatMap((variant) =>
   actionsBySpecies[variant.species].map((action) => `${variant.id}-${action}.webm`)));
 const presentMotions = fs.readdirSync(motionRoot).filter((name) => name.endsWith('.webm')).sort();
-if (allowedMotions.size !== 64) throw new Error(`Expected 64 motion variants; found ${allowedMotions.size}`);
+if (allowedMotions.size !== 72) throw new Error(`Expected 72 motion variants; found ${allowedMotions.size}`);
 if (JSON.stringify(presentMotions) !== JSON.stringify([...allowedMotions].sort())) {
   throw new Error('Packaged motion set differs from catalog');
 }

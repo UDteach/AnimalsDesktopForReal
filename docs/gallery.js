@@ -6,6 +6,8 @@ const motionGroups = {
   'sugar-glider': ['glide', 'perch', 'peek', 'bottom-pop'],
   'guinea-pig': ['trot', 'forage', 'popcorn', 'bottom-pop'],
   rabbit: ['hop', 'sniff', 'periscope', 'bottom-pop'],
+  shoebill: ['perch', 'walk', 'clatter', 'bottom-pop'],
+  marmot: ['periscope', 'groom', 'shuffle', 'bottom-pop'],
 };
 
 const motionCopy = {
@@ -15,6 +17,8 @@ const motionCopy = {
     emerge: '顔を出す', shuffle: 'ちょこちょこ', settle: 'ぺたり', glide: '滑空', 'bottom-pop': '下からぴょこ',
     trot: 'てこてこ歩く', popcorn: '小さく跳ねる', 'guinea-pig-forage': '鼻で探す',
     'rabbit-hop': 'ぴょんぴょん', sniff: '鼻で探る', periscope: '立って見回す',
+    walk: 'ゆっくり歩く', clatter: 'くちばしを開閉する', groom: '毛づくろい',
+    'shoebill-perch': '立って待つ', 'marmot-periscope': '座って見回す', 'marmot-shuffle': '短く移動する',
     controls: '動きを選ぶ', error: 'この動画は再生できませんでした。',
   },
   en: {
@@ -23,6 +27,8 @@ const motionCopy = {
     emerge: 'Emerge', shuffle: 'Shuffle', settle: 'Settle', glide: 'Glide', 'bottom-pop': 'Pop up',
     trot: 'Trot', popcorn: 'Popcorn hop', 'guinea-pig-forage': 'Sniff & forage',
     'rabbit-hop': 'Hop along', sniff: 'Sniff around', periscope: 'Stand & look',
+    walk: 'Walk slowly', clatter: 'Bill clattering', groom: 'Groom',
+    'shoebill-perch': 'Stand & wait', 'marmot-periscope': 'Sit & look', 'marmot-shuffle': 'Move a little',
     controls: 'Choose a motion', error: 'This clip could not be played.',
   },
 };
@@ -36,7 +42,7 @@ const preferMp4 = /iPhone|iPad|iPod/.test(userAgent) ||
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const saveData = navigator.connection?.saveData === true;
 const cards = [...document.querySelectorAll('.animal-grid figure[data-variant]')];
-const walkingMotions = new Set(['forage', 'explore', 'shuffle', 'trot']);
+const walkingMotions = new Set(['forage', 'explore', 'shuffle', 'trot', 'walk']);
 const heroMotionByVariant = {
   'chinchilla-standard-gray': 'bottom-pop',
   'chinchilla-beige': 'perch',
@@ -54,6 +60,8 @@ const heroMotionByVariant = {
   'rabbit-netherland-chestnut': 'bottom-pop',
   'rabbit-netherland-fawn': 'hop',
   'rabbit-netherland-black-himalayan': 'periscope',
+  'shoebill-natural': 'clatter',
+  'marmot-alpine-natural': 'groom',
 };
 
 function entranceFor(motion) {

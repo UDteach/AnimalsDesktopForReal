@@ -1,0 +1,314 @@
+{
+  "date": "2026-10-01",
+  "project_url": "https://flow.google.com/project/641d619c-8f17-4700-a79e-8ade3cb00c51",
+  "provider": "Google Flow",
+  "settings": {
+    "aspect_ratio": "16:9",
+    "resolution": "720p",
+    "duration_seconds": 4,
+    "outputs": 1,
+    "video_type": "frames",
+    "model": "Omni 1.1 Flash",
+    "credits_per_output": 7
+  },
+  "reference_preparation": "FFmpeg: uniform #16e91b background, resize to 576x576 and center at x352/y40 on 1280x720 canvas; animal pixels not redrawn.",
+  "items": [
+    {
+      "id": "marmot-alpine-natural-bottom-pop",
+      "status": "accepted",
+      "prompt": "marmot-alpine-natural-bottom-pop/prompt.txt",
+      "flow_url": "https://flow.google.com/project/641d619c-8f17-4700-a79e-8ade3cb00c51/edit/9e5378c8-13a5-4d7e-979a-ccc0358e6521",
+      "source_video": "marmot-alpine-natural-bottom-pop/flow-source.mp4",
+      "alpha_video": "marmot-alpine-natural-bottom-pop/alpha.webm",
+      "contact": "marmot-alpine-natural-bottom-pop/alpha-contact.jpg",
+      "matte": {
+        "mode": "rgb",
+        "key": "0x16e91b",
+        "similarity": 0.15,
+        "blend": 0.05,
+        "despill_mix": 0.5,
+        "despill_expand": 0
+      },
+      "visual_qa": "8 samples on light/dark: modest head/body lean followed by return; paws, hind feet and tail remain attached; clean matte.",
+      "edge_video": "marmot-alpine-natural-bottom-pop/edge.webm",
+      "edge_processing": "flow/bottom-pop-edge.js, adapted from scripts/flow-bottom-pop-edge.js: rise during 0-0.8s; exit during 3-3.8s; last decoded frame fully transparent.",
+      "ready_video": "ready/motions/marmot-alpine-natural-bottom-pop.webm",
+      "preview_video": "ready/previews/marmot-alpine-natural-bottom-pop.mp4",
+      "technical_qa": {
+        "decoded_frames": 96,
+        "minimum_margins_320x180": {
+          "left": 109,
+          "top": 14,
+          "right": 101,
+          "bottom": 31
+        },
+        "visible_pixels_min": 7682,
+        "visible_pixels_max": 8209,
+        "every_frame_has_transparent_background": true,
+        "every_frame_has_opaque_animal_pixels": true,
+        "every_frame_keeps_animal_inside_canvas": true,
+        "edge_entrance_exit": [
+          {
+            "frame": "first",
+            "alpha_max": 0
+          },
+          {
+            "frame": "last",
+            "alpha_max": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "marmot-alpine-natural-groom",
+      "status": "accepted",
+      "prompt": "marmot-alpine-natural-groom/prompt.txt",
+      "flow_url": "https://flow.google.com/project/641d619c-8f17-4700-a79e-8ade3cb00c51/edit/5ffbf191-76d2-46e2-9feb-0801e304a75a",
+      "visual_qa": "8 samples on light/dark: one front paw grooms cheek, returns to rest; body, hind feet and tail intact; clean matte.",
+      "source_video": "marmot-alpine-natural-groom/flow-source.mp4",
+      "alpha_video": "marmot-alpine-natural-groom/alpha.webm",
+      "contact": "marmot-alpine-natural-groom/alpha-contact.jpg",
+      "matte": {
+        "mode": "rgb",
+        "key": "0x16e91b",
+        "similarity": 0.15,
+        "blend": 0.05,
+        "despill_mix": 0.5,
+        "despill_expand": 0
+      },
+      "ready_video": "ready/motions/marmot-alpine-natural-groom.webm",
+      "preview_video": "ready/previews/marmot-alpine-natural-groom.mp4",
+      "technical_qa": {
+        "decoded_frames": 96,
+        "minimum_margins_320x180": {
+          "left": 111,
+          "top": 15,
+          "right": 117,
+          "bottom": 31
+        },
+        "visible_pixels_min": 8139,
+        "visible_pixels_max": 8266,
+        "every_frame_has_transparent_background": true,
+        "every_frame_has_opaque_animal_pixels": true,
+        "every_frame_keeps_animal_inside_canvas": true
+      }
+    },
+    {
+      "id": "marmot-alpine-natural-periscope",
+      "status": "accepted",
+      "prompt": "marmot-alpine-natural-periscope/prompt.txt",
+      "flow_url": "https://flow.google.com/project/641d619c-8f17-4700-a79e-8ade3cb00c51/edit/1d986e17-4e25-4e79-bc4c-02681bf8db99",
+      "source_video": "marmot-alpine-natural-periscope/flow-source.mp4",
+      "alpha_video": "marmot-alpine-natural-periscope/alpha.webm",
+      "contact": "marmot-alpine-natural-periscope/alpha-contact.jpg",
+      "matte": {
+        "mode": "rgb",
+        "key": "0x16e91b",
+        "similarity": 0.15,
+        "blend": 0.05,
+        "despill_mix": 0.5,
+        "despill_expand": 0
+      },
+      "visual_qa": "8 samples on light/dark: sits and turns head; paws, feet and short tail attached, no crop, clean matte.",
+      "ready_video": "ready/motions/marmot-alpine-natural-periscope.webm",
+      "preview_video": "ready/previews/marmot-alpine-natural-periscope.mp4",
+      "technical_qa": {
+        "decoded_frames": 96,
+        "minimum_margins_320x180": {
+          "left": 111,
+          "top": 15,
+          "right": 114,
+          "bottom": 31
+        },
+        "visible_pixels_min": 7964,
+        "visible_pixels_max": 8383,
+        "every_frame_has_transparent_background": true,
+        "every_frame_has_opaque_animal_pixels": true,
+        "every_frame_keeps_animal_inside_canvas": true
+      }
+    },
+    {
+      "id": "marmot-alpine-natural-shuffle",
+      "status": "accepted",
+      "prompt": "marmot-alpine-natural-shuffle/prompt.txt",
+      "flow_url": "https://flow.google.com/project/641d619c-8f17-4700-a79e-8ade3cb00c51/edit/fe8b23f2-3785-4ef5-b605-8637af24e3da",
+      "source_video": "marmot-alpine-natural-shuffle/flow-source.mp4",
+      "alpha_video": "marmot-alpine-natural-shuffle/alpha.webm",
+      "contact": "marmot-alpine-natural-shuffle/alpha-contact.jpg",
+      "matte": {
+        "mode": "rgb",
+        "key": "0x16e91b",
+        "similarity": 0.15,
+        "blend": 0.05,
+        "despill_mix": 0.5,
+        "despill_expand": 0
+      },
+      "visual_qa": "8 samples on light/dark: lowers to all fours and shifts right, stout body and short tail stay attached; whole animal in frame; clean matte.",
+      "ready_video": "ready/motions/marmot-alpine-natural-shuffle.webm",
+      "preview_video": "ready/previews/marmot-alpine-natural-shuffle.mp4",
+      "technical_qa": {
+        "decoded_frames": 96,
+        "minimum_margins_320x180": {
+          "left": 72,
+          "top": 15,
+          "right": 55,
+          "bottom": 26
+        },
+        "visible_pixels_min": 6964,
+        "visible_pixels_max": 9538,
+        "every_frame_has_transparent_background": true,
+        "every_frame_has_opaque_animal_pixels": true,
+        "every_frame_keeps_animal_inside_canvas": true
+      }
+    },
+    {
+      "id": "shoebill-natural-bottom-pop",
+      "status": "accepted",
+      "prompt": "shoebill-natural-bottom-pop/prompt.txt",
+      "flow_url": "https://flow.google.com/project/641d619c-8f17-4700-a79e-8ade3cb00c51/edit/38767b08-4f8b-4fc9-9e71-0ad2f2a6061d",
+      "source_video": "shoebill-natural-bottom-pop/flow-source.mp4",
+      "alpha_video": "shoebill-natural-bottom-pop/alpha.webm",
+      "contact": "shoebill-natural-bottom-pop/alpha-contact.jpg",
+      "matte": {
+        "mode": "rgb",
+        "key": "0x16e91b",
+        "similarity": 0.15,
+        "blend": 0.05,
+        "despill_mix": 0.5,
+        "despill_expand": 0
+      },
+      "visual_qa": "8 samples on light/dark: slight head/neck lean and return; folded wings, two legs and toes remain intact; clean matte.",
+      "edge_video": "shoebill-natural-bottom-pop/edge.webm",
+      "edge_processing": "flow/bottom-pop-edge.js, adapted from scripts/flow-bottom-pop-edge.js: rise during 0-0.8s; exit during 3-3.8s; last decoded frame fully transparent.",
+      "ready_video": "ready/motions/shoebill-natural-bottom-pop.webm",
+      "preview_video": "ready/previews/shoebill-natural-bottom-pop.mp4",
+      "technical_qa": {
+        "decoded_frames": 96,
+        "minimum_margins_320x180": {
+          "left": 124,
+          "top": 13,
+          "right": 108,
+          "bottom": 28
+        },
+        "visible_pixels_min": 3510,
+        "visible_pixels_max": 3811,
+        "every_frame_has_transparent_background": true,
+        "every_frame_has_opaque_animal_pixels": true,
+        "every_frame_keeps_animal_inside_canvas": true,
+        "edge_entrance_exit": [
+          {
+            "frame": "first",
+            "alpha_max": 0
+          },
+          {
+            "frame": "last",
+            "alpha_max": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "shoebill-natural-clatter",
+      "status": "accepted",
+      "prompt": "shoebill-natural-clatter/prompt.txt",
+      "flow_url": "https://flow.google.com/project/641d619c-8f17-4700-a79e-8ade3cb00c51/edit/23eb7161-26d6-4474-81fb-f6df727d2d18",
+      "source_video": "shoebill-natural-clatter/flow-source.mp4",
+      "alpha_video": "shoebill-natural-clatter/alpha.webm",
+      "contact": "shoebill-natural-clatter/alpha-contact.jpg",
+      "matte": {
+        "mode": "rgb",
+        "key": "0x16e91b",
+        "similarity": 0.15,
+        "blend": 0.05,
+        "despill_mix": 0.5,
+        "despill_expand": 0
+      },
+      "visual_qa": "8 samples on light/dark: brief bill opening/closing, bill shape and head remain coherent; legs and wings intact; clean matte.",
+      "ready_video": "ready/motions/shoebill-natural-clatter.webm",
+      "preview_video": "ready/previews/shoebill-natural-clatter.mp4",
+      "technical_qa": {
+        "decoded_frames": 96,
+        "minimum_margins_320x180": {
+          "left": 127,
+          "top": 12,
+          "right": 121,
+          "bottom": 28
+        },
+        "visible_pixels_min": 3665,
+        "visible_pixels_max": 3846,
+        "every_frame_has_transparent_background": true,
+        "every_frame_has_opaque_animal_pixels": true,
+        "every_frame_keeps_animal_inside_canvas": true
+      }
+    },
+    {
+      "id": "shoebill-natural-perch",
+      "status": "accepted",
+      "prompt": "shoebill-natural-perch/prompt.txt",
+      "flow_url": "https://flow.google.com/project/641d619c-8f17-4700-a79e-8ade3cb00c51/edit/e1b4a7fb-d542-4204-8288-b27a84fd2ff1",
+      "source_video": "shoebill-natural-perch/flow-source.mp4",
+      "alpha_video": "shoebill-natural-perch/alpha.webm",
+      "contact": "shoebill-natural-perch/alpha-contact.jpg",
+      "matte": {
+        "mode": "rgb",
+        "key": "0x16e91b",
+        "similarity": 0.15,
+        "blend": 0.05,
+        "despill_mix": 0.5,
+        "despill_expand": 0
+      },
+      "visual_qa": "8 samples on light/dark backgrounds: full body, crest, bill, legs and feet intact; subtle head turn; clean matte.",
+      "ready_video": "ready/motions/shoebill-natural-perch.webm",
+      "preview_video": "ready/previews/shoebill-natural-perch.mp4",
+      "technical_qa": {
+        "decoded_frames": 96,
+        "minimum_margins_320x180": {
+          "left": 92,
+          "top": 12,
+          "right": 126,
+          "bottom": 4
+        },
+        "visible_pixels_min": 3638,
+        "visible_pixels_max": 3917,
+        "every_frame_has_transparent_background": true,
+        "every_frame_has_opaque_animal_pixels": true,
+        "every_frame_keeps_animal_inside_canvas": true
+      }
+    },
+    {
+      "id": "shoebill-natural-walk",
+      "status": "accepted",
+      "prompt": "shoebill-natural-walk/prompt.txt",
+      "flow_url": "https://flow.google.com/project/641d619c-8f17-4700-a79e-8ade3cb00c51/edit/16c15261-8f2a-4b63-a262-8be3aa23bf80",
+      "source_video": "shoebill-natural-walk/flow-source.mp4",
+      "alpha_video": "shoebill-natural-walk/alpha.webm",
+      "contact": "shoebill-natural-walk/alpha-contact.jpg",
+      "matte": {
+        "mode": "rgb",
+        "key": "0x16e91b",
+        "similarity": 0.15,
+        "blend": 0.05,
+        "despill_mix": 0.5,
+        "despill_expand": 0
+      },
+      "visual_qa": "8 samples on light/dark: slow steps toward right, two legs and long toes remain attached, whole bird in frame; pauses at end. Output contains more than one small step.",
+      "ready_video": "ready/motions/shoebill-natural-walk.webm",
+      "preview_video": "ready/previews/shoebill-natural-walk.mp4",
+      "technical_qa": {
+        "decoded_frames": 96,
+        "minimum_margins_320x180": {
+          "left": 112,
+          "top": 13,
+          "right": 110,
+          "bottom": 21
+        },
+        "visible_pixels_min": 3828,
+        "visible_pixels_max": 4497,
+        "every_frame_has_transparent_background": true,
+        "every_frame_has_opaque_animal_pixels": true,
+        "every_frame_keeps_animal_inside_canvas": true
+      }
+    }
+  ],
+  "credits_used_for_generations": 56
+}

@@ -6,9 +6,9 @@ import { makeDefaultConfig, validateConfig, serializeConfig, parseConfig, makeOv
 import { createSelector, chooseDelayMs } from '../docs/obs/scheduler.mjs';
 
 test('published catalog covers exactly the approved animals and motions', () => {
-  assert.equal(species.length, 7);
-  assert.equal(variants.length, 16);
-  assert.equal(variants.flatMap((variant) => variant.motions).length, 64);
+  assert.equal(species.length, 9);
+  assert.equal(variants.length, 18);
+  assert.equal(variants.flatMap((variant) => variant.motions).length, 72);
   const ids = new Set(variants.map((variant) => variant.id));
   assert.equal(ids.size, variants.length);
   for (const variant of variants) {

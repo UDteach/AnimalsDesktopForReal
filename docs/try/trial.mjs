@@ -57,7 +57,7 @@ if (language === 'en') {
 async function init() {
   // Dynamic imports keep a useful error message available if a module fails to load.
   const [{ species, variants }, { makeDefaultConfig }, { createPlayback }] = await Promise.all([
-    import('../obs/catalog.mjs?v=20260927-mp4'), import('../obs/config.mjs?v=20260927-mp4'), import('../obs/runtime.mjs?v=20260927-mp4'),
+    import('../obs/catalog.mjs?v=20261001-zoo'), import('../obs/config.mjs?v=20261001-zoo'), import('../obs/runtime.mjs?v=20261001-zoo'),
   ]);
   const key = 'animals-web-trial-v1';
   let saved;

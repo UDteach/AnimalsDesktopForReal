@@ -1,0 +1,174 @@
+[
+  {
+    "id": "marmot-alpine-natural-bottom-pop",
+    "duration": 3.959,
+    "width": 1280,
+    "height": 720,
+    "bytes": 475135,
+    "decoded_frames": 96,
+    "minimum_margins_320x180": {
+      "left": 109,
+      "top": 14,
+      "right": 101,
+      "bottom": 31
+    },
+    "visible_pixels_min": 7682,
+    "visible_pixels_max": 8209,
+    "every_frame_has_transparent_background": true,
+    "every_frame_has_opaque_animal_pixels": true,
+    "every_frame_keeps_animal_inside_canvas": true,
+    "edge_entrance_exit": [
+      {
+        "frame": "first",
+        "alpha_max": 0
+      },
+      {
+        "frame": "last",
+        "alpha_max": 0
+      }
+    ]
+  },
+  {
+    "id": "marmot-alpine-natural-groom",
+    "duration": 4.0,
+    "width": 1280,
+    "height": 720,
+    "bytes": 546445,
+    "decoded_frames": 96,
+    "minimum_margins_320x180": {
+      "left": 111,
+      "top": 15,
+      "right": 117,
+      "bottom": 31
+    },
+    "visible_pixels_min": 8139,
+    "visible_pixels_max": 8266,
+    "every_frame_has_transparent_background": true,
+    "every_frame_has_opaque_animal_pixels": true,
+    "every_frame_keeps_animal_inside_canvas": true
+  },
+  {
+    "id": "marmot-alpine-natural-periscope",
+    "duration": 4.0,
+    "width": 1280,
+    "height": 720,
+    "bytes": 601385,
+    "decoded_frames": 96,
+    "minimum_margins_320x180": {
+      "left": 111,
+      "top": 15,
+      "right": 114,
+      "bottom": 31
+    },
+    "visible_pixels_min": 7964,
+    "visible_pixels_max": 8383,
+    "every_frame_has_transparent_background": true,
+    "every_frame_has_opaque_animal_pixels": true,
+    "every_frame_keeps_animal_inside_canvas": true
+  },
+  {
+    "id": "marmot-alpine-natural-shuffle",
+    "duration": 4.0,
+    "width": 1280,
+    "height": 720,
+    "bytes": 769347,
+    "decoded_frames": 96,
+    "minimum_margins_320x180": {
+      "left": 72,
+      "top": 15,
+      "right": 55,
+      "bottom": 26
+    },
+    "visible_pixels_min": 6964,
+    "visible_pixels_max": 9538,
+    "every_frame_has_transparent_background": true,
+    "every_frame_has_opaque_animal_pixels": true,
+    "every_frame_keeps_animal_inside_canvas": true
+  },
+  {
+    "id": "shoebill-natural-bottom-pop",
+    "duration": 3.959,
+    "width": 1280,
+    "height": 720,
+    "bytes": 398989,
+    "decoded_frames": 96,
+    "minimum_margins_320x180": {
+      "left": 124,
+      "top": 13,
+      "right": 108,
+      "bottom": 28
+    },
+    "visible_pixels_min": 3510,
+    "visible_pixels_max": 3811,
+    "every_frame_has_transparent_background": true,
+    "every_frame_has_opaque_animal_pixels": true,
+    "every_frame_keeps_animal_inside_canvas": true,
+    "edge_entrance_exit": [
+      {
+        "frame": "first",
+        "alpha_max": 0
+      },
+      {
+        "frame": "last",
+        "alpha_max": 0
+      }
+    ]
+  },
+  {
+    "id": "shoebill-natural-clatter",
+    "duration": 4.0,
+    "width": 1280,
+    "height": 720,
+    "bytes": 378340,
+    "decoded_frames": 96,
+    "minimum_margins_320x180": {
+      "left": 127,
+      "top": 12,
+      "right": 121,
+      "bottom": 28
+    },
+    "visible_pixels_min": 3665,
+    "visible_pixels_max": 3846,
+    "every_frame_has_transparent_background": true,
+    "every_frame_has_opaque_animal_pixels": true,
+    "every_frame_keeps_animal_inside_canvas": true
+  },
+  {
+    "id": "shoebill-natural-perch",
+    "duration": 4.0,
+    "width": 1280,
+    "height": 720,
+    "bytes": 297334,
+    "decoded_frames": 96,
+    "minimum_margins_320x180": {
+      "left": 92,
+      "top": 12,
+      "right": 126,
+      "bottom": 4
+    },
+    "visible_pixels_min": 3638,
+    "visible_pixels_max": 3917,
+    "every_frame_has_transparent_background": true,
+    "every_frame_has_opaque_animal_pixels": true,
+    "every_frame_keeps_animal_inside_canvas": true
+  },
+  {
+    "id": "shoebill-natural-walk",
+    "duration": 4.0,
+    "width": 1280,
+    "height": 720,
+    "bytes": 668524,
+    "decoded_frames": 96,
+    "minimum_margins_320x180": {
+      "left": 112,
+      "top": 13,
+      "right": 110,
+      "bottom": 21
+    },
+    "visible_pixels_min": 3828,
+    "visible_pixels_max": 4497,
+    "every_frame_has_transparent_background": true,
+    "every_frame_has_opaque_animal_pixels": true,
+    "every_frame_keeps_animal_inside_canvas": true
+  }
+]

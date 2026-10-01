@@ -14,5 +14,7 @@
   { "id": "guinea-pig-golden-agouti", "species": "guinea-pig", "name": { "ja": "ゴールデンアグーチ", "en": "Golden agouti" } },
   { "id": "rabbit-netherland-chestnut", "species": "rabbit", "name": { "ja": "チェスナット", "en": "Chestnut" } },
   { "id": "rabbit-netherland-fawn", "species": "rabbit", "name": { "ja": "フォーン（小麦色）", "en": "Fawn" } },
-  { "id": "rabbit-netherland-black-himalayan", "species": "rabbit", "name": { "ja": "ブラック・ヒマラヤン", "en": "Black Himalayan" } }
+  { "id": "rabbit-netherland-black-himalayan", "species": "rabbit", "name": { "ja": "ブラック・ヒマラヤン", "en": "Black Himalayan" } },
+  { "id": "shoebill-natural", "species": "shoebill", "name": { "ja": "自然色", "en": "Natural plumage" } },
+  { "id": "marmot-alpine-natural", "species": "marmot", "name": { "ja": "自然色", "en": "Natural coat" } }
 ]

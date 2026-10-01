@@ -1,7 +1,7 @@
-import { makeDefaultConfig, serializeConfig, parseConfig, sizeFor } from './config.mjs?v=20260927-mp4';
-import { chooseDelayMs, createSelector } from './scheduler.mjs?v=20260927-mp4';
-import { createRenderer } from './shared/overlay/renderer.mjs?v=20260927-mp4';
-import { variants } from './catalog.mjs?v=20260927-mp4';
+import { makeDefaultConfig, serializeConfig, parseConfig, sizeFor } from './config.mjs?v=20261001-zoo';
+import { chooseDelayMs, createSelector } from './scheduler.mjs?v=20261001-zoo';
+import { createRenderer } from './shared/overlay/renderer.mjs?v=20261001-zoo';
+import { variants } from './catalog.mjs?v=20261001-zoo';
 
 export function createPlayback(stage, { onState = () => {}, random = Math.random, allowOpaqueVideo = false } = {}) {
   let config = makeDefaultConfig();

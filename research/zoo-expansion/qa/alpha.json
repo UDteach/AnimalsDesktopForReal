@@ -1,0 +1,48 @@
+[
+  {
+    "file": "research/zoo-expansion/source/marmot-alpine-natural-imagegen.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 921846,
+    "opaque_pixels": 26,
+    "partial_alpha_pixels": 650644,
+    "visible_bbox_alpha_80": [
+      200,
+      47,
+      994,
+      1207
+    ],
+    "visible_bbox_alpha_8": [
+      192,
+      45,
+      995,
+      1208
+    ]
+  },
+  {
+    "file": "research/zoo-expansion/source/shoebill-natural-imagegen.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "transparent_pixels": 1269730,
+    "opaque_pixels": 619,
+    "partial_alpha_pixels": 302167,
+    "visible_bbox_alpha_80": [
+      364,
+      19,
+      895,
+      1237
+    ],
+    "visible_bbox_alpha_8": [
+      363,
+      17,
+      897,
+      1237
+    ]
+  }
+]

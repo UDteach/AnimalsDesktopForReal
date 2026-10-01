@@ -48,6 +48,20 @@ export const species = [
       "ja": "ネザーランドドワーフ",
       "en": "Netherland Dwarf"
     }
+  },
+  {
+    "id": "shoebill",
+    "name": {
+      "ja": "ハシビロコウ",
+      "en": "Shoebill"
+    }
+  },
+  {
+    "id": "marmot",
+    "name": {
+      "ja": "アルプスマーモット",
+      "en": "Alpine marmot"
+    }
   }
 ];
 export const variants = [
@@ -800,6 +814,100 @@ export const variants = [
         },
         "video": "../assets/motions/rabbit-netherland-black-himalayan-bottom-pop.webm",
         "fallbackVideo": "../assets/motions/rabbit-netherland-black-himalayan-bottom-pop.mp4"
+      }
+    ]
+  },
+  {
+    "id": "shoebill-natural",
+    "species": "shoebill",
+    "name": {
+      "ja": "自然色",
+      "en": "Natural plumage"
+    },
+    "image": "../assets/animals/shoebill-natural.png",
+    "motions": [
+      {
+        "id": "perch",
+        "name": {
+          "ja": "立って待つ",
+          "en": "Stand & wait"
+        },
+        "video": "../assets/motions/shoebill-natural-perch.webm",
+        "fallbackVideo": "../assets/motions/shoebill-natural-perch.mp4"
+      },
+      {
+        "id": "walk",
+        "name": {
+          "ja": "ゆっくり歩く",
+          "en": "Walk slowly"
+        },
+        "video": "../assets/motions/shoebill-natural-walk.webm",
+        "fallbackVideo": "../assets/motions/shoebill-natural-walk.mp4"
+      },
+      {
+        "id": "clatter",
+        "name": {
+          "ja": "くちばしを開閉する",
+          "en": "Bill clattering"
+        },
+        "video": "../assets/motions/shoebill-natural-clatter.webm",
+        "fallbackVideo": "../assets/motions/shoebill-natural-clatter.mp4"
+      },
+      {
+        "id": "bottom-pop",
+        "name": {
+          "ja": "下からぴょこ",
+          "en": "Pop up"
+        },
+        "video": "../assets/motions/shoebill-natural-bottom-pop.webm",
+        "fallbackVideo": "../assets/motions/shoebill-natural-bottom-pop.mp4"
+      }
+    ]
+  },
+  {
+    "id": "marmot-alpine-natural",
+    "species": "marmot",
+    "name": {
+      "ja": "自然色",
+      "en": "Natural coat"
+    },
+    "image": "../assets/animals/marmot-alpine-natural.png",
+    "motions": [
+      {
+        "id": "periscope",
+        "name": {
+          "ja": "座って見回す",
+          "en": "Sit & look"
+        },
+        "video": "../assets/motions/marmot-alpine-natural-periscope.webm",
+        "fallbackVideo": "../assets/motions/marmot-alpine-natural-periscope.mp4"
+      },
+      {
+        "id": "groom",
+        "name": {
+          "ja": "毛づくろい",
+          "en": "Groom"
+        },
+        "video": "../assets/motions/marmot-alpine-natural-groom.webm",
+        "fallbackVideo": "../assets/motions/marmot-alpine-natural-groom.mp4"
+      },
+      {
+        "id": "shuffle",
+        "name": {
+          "ja": "短く移動する",
+          "en": "Move a little"
+        },
+        "video": "../assets/motions/marmot-alpine-natural-shuffle.webm",
+        "fallbackVideo": "../assets/motions/marmot-alpine-natural-shuffle.mp4"
+      },
+      {
+        "id": "bottom-pop",
+        "name": {
+          "ja": "下からぴょこ",
+          "en": "Pop up"
+        },
+        "video": "../assets/motions/marmot-alpine-natural-bottom-pop.webm",
+        "fallbackVideo": "../assets/motions/marmot-alpine-natural-bottom-pop.mp4"
       }
     ]
   }

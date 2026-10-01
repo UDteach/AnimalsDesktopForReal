@@ -1,4 +1,4 @@
-const WALK = new Set(['explore', 'shuffle', 'trot']);
+const WALK = new Set(['explore', 'shuffle', 'trot', 'walk']);
 
 function effectFor(variant, motion) {
   if (motion.id === 'bottom-pop') return 'bottom';

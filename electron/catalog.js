@@ -6,6 +6,8 @@ const species = [
   { id: 'sugar-glider', name: { ja: 'フクロモモンガ', en: 'Sugar glider' } },
   { id: 'guinea-pig', name: { ja: 'モルモット', en: 'Guinea pig' } },
   { id: 'rabbit', name: { ja: 'ネザーランドドワーフ', en: 'Netherland Dwarf' } },
+  { id: 'shoebill', name: { ja: 'ハシビロコウ', en: 'Shoebill' } },
+  { id: 'marmot', name: { ja: 'アルプスマーモット', en: 'Alpine marmot' } },
 ];
 
 // Only approved, present assets are displayed. Coat labels and sources live in

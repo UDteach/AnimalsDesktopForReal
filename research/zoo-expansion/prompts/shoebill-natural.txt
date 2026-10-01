@@ -1,0 +1,9 @@
+Use case: photorealistic-natural
+Asset type: transparent full-body animal PNG for the Animals Desktop - for Real app, matching a realistic photographic cutout animal collection.
+Primary request: Exactly one adult shoebill (Balaeniceps rex), full body, quietly standing with both feet on the same invisible baseline, three-quarter front view looking toward the viewer's RIGHT.
+Subject anatomy: A true shoebill with enormous broad deep wooden-shoe-shaped pale tan bill with a hooked tip, pale yellow eyes, heavy brow, small scruffy crest, cool slate-gray feathers, lighter chest, compact folded wings, long gray legs, two anatomically plausible attached feet with long toes. Natural adult proportions. The broad bill and head are the focal point.
+Style: convincing realistic wildlife studio photograph cutout, detailed feathers, soft even neutral illumination, crisp readable contour, no cartoon or illustration, no exaggerated eyes.
+Composition: entire animal comfortably inside a square canvas, centered, about 85% of image height, generous clear margin around crest, bill, tail feathers and every toe. No crop.
+Scene/backdrop: genuine transparent alpha everywhere except the animal, including gaps between the legs and toes. No surrounding glow.
+Text: none.
+Avoid: background, green screen, checkerboard, floor, rocks, water, scenery, props, food, cast shadow, glow, mist, second animal, extra heads, extra legs, fused feet, open wings, text, logo, border.

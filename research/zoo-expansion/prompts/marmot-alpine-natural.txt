@@ -1,0 +1,9 @@
+Use case: photorealistic-natural
+Asset type: transparent full-body animal PNG for Animals Desktop - for Real, a realistic photographic animal cutout collection.
+Primary request: Exactly one adult Alpine marmot (Marmota marmota), complete full body, sitting upright on its haunches in a natural alert resting pose, three-quarter front view facing toward the viewer's RIGHT. Both small front paws are held loosely in front of the chest, with no food or prop.
+Subject anatomy: A stout robust marmot, broad rounded head, blunt wide snout, small rounded ears close to the head, natural dark brown eyes, short strong forearms, a thick bulky torso and rounded hindquarters, two hind feet resting on an invisible baseline, a short bushy dark-tipped tail visibly attached behind the left haunch. Dense coarse grizzled gray-brown fur with warm brown tones on the back, lighter beige-gray underside, subtly darker muzzle. Real adult marmot proportions, no stripes or spots, no orange squirrel coat.
+Style: convincing realistic wildlife studio photograph cutout, fine natural fur, soft even neutral lighting, crisp readable silhouette. Match the realism of a photographic rabbit or guinea-pig desktop cutout. No stylization or cartoon face.
+Composition: entire animal comfortably inside a square image, centered, occupying about 83% of image height, clear margin around ears, paws, feet and tail. No crop.
+Scene/backdrop: genuine transparent alpha everywhere outside the animal, including gaps beside paws. Clean natural fur edge without glow.
+Text: none.
+Avoid: scenery, green screen, checkerboard, ground, rocks, grass, food, objects, cast shadow, mist, glow, border, text, logo, second animal, extra limbs, detached paws, human hands, long squirrel tail, beaver tail, prominent rodent teeth, hamster or prairie dog proportions.

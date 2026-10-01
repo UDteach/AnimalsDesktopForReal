@@ -1,0 +1,14 @@
+{
+  "species": [
+    { "id": "shoebill", "name": { "ja": "ハシビロコウ", "en": "Shoebill" } },
+    { "id": "marmot", "name": { "ja": "アルプスマーモット", "en": "Alpine marmot" } }
+  ],
+  "variants": [
+    { "id": "shoebill-natural", "species": "shoebill", "name": { "ja": "自然色", "en": "Natural plumage" } },
+    { "id": "marmot-alpine-natural", "species": "marmot", "name": { "ja": "自然色", "en": "Natural coat" } }
+  ],
+  "actionsBySpecies": {
+    "shoebill": ["perch", "walk", "clatter", "bottom-pop"],
+    "marmot": ["periscope", "groom", "shuffle", "bottom-pop"]
+  }
+}

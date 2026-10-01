@@ -1,4 +1,4 @@
-import { variants } from './catalog.mjs?v=20260927-mp4';
+import { variants } from './catalog.mjs?v=20261001-zoo';
 
 const byId = new Map(variants.map((variant) => [variant.id, variant]));
 

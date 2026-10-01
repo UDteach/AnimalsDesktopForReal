@@ -16,6 +16,8 @@
 
 フクロモモンガの3種類は飼育下の毛色・模様の呼称です。モザイクは独立した単色ではなく白斑が入る模様なので、灰色地の「グレーモザイク」と明記しました。分類の見直しでオーストラリアの滑空性 *Petaurus* は複数種に分けられており、飼育下の各毛色個体を画像だけから一律に *P. breviceps* と同定しません。
 
+ハシビロコウとアルプスマーモットの外見・動作、生成画像とFlow原本、透過確認は[追加2種の制作記録](zoo-expansion/README.md)にまとめています。
+
 ## 資料
 
 - [National Chinchilla Society: chinchilla types](https://nationalchinchillasociety.co.uk/buying-the-right-chinchilla/) — チンチラの毛色。

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ハシビロコウとマーモット — 動作プレビュー</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f7f3eb;color:#302e29;font-family:system-ui,sans-serif;line-height:1.7}
+main{max-width:1200px;margin:auto;padding:36px 24px}h1{font-size:clamp(23px,4vw,34px);margin:0 0 8px}h2{font-size:23px;margin:32px 0 14px}
+p{margin:0;color:#655f56}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+figure{margin:0;border:1px solid #d9d0c4;border-radius:12px;overflow:hidden;background:#f7f3eb}
+video{display:block;width:100%;aspect-ratio:16/9;object-fit:contain;background:#f7f3eb}
+figcaption{padding:13px 15px;font-size:14px;font-weight:650;border-top:1px solid #e8dfd2}
+small{display:block;color:#827669;font-size:11px;font-weight:400}footer{margin-top:30px;font-size:13px}a{color:#76573d}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:500px){main{padding:24px 16px}.grid{grid-template-columns:1fr}}
+</style>
+<main>
+<h1>ハシビロコウとマーモット</h1>
+<p>それぞれ4つの動き。4秒ずつ再生できます。動画は無音です。</p>
+<h2>ハシビロコウ</h2>
+<div class="grid">
+<figure><video controls muted playsinline loop preload="none" poster="posters/shoebill-natural-perch.jpg" src="previews/shoebill-natural-perch.mp4"></video><figcaption>立って待つ<small>小さく首を動かし、ひと休み。</small></figcaption></figure>
+<figure><video controls muted playsinline loop preload="none" poster="posters/shoebill-natural-walk.jpg" src="previews/shoebill-natural-walk.mp4"></video><figcaption>ゆっくり歩く<small>長い脚で、少しずつ。</small></figcaption></figure>
+<figure><video controls muted playsinline loop preload="none" poster="posters/shoebill-natural-clatter.jpg" src="previews/shoebill-natural-clatter.mp4"></video><figcaption>くちばしを開閉する<small>短いクラッタリングのしぐさ。</small></figcaption></figure>
+<figure><video controls muted playsinline loop preload="none" poster="posters/shoebill-natural-bottom-pop.jpg" src="previews/shoebill-natural-bottom-pop.mp4"></video><figcaption>下から顔を出す<small>顔を見せて、そっと戻る。</small></figcaption></figure>
+</div>
+<h2>アルプスマーモット</h2>
+<div class="grid">
+<figure><video controls muted playsinline loop preload="none" poster="posters/marmot-alpine-natural-periscope.jpg" src="previews/marmot-alpine-natural-periscope.mp4"></video><figcaption>座って見回す<small>周囲をうかがい、正面を見る。</small></figcaption></figure>
+<figure><video controls muted playsinline loop preload="none" poster="posters/marmot-alpine-natural-groom.jpg" src="previews/marmot-alpine-natural-groom.mp4"></video><figcaption>毛づくろい<small>前足で頬をひと撫で。</small></figcaption></figure>
+<figure><video controls muted playsinline loop preload="none" poster="posters/marmot-alpine-natural-shuffle.jpg" src="previews/marmot-alpine-natural-shuffle.mp4"></video><figcaption>短く移動する<small>四つ足になって、右へ。</small></figcaption></figure>
+<figure><video controls muted playsinline loop preload="none" poster="posters/marmot-alpine-natural-bottom-pop.jpg" src="previews/marmot-alpine-natural-bottom-pop.mp4"></video><figcaption>下から顔を出す<small>鼻先を向けて、そっと戻る。</small></figcaption></figure>
+</div>
+<footer>生成動画はGoogle Flowで制作しました。<a href="https://flow.google.com/project/641d619c-8f17-4700-a79e-8ade3cb00c51">Flowの制作プロジェクト</a></footer>
+</main>
+<script>
+const videos = Array.from(document.querySelectorAll("video"));
+for (const video of videos) video.addEventListener("play", () => {
+  for (const other of videos) if (other !== video) other.pause();
+});
+</script>
+</html>
